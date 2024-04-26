@@ -21,4 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "BA2_INFO_ProjectRiverRaid"
 include(":app")
- 

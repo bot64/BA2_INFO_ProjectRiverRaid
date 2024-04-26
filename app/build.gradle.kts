@@ -1,15 +1,11 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
 }
 
 android {
     namespace = "com.example.ba2_info_projectriverraid"
     compileSdk = 34
-
-    buildFeatures {
-        viewBinding = true
-    }
 
     defaultConfig {
         applicationId = "com.example.ba2_info_projectriverraid"
