@@ -4,16 +4,15 @@ import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.Main
 
 abstract class Entities(
-    var x_pos: Double,
-    var y_pos: Double,
-    var size: Double,
+    var x_pos: Float,
+    var y_pos: Float,
+    var size: Pair<Float,Float> = Pair(20.0, 20.0),
     var image: Icon){
-
-    val data = Main.difficultyManager.getDifficulty()
+    val data = Main.DifficultyDataManager.getData()
     fun getPosition() : Pair<Float, Float> {
         return Pair(x_pos, y_pos)
     }
-    fun outOfBounds(screenWidth : Int, screenHeight : Int) : Boolean {
+    fun isOutOfBounds(screenWidth : Int, screenHeight : Int) : Boolean {
         return (x_pos < 0 || x_pos + size.first > screenWidth || y_pos < 0 || y_pos + size.second > screenHeight)
     }
     fun remove(screenWidth : Int, screenHeight : Int, entities : MutableList<Entities>) {
@@ -43,7 +42,7 @@ abstract class Entities(
         // Creates [numBlocks] 'block' objects at randomized (x_pos,y_pos) values
         repeat(numBlocks){
             val block = Block(
-                Random.nextFloat() * screenWidth.toDouble(),
+                Random.nextFloat() * screenWidth.toFloat(),
                 Random.nextFloat() * screenHeight,
                 Pair(20f, 20f)
             )

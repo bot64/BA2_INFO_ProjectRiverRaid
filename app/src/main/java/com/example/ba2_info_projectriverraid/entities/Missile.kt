@@ -6,11 +6,8 @@ class Missile(
     var speed: Double,
 
 ) : Entities(x_pos = 0.0, y_pos = 0.0, size = 10.0) {
-    fun shoot() {
-        // Initialize the missile's position and speed
-        speed = 10.0
-        x_pos = Player.x_pos
-        y_pos = Player.y_pos
+    fun shoot(x_pos: Float, y_pos: Float) {
+
 
     }
     fun update() {

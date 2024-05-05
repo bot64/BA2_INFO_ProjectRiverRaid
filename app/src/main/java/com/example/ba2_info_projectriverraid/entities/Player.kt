@@ -15,8 +15,9 @@ abstract class Player(
     private var shootButtonPressed = false
 
     init {
-        x_pos = data.
-        y_pos = 0.0
+        val (x, y) = data.playerHome
+        this.x_pos = x
+        this.y_pos = y
         speed = data.playerSpeed
         fuel = data.fuelOnstart
         health = data.playerStartHealth

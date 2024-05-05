@@ -1,10 +1,12 @@
 package com.example.ba2_info_projectriverraid.entities
 
+import android.graphics.drawable.Icon
+
 abstract class Block(
-    x_pos: Double,
+    x_pos: Float,
     y_pos: Double,
     size: Double,
-    image: android.graphics.drawable.Icon,
+    image: Icon,
     var collision_prop: Int
 ) : Entities(x_pos, y_pos, size, image) {
 
