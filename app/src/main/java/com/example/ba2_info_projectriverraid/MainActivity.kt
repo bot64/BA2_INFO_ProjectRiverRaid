@@ -1,16 +1,13 @@
 package com.example.ba2_info_projectriverraid
 
-import android.content.Context
-import android.graphics.Canvas
 import android.os.Bundle
-import android.view.SurfaceHolder
-import android.view.SurfaceView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.ba2_info_projectriverraid.map.Boundary
-import com.example.ba2_info_projectriverraid.map.Map
+import com.example.ba2_info_projectriverraid.customviews.BotView
+import com.example.ba2_info_projectriverraid.customviews.TopView
+import com.example.ba2_info_projectriverraid.utils.DifficultyAndData
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +21,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+lateinit var gameView: GameView
+lateinit var topView: TopView
+lateinit var botView: BotView
+
 
 class Main {
 
@@ -54,5 +55,14 @@ class Main {
 
     fun create_entity() {
         // Create a new entity and add it to the appropriate list
+    }
+    object DifficultyDataManager {
+        private var _difficulty: DifficultyAndData = DifficultyAndData.EASY
+        fun setDifficulty(difficultyAndData: DifficultyAndData) {
+            _difficulty = difficultyAndData
+        }
+        public fun getData(): DifficultyAndData {
+            return _difficulty
+        }
     }
 }

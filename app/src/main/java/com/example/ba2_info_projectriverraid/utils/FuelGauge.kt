@@ -1,5 +1,4 @@
 package com.example.ba2_info_projectriverraid.utils
-import com.example.ba2_info_projectriverraid.utils.Difficulty
 
 // FuelGauge.kt
 class FuelGauge(
@@ -10,7 +9,7 @@ class FuelGauge(
 
     fun update_fuel() {
         // Deplete fuel slowly based on the constant in utils.Constants
-        pos -= Difficulty.EASY.fuelDepleteRate
+        pos -= DifficultyAndData.EASY.fuelDepleteRate
 
         // Check if fuel is empty and trigger game over if necessary
         if (pos <= 0.0) {

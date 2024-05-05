@@ -8,11 +8,33 @@
     android:background="#DEDEDE"
     tools:context=".MainActivity" >
 
-    <com.example.ba2_info_projectriverraid.DrawingView
+    <com.example.ba2_info_projectriverraid.customviews.GameView
         android:id="@+id/drawing_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_gravity="center" />
+        android:layout_width="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_gravity="center"/>
+
+    <com.example.ba2_info_projectriverraid.customviews.TopView
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.ba2_info_projectriverraid.customviews.BotView
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drawing_view"
+        app:layout_constraintVertical_bias="0.52" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

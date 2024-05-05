@@ -6,13 +6,13 @@ abstract class Block(
     size: Double,
     image: android.graphics.drawable.Icon,
     var collision_prop: Int
-) : Entities(x_pos, y_pos, size, image), BlockFunctions {
+) : Entities(x_pos, y_pos, size, image) {
 
-    override fun delete() {
+    fun delete() {
         // Remove the block from the game
     }
 
-    override fun pop_block() {
+    fun pop_block() {
         // Create a new block and add it to the game
     }
 

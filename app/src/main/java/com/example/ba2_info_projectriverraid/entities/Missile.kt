@@ -2,17 +2,22 @@ package com.example.ba2_info_projectriverraid.entities
 
 // Missile.kt
 
-abstract class Missile(
+class Missile(
     var speed: Double,
-    var pos_x: Double,
-    var pos_y: Double
-) : Entities(pos_x, pos_y, 10.0) {
 
+) : Entities(x_pos = 0.0, y_pos = 0.0, size = 10.0) {
+    fun shoot() {
+        // Initialize the missile's position and speed
+        speed = 10.0
+        x_pos = Player.x_pos
+        y_pos = Player.y_pos
+
+    }
     fun update() {
         // Update the missile's position based on its speed
     }
 
-    override fun outofbound(): Boolean {
+    fun outofbound(): Boolean {
         // Check if the missile is outside the game boundaries
         return false
     }
@@ -21,7 +26,7 @@ abstract class Missile(
         // Handle collisions between the missile and other entities
     }
 
-    override fun delete() {
+    fun delete() {
         // Remove the missile from the game
     }
 

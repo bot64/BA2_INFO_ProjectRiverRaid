@@ -1,11 +1,9 @@
 package com.example.ba2_info_projectriverraid.entities
 
 abstract class Player(
-    x_pos: Double,
-    y_pos: Double,
-    size: Double,
-    image: android.graphics.drawable.Icon
-) : Entities(x_pos, y_pos, size, image) {
+    size: Double = 1.0,
+    image: android.graphics.drawable.Icon =
+) : Entities(x_pos = 0.0, y_pos = 0.0, size, image) {
 
     // Player-specific properties and methods
     var speed: Double = 5.0
@@ -15,6 +13,14 @@ abstract class Player(
     private var moveLeftPressed = false
     private var moveRightPressed = false
     private var shootButtonPressed = false
+
+    init {
+        x_pos = data.
+        y_pos = 0.0
+        speed = data.playerSpeed
+        fuel = data.fuelOnstart
+        health = data.playerStartHealth
+    }
 
     fun move() {
         // Update the player's position based on the input states
@@ -37,7 +43,7 @@ abstract class Player(
         // Handle input events and update the input states
         /*when (event.action) {
             android.view.MotionEvent.ACTION_DOWN -> {
-                if (event.x < screenWidth / 2) {
+                if (event.x_Pos < screenWidth / 2) {
                     moveLeftPressed = true
                 } else {
                     moveRightPressed = true
@@ -56,7 +62,7 @@ abstract class Player(
     fun shoot() {
         // Create a new missile and add it to the game if the shoot button is pressed
         if (shootButtonPressed) {
-            // ... code to create and add a new missile ...
+            missile.shoot(x_Pos, y_Pos)
         }
     }
 
