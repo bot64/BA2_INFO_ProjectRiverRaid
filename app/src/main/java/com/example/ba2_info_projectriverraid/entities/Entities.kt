@@ -1,4 +1,4 @@
-package com.example.ba2_info_projectriverraid
+package com.example.ba2_info_projectriverraid.entities
 import kotlin.random.Random
 import android.graphics.drawable.Drawable
 
