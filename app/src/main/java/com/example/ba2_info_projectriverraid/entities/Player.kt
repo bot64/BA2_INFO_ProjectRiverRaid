@@ -1,7 +1,6 @@
 package com.example.ba2_info_projectriverraid.entities
 
-class// Player.kt
-class Player(
+abstract class Player(
     x_pos: Double,
     y_pos: Double,
     size: Double,
@@ -36,7 +35,7 @@ class Player(
 
     fun handleInput(event: android.view.MotionEvent) {
         // Handle input events and update the input states
-        when (event.action) {
+        /*when (event.action) {
             android.view.MotionEvent.ACTION_DOWN -> {
                 if (event.x < screenWidth / 2) {
                     moveLeftPressed = true
@@ -51,7 +50,7 @@ class Player(
                 moveRightPressed = false
                 shootButtonPressed = false
             }
-        }
+        }*/
     }
 
     fun shoot() {

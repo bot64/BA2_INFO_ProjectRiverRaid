@@ -6,22 +6,19 @@ import android.graphics.drawable.Icon
 abstract class Entities(
     var x_pos: Double,
     var y_pos: Double,
-    var size: Double,
-    var image: Icon
+    var size: Double = 1.0,
+    var image: Icon? = null
 ) {
 
     fun getposition(): List<Double> {
         return listOf(x_pos, y_pos)
     }
 
-    fun outofbound(): Boolean {
+    open fun outofbound(): Boolean {
         // Check if the entity is outside the game boundaries
         return false
     }
 
-    abstract fun shot() {
-        // Handle the entity being shot
-    }
 
     abstract fun delete()
 

@@ -1,6 +1,5 @@
 package com.example.ba2_info_projectriverraid.utils
-
-import androidx.media3.common.Player
+import com.example.ba2_info_projectriverraid.utils.Difficulty
 
 // FuelGauge.kt
 class FuelGauge(
@@ -9,16 +8,9 @@ class FuelGauge(
     var pos: Double = 100.0 // Initial fuel level
 ) {
 
-    // Reference to the player object
-    private var player: Player? = null
-
-    fun attachPlayer(player: Player) {
-        this.player = player
-    }
-
     fun update_fuel() {
         // Deplete fuel slowly based on the constant in utils.Constants
-        pos -= Constants.FUEL_DEPLETION_RATE
+        pos -= Difficulty.EASY.fuelDepleteRate
 
         // Check if fuel is empty and trigger game over if necessary
         if (pos <= 0.0) {

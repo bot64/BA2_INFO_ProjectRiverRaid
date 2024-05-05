@@ -1,6 +1,6 @@
 package com.example.ba2_info_projectriverraid.entities
 
-class Block(
+abstract class Block(
     x_pos: Double,
     y_pos: Double,
     size: Double,

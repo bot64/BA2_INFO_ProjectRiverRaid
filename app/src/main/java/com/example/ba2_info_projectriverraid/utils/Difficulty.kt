@@ -6,18 +6,22 @@ data class Map(
     val boundaries: List<Boundary>
 )
 
+
 // Difficulty enum class
 enum class Difficulty(
     val mapBoundaries: List<Boundary>,
     val enemySpeed: Double = 1.0,
     val enemyGenerationRate: Long,
     val playerSpeed: Double = 1.0,
-    val playerStartingHealth: Int = 5) {
+    val playerStartingHealth: Int = 5,
+    val fuelDepleteRate: Double = 1.0)
+    {
     EASY(
         mapBoundaries = listOf(Boundary(0.0, 0.0, 100.0, 100.0)),
         enemySpeed = .75,
         enemyGenerationRate = 75L,
-        playerStartingHealth = 10
+        playerStartingHealth = 10,
+        fuelDepleteRate = 0.75
     ),
     MEDIUM(
         mapBoundaries = listOf(
@@ -35,5 +39,5 @@ enum class Difficulty(
         ),
         enemySpeed = 4.0,
         enemyGenerationRate = 200L
-    )
+    ),
 }

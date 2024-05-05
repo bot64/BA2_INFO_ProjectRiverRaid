@@ -1,6 +1,8 @@
 package com.example.ba2_info_projectriverraid.entities.enemies
 
-class// Ship.kt
+import com.example.ba2_info_projectriverraid.entities.Entities
+
+// Ship.kt
 class Ship(
     x_pos: Double,
     y_pos: Double,
@@ -25,7 +27,3 @@ class Ship(
         // Create a function for what happens when the entity is shot
         }
     }
-
-
-} Ship {
-}

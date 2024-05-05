@@ -2,13 +2,13 @@ package com.example.ba2_info_projectriverraid.entities
 
 // Missile.kt
 
-class Missile(
+abstract class Missile(
     var speed: Double,
     var pos_x: Double,
     var pos_y: Double
-) : Entities(pos_x, pos_y, 10.0, Icon("missile.png")) {
+) : Entities(pos_x, pos_y, 10.0) {
 
-    override fun update() {
+    fun update() {
         // Update the missile's position based on its speed
     }
 
