@@ -1,11 +1,16 @@
 package com.example.ba2_info_projectriverraid.entities
 
+import android.graphics.drawable.Icon
+
 // Missile.kt
 
 class Missile(
     var speed: Double,
-
-) : Entities(x_pos = 0.0, y_pos = 0.0, size = 10.0) {
+    size: Pair<Float, Float>,
+    x_pos: Float,
+    y_pos: Float,
+    image: Icon
+) : Entities(x_pos, y_pos, size, image) {
     fun shoot(x_pos: Float, y_pos: Float) {
 
 

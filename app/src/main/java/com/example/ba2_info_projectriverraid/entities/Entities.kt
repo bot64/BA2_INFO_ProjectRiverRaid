@@ -3,15 +3,13 @@ import kotlin.random.Random
 import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.Main
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
-import com.example.ba2_info_projectriverraid.entities.Block
-import com.example.ba2_info_projectriverraid.entities.FuelTank
-
 
 
 abstract class Entities(
     var x_pos: Float,
     var y_pos: Float,
-    var size: Pair<Float,Float> = Pair(20.0, 20.0),
+    var size: Pair<Float, Float> = Pair(20.0f, 20.0f),
+    var health: Int = 0,
     var image: Icon){
     val data = Main.DifficultyDataManager.getData()
     fun getPosition() : Pair<Float, Float> {
@@ -24,7 +22,7 @@ abstract class Entities(
         // Garbage collector based on outOfBounds()
         val entitiesToRemove = mutableListOf<Entities>()
         for (entity in entities){
-            if (entity.outOfBounds(screenWidth, screenHeight)) {
+            if (entity.isOutOfBounds(screenWidth, screenHeight)) {
                 entitiesToRemove.add(entity)
             }
         }
@@ -48,8 +46,7 @@ abstract class Entities(
         repeat(numBlocks){
             val block = Block(
                 Random.nextFloat() * screenWidth,
-                Random.nextFloat() * screenHeight,
-                Pair(20f, 20f)
+                Random.nextFloat() * screenHeight
             )
             entities.add(block)
         }
@@ -57,7 +54,9 @@ abstract class Entities(
     protected fun createFuelTanks(numFuelTanks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         // Creates [numFuelTanks] 'fuel_tank' objects at randomized (x_pos,y_pos) values
         repeat(numFuelTanks){
-            val fuelTank = FuelTank(Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f))
+            val fuelTank = FuelTank(
+                Random.nextFloat()*screenWidth,
+                Random.nextFloat()*screenHeight)
             entities.add(fuelTank)
         }
     }

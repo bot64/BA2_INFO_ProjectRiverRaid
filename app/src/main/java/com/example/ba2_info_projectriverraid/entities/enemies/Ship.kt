@@ -1,13 +1,14 @@
 package com.example.ba2_info_projectriverraid.entities.enemies
 
+import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.entities.Entities
 
 // Ship.kt
 class Ship(
-    x_pos: Double,
-    y_pos: Double,
-    size: Double,
-    image: android.graphics.drawable.Icon
+    x_pos: Float,
+    y_pos: Float,
+    size: Pair<Float, Float>,
+    image: Icon
 ) : Entities(x_pos, y_pos, size, image) {
 
     // Ship-specific properties and methods
@@ -16,11 +17,11 @@ class Ship(
         // Handle collisions between the ship and other entities
     }
 
-    override fun delete() {
+    fun delete() {
         // Remove the ship from the game
     }
 
-    override fun pop_entity() {
+    fun pop_entity() {
         // Create a new ship and add it to the game
     }
     fun shot() {

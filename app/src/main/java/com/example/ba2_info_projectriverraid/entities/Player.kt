@@ -1,13 +1,17 @@
 package com.example.ba2_info_projectriverraid.entities
 
-abstract class Player(
-    size: Double = 1.0,
-    image: android.graphics.drawable.Icon =
-) : Entities(x_pos = 0.0, y_pos = 0.0, size, image) {
+class Player(
+    x_pos: Float,
+    y_pos: Float,
+    size: Pair<Float,Float>,
+    health: Int,
+    glug: Int,
+    image: android.graphics.drawable.Icon
+) : Entities(x_pos, y_pos, size, health, glug,  image) {
 
     // Player-specific properties and methods
-    var speed: Double = 5.0
-    var fuel: Double = 100.0
+    var speed: Float = 5.0f
+    var fuel: Float = 100.0f
 
     // Input states
     private var moveLeftPressed = false
@@ -20,7 +24,7 @@ abstract class Player(
         this.y_pos = y
         speed = data.playerSpeed
         fuel = data.fuelOnstart
-        health = data.playerStartHealth
+
     }
 
     fun move() {
@@ -36,7 +40,7 @@ abstract class Player(
         // Draw the player on the canvas
     }
 
-    fun get_fuel(): Double {
+    fun get_fuel(): Float {
         return fuel
     }
 

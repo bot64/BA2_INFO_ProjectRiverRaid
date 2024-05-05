@@ -16,6 +16,14 @@ class GameView @JvmOverloads constructor(
     // Initialize any necessary variables or objects for the GameView
     private val thread: GameThread
 
+    private var screenWidth = 0
+    private var screenHeight = 0
+
+    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
+        screenWidth = width
+        screenHeight = height
+    }
+
     init {
         // Get the SurfaceHolder and add the callback
         holder.addCallback(this)
@@ -29,10 +37,6 @@ class GameView @JvmOverloads constructor(
         // Start the GameThread
         thread.running = true
         thread.start()
-    }
-
-    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-        // Update the GameView's dimensions
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {
