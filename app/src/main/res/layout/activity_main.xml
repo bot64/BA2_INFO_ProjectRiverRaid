@@ -8,15 +8,16 @@
     android:background="#DEDEDE"
     tools:context=".MainActivity" >
 
-    <com.example.ba2_info_projectriverraid.customviews.GameView
+    <com.example.ba2_info_projectriverraid.GameView
         android:id="@+id/drawing_view"
         android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_gravity="center"/>
+        app:layout_gravity="center" />
 
     <com.example.ba2_info_projectriverraid.customviews.TopView
         android:id="@+id/view"
@@ -28,8 +29,8 @@
 
     <com.example.ba2_info_projectriverraid.customviews.BotView
         android:id="@+id/view2"
-        android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_width="0dp"
+        android:layout_height="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
