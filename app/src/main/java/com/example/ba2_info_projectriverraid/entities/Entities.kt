@@ -2,6 +2,11 @@ package com.example.ba2_info_projectriverraid.entities
 import kotlin.random.Random
 import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.Main
+import com.example.ba2_info_projectriverraid.entities.enemies.Ship
+import com.example.ba2_info_projectriverraid.entities.Block
+import com.example.ba2_info_projectriverraid.entities.FuelTank
+
+
 
 abstract class Entities(
     var x_pos: Float,
@@ -34,7 +39,7 @@ abstract class Entities(
     protected fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         // Creates [numEnemies] 'enemies' objects at randomized (x_pos,y_pos) values
         repeat(numEnemies) {
-            val enemy = Enemies(Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f))
+            val enemy = Ship(Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f))
             entities.add(enemy)
         }
     }
@@ -42,7 +47,7 @@ abstract class Entities(
         // Creates [numBlocks] 'block' objects at randomized (x_pos,y_pos) values
         repeat(numBlocks){
             val block = Block(
-                Random.nextFloat() * screenWidth.toFloat(),
+                Random.nextFloat() * screenWidth,
                 Random.nextFloat() * screenHeight,
                 Pair(20f, 20f)
             )
