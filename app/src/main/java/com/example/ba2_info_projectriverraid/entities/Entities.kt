@@ -37,29 +37,6 @@ abstract class Entities(
                 entitiesY - entitiesSize.second / 2 < missileY + missileSize.second / 2 &&
                 entitiesY + entitiesSize.second / 2 > missileY - missileSize.second / 2
     }
-    protected fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        // Creates [numEnemies] 'enemies' objects at randomized (entitiesX,entitiesY) values
-        repeat(numEnemies) {
-            //val enemy = Ship(Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f))
-            //entities.add(enemy)
-        }
-    }
-    /*protected fun createBlocks(numBlocks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        // Creates [numBlocks] 'block' objects at randomized (entitiesX,entitiesY) values
-        repeat(numBlocks){
-            val block = Block(Random.nextFloat() * screenWidth,Random.nextFloat() * screenHeight)
-            entities.add(block)
-        }
-    }
-
-    protected fun createFuelTanks(numFuelTanks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        // Creates [numFuelTanks] 'fuel_tank' objects at randomized (entitiesX,entitiesY) values
-        repeat(numFuelTanks){
-            val fuelTank = FuelTank(Random.nextFloat()*screenWidth,Random.nextFloat()*screenHeight)
-            entities.add(fuelTank)
-        }
-    }
-    */
 }
 // Suggested size for entities (20f, 20f) needs adjusting
 // screenWidth and screenHeight values need adjusting
