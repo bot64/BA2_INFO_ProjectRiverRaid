@@ -14,7 +14,8 @@ enum class DifficultyAndData(
     val playerStartingHealth: Float = 5.0f,
     val fuelDepleteRate: Float = 1.0f,
     val fuelOnstart: Float = 100.0f,
-    val playerHome: Pair<Float, Float> = Pair(0.0f, 0.0f))
+    val playerHome: Pair<Float, Float> = Pair(0.0f, 0.0f),
+    val defaultSize: Pair<Float, Float> = Pair(20f, 20f))
     {
     EASY(
         mapBoundaries = listOf(Boundary(0.0, 0.0, 100.0, 100.0)),

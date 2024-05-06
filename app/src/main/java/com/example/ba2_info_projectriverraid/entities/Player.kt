@@ -1,19 +1,28 @@
 package com.example.ba2_info_projectriverraid.entities
 
+import android.content.Context
 import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.Main
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import com.example.ba2_info_projectriverraid.R
+import com.example.ba2_info_projectriverraid.Main.DifficultyDataManager.getData
 
 class Player(
-    x_pos: Float,
-    y_pos: Float,
-    size: Pair<Float,Float>,
+    context: Context,
+    x_pos: Float = getData().playerHome.first,
+    y_pos: Float = getData().playerHome.second,
+    size: Pair<Float,Float> = getData().defaultSize,
     health: Float = Main.DifficultyDataManager.getData().playerStartingHealth,
-    image: Icon
+    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.Player),
+    override val bitmap: Bitmap= BitmapFactory.decodeResource(context.resources, R.drawable.Player)
 ) : Entities(x_pos, y_pos, size, health, image) {
 
     // Player-specific properties and methods
     var speed: Float = 5.0f
     var fuel: Float = 100.0f
+
+
 
     // Input states
     private var moveLeftPressed = false
@@ -21,9 +30,6 @@ class Player(
     private var shootButtonPressed = false
 
     init {
-        val (x, y) = data.playerHome
-        this.x_pos = x
-        this.y_pos = y
         speed = data.playerSpeed
         fuel = data.fuelOnstart
 
@@ -66,12 +72,6 @@ class Player(
         }*/
     }
 
-    fun shoot() {
-        // Create a new missile and add it to the game if the shoot button is pressed
-        if (shootButtonPressed) {
-            Missile.shoot(this)
-        }
-    }
 
     // ... Other methods inherited from Entities ...
 

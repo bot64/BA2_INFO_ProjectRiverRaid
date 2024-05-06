@@ -1,15 +1,21 @@
 package com.example.ba2_info_projectriverraid.entities
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
+import com.example.ba2_info_projectriverraid.R
 
 // Missile.kt
 
 class Missile(
-    var speed: Double,
+    context: Context,
+    var speed: Float,
     size: Pair<Float, Float>,
     x_pos: Float,
     y_pos: Float,
-    image: Icon
+    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.Missile),
+    override val bitmap: Bitmap
 ) : Entities(x_pos, y_pos, size, health = 1f, image) {
     fun shoot(player: Player) {
         // Set the initial position of the missile to be just above the player

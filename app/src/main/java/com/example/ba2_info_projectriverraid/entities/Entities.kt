@@ -1,4 +1,5 @@
 package com.example.ba2_info_projectriverraid.entities
+import android.graphics.Bitmap
 import kotlin.random.Random
 import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.Main
@@ -10,7 +11,9 @@ abstract class Entities(
     var y_pos: Float,
     var size: Pair<Float, Float> = Pair(20.0f, 20.0f),
     var health: Float,
-    var image: Icon){
+    var image: Bitmap
+){
+    abstract val bitmap: Bitmap
     val data = Main.DifficultyDataManager.getData()
     fun getPosition() : Pair<Float, Float> {
         return Pair(x_pos, y_pos)
@@ -37,11 +40,11 @@ abstract class Entities(
     protected fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         // Creates [numEnemies] 'enemies' objects at randomized (x_pos,y_pos) values
         repeat(numEnemies) {
-            val enemy = Ship(Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f))
-            entities.add(enemy)
+            //val enemy = Ship(Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f))
+            //entities.add(enemy)
         }
     }
-    protected fun createBlocks(numBlocks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
+    /*protected fun createBlocks(numBlocks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         // Creates [numBlocks] 'block' objects at randomized (x_pos,y_pos) values
         repeat(numBlocks){
             val block = Block(
@@ -51,6 +54,7 @@ abstract class Entities(
             entities.add(block)
         }
     }
+
     protected fun createFuelTanks(numFuelTanks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         // Creates [numFuelTanks] 'fuel_tank' objects at randomized (x_pos,y_pos) values
         repeat(numFuelTanks){
@@ -60,6 +64,7 @@ abstract class Entities(
             entities.add(fuelTank)
         }
     }
+    */
 }
 // Suggested size for entities (20f, 20f) needs adjusting
 // screenWidth and screenHeight values need adjusting

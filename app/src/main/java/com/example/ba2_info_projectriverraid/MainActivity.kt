@@ -1,5 +1,6 @@
 package com.example.ba2_info_projectriverraid
 
+import GameView
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity

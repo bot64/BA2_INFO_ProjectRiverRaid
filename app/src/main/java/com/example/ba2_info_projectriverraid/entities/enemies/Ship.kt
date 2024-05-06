@@ -1,16 +1,22 @@
 package com.example.ba2_info_projectriverraid.entities.enemies
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
 
 // Ship.kt
 class Ship(
+    context: Context,
     x_pos: Float,
     y_pos: Float,
     size: Pair<Float, Float>,
-    image: Icon
-) : Entities(x_pos, y_pos, size, image) {
+    health: Float = 1f,
+    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.Ship),
+    override val bitmap: Bitmap
+) : Entities(x_pos, y_pos, size,health, image) {
 
     // Ship-specific properties and methods
 
