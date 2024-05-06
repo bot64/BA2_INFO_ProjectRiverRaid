@@ -27,6 +27,8 @@ class GameView(context: Context, attrs: AttributeSet) : SurfaceView(context, att
 
     private var thread: Thread? = null
     private var running = false
+    val screenWidth = context.resources.displayMetrics.widthPixels
+    val screenHeight = context.resources.displayMetrics.heightPixels
 
     init {
         holder.addCallback(this)
@@ -47,5 +49,27 @@ class GameView(context: Context, attrs: AttributeSet) : SurfaceView(context, att
     override fun surfaceDestroyed(holder: SurfaceHolder) {
         running = false
         thread?.join()
+    }
+    private fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
+        //Creates [numEnemies] 'enemies' objects at randomized (entitiesX,entitiesY) values
+        repeat(numEnemies) {
+            val enemy = Ship(Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f))
+            entities.add(enemy)
+        }
+    }
+    private fun createBlocks(numBlocks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
+        // Creates [numBlocks] 'block' objects at randomized (entitiesX,entitiesY) values
+        repeat(numBlocks){
+            val block = Block(Random.nextFloat() * screenWidth,Random.nextFloat() * screenHeight)
+            entities.add(block)
+        }
+    }
+
+    private fun createFuelTanks(numFuelTanks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
+        // Creates [numFuelTanks] 'fuel_tank' objects at randomized (entitiesX,entitiesY) values
+        repeat(numFuelTanks){
+            val fuelTank = FuelTank(Random.nextFloat()*screenWidth,Random.nextFloat()*screenHeight)
+            entities.add(fuelTank)
+        }
     }
 }
