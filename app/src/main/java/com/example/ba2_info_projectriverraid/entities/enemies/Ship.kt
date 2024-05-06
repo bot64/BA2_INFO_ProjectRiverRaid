@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
-import com.example.ba2_info_projectriverraid.enemies.Enemies
+import com.example.ba2_info_projectriverraid.entities.enemies.Enemies
 
 // Ship.kt
 class Ship(
