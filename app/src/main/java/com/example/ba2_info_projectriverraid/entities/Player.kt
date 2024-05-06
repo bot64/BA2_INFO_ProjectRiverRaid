@@ -69,7 +69,7 @@ class Player(
     fun shoot() {
         // Create a new missile and add it to the game if the shoot button is pressed
         if (shootButtonPressed) {
-            missile.shoot(x_Pos, y_Pos)
+            Missile.shoot(this)
         }
     }
 

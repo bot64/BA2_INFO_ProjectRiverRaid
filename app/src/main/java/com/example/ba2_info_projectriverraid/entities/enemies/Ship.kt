@@ -1,6 +1,7 @@
 package com.example.ba2_info_projectriverraid.entities.enemies
 
 import android.graphics.drawable.Icon
+import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
 
 // Ship.kt

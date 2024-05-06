@@ -1,13 +1,11 @@
 import android.view.SurfaceHolder
 import androidx.media3.common.Player
+import com.example.ba2_info_projectriverraid.GameView
 
 class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView: GameView) : Thread() {
 
     // Game state variables
     var running = false
-
-    // Game objects
-    private val player = Player()
     //private val enemies = mutableListOf<Enemy>()
 
     override fun run() {
