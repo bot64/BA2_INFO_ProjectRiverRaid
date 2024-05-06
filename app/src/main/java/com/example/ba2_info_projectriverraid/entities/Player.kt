@@ -14,8 +14,8 @@ class Player(
     y_pos: Float = getData().playerHome.second,
     size: Pair<Float,Float> = getData().defaultSize,
     health: Float = Main.DifficultyDataManager.getData().playerStartingHealth,
-    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.Player),
-    override val bitmap: Bitmap= BitmapFactory.decodeResource(context.resources, R.drawable.Player)
+    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.player),
+    override val bitmap: Bitmap= BitmapFactory.decodeResource(context.resources, R.drawable.player)
 ) : Entities(x_pos, y_pos, size, health, image) {
 
     // Player-specific properties and methods

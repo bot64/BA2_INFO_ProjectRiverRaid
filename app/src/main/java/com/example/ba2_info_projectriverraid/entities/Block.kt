@@ -12,7 +12,7 @@ class Block(
     y_pos: Float,
     size: Pair<Float, Float> = Pair(20f, 20f),
     health: Float = 999999f,
-    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.Block),
+    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.block),
     override val bitmap: Bitmap
 ) : Entities(x_pos, y_pos, size, health, image) {
 

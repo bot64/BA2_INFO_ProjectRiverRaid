@@ -1,9 +1,15 @@
 import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Player
+import com.example.ba2_info_projectriverraid.customviews.TopView
+import com.example.ba2_info_projectriverraid.customviews.BotView
 
-class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback {
+class GameView(context: Context, attrs: AttributeSet) : SurfaceView(context, attrs), SurfaceHolder.Callback {
 
     private val player = Player(context)
 

@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_gravity="center" />
+        tools:ignore="MissingClass" />
 
     <com.example.ba2_info_projectriverraid.customviews.TopView
         android:id="@+id/view"

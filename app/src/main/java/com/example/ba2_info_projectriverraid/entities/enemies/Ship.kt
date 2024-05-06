@@ -14,7 +14,7 @@ class Ship(
     y_pos: Float,
     size: Pair<Float, Float>,
     health: Float = 1f,
-    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.Ship),
+    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.ship),
     override val bitmap: Bitmap
 ) : Entities(x_pos, y_pos, size,health, image) {
 

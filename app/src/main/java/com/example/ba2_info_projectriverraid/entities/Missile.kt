@@ -14,7 +14,7 @@ class Missile(
     size: Pair<Float, Float>,
     x_pos: Float,
     y_pos: Float,
-    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.Missile),
+    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.missile),
     override val bitmap: Bitmap
 ) : Entities(x_pos, y_pos, size, health = 1f, image) {
     fun shoot(player: Player) {
