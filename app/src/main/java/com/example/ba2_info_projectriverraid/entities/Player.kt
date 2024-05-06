@@ -1,4 +1,4 @@
-tipackage com.example.ba2_info_projectriverraid.entities
+package com.example.ba2_info_projectriverraid.entities
 
 import android.content.Context
 import android.graphics.drawable.Icon
