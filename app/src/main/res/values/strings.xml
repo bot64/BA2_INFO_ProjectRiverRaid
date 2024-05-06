@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BA2_INFO_ProjectRiverRaid</string>
+    <string name="player_speed">10</string>
 </resources>

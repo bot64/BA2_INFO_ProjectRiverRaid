@@ -8,8 +8,9 @@ import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.customviews.TopView
 import com.example.ba2_info_projectriverraid.customviews.BotView
+import android.app.Activity
 
-class GameView(context: Context, attrs: AttributeSet) : SurfaceView(context, attrs), SurfaceHolder.Callback {
+class GameView(context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) , SurfaceHolder.Callback {
 
     private val player = Player(context)
 
@@ -17,6 +18,7 @@ class GameView(context: Context, attrs: AttributeSet) : SurfaceView(context, att
         override fun run() {
             while (running) {
                 val canvas = holder.lockCanvas()
+                canvas.drawColor(Color.WHITE) // Set the background color to white
                 canvas.drawBitmap(player.bitmap, player.x_pos, player.y_pos, null)
                 holder.unlockCanvasAndPost(canvas)
             }
@@ -28,6 +30,8 @@ class GameView(context: Context, attrs: AttributeSet) : SurfaceView(context, att
 
     init {
         holder.addCallback(this)
+        player.x_pos = width / 2f // Set the player's initial x position
+        player.y_pos = height / 2f // Set the player's initial y position
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
