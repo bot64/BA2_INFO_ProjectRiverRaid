@@ -1,10 +1,11 @@
-package com.example.ba2_info_projectriverraid.entities.enemies
+package com.example.ba2_info_projectriverraid.entities.enemies.ship
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
+import com.example.ba2_info_projectriverraid.enemies.Enemies
 
 // Ship.kt
 class Ship(
@@ -14,7 +15,7 @@ class Ship(
     shipSize: Pair<Float, Float>,
     health: Float = 1f ,
     Bitmap: Bitmap? = BitmapFactory.decodeResource(context.resources, R.drawable.ship)
-) : Entities(context,shipX, shipY, shipSize,health, Bitmap) {
+) : Enemies(context,shipX, shipY, shipSize,health, Bitmap) {
 
     // Ship-specific properties and methods
     fun create(){}
