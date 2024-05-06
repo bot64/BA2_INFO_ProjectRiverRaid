@@ -1,9 +1,8 @@
 package com.example.ba2_info_projectriverraid.entities
 
 import android.content.Context
-import android.graphics.drawable.Icon
-import com.example.ba2_info_projectriverraid.Main
 import android.graphics.Bitmap
+import com.example.ba2_info_projectriverraid.Main
 import android.graphics.BitmapFactory
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.Main.DifficultyDataManager.getData
@@ -14,10 +13,10 @@ class Player(
     entitiesY: Float = getData().playerHome.second,
     entitiesSize: Pair<Float,Float> = getData().defaultSize,
     health: Float = Main.DifficultyDataManager.getData().playerStartingHealth,
-    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.player),
-    override val bitmap: Bitmap= BitmapFactory.decodeResource(context.resources, R.drawable.player)
-    ) : Entities(entitiesX, entitiesY, entitiesSize, health, image) {
-
+    bitmap: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.player)?.let {
+        it
+    } ?: throw IllegalArgumentException("Bitmap cannot be null")
+    ) : Entities(context,entitiesX, entitiesY, entitiesSize, health, bitmap) {
     // Player-specific properties and methods
     var speed: Float = 5.0f
     var fuel: Float = 100.0f
