@@ -6,7 +6,7 @@ class Block(
     x_pos: Float,
     y_pos: Float,
     size: Pair<Float, Float> = Pair(20f, 20f),
-    health: Int = 999999,
+    health: Float = 999999f,
     image: Icon) : Entities(x_pos, y_pos, size, health, image) {
 
     fun delete() {
