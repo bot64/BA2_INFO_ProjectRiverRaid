@@ -11,16 +11,16 @@ import com.example.ba2_info_projectriverraid.R
 class Missile(
     context: Context,
     var speed: Float,
-    size: Pair<Float, Float>,
     missileX: Float,
     missileY: Float,
+    entitiesSize: Pair<Float, Float> ,
     image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.missile),
     override val bitmap: Bitmap
-) : Entities(entitiesX, entitiesY, entitiesSize, health = 1f, image) {
+) : Entities(context,missileX, missileY, entitiesSize, health = 1f, image) {
     fun shoot(player: Player) {
         // Set the initial position of the missile to be just above the player
-        missileX = player.x_pos + (player.size.first / 2) - (size.first / 2)
-        missileY = player.y_pos - size.second
+        super.entitiesX = player.entitiesX + (player.entitiesSize.first / 2) - (entitiesSize.first / 2)
+        super.entitiesY = player.entitiesY - entitiesSize.second
     }
     fun update() {
         // Update the missile's position based on its speed

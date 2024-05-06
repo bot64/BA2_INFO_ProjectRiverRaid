@@ -14,7 +14,7 @@ class Block(
     health: Float = 999999f,
     image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.block),
     override val bitmap: Bitmap
-) : Entities(entitiesX, entitiesY, entitiesSize, health, image) {
+) : Entities(context,blockX, blockY, blockSize, health, image) {
 
     fun delete() {
         // Remove the block from the game

@@ -1,4 +1,6 @@
 package com.example.ba2_info_projectriverraid.entities
+import GameView
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.Main
@@ -6,6 +8,7 @@ import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 
 
 abstract class Entities(
+    context: Context,
     var entitiesX: Float,
     var entitiesY: Float,
     var entitiesSize: Pair<Float, Float> = Pair(20.0f, 20.0f),

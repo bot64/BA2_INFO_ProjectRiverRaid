@@ -10,13 +10,13 @@ import com.example.ba2_info_projectriverraid.entities.Entities
 // Ship.kt
 class Ship(
     context: Context,
-    x_pos: Float,
-    y_pos: Float,
+    shipX: Float,
+    shipY: Float,
     size: Pair<Float, Float>,
     health: Float = 1f,
     image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.ship),
     override val bitmap: Bitmap
-) : Entities(x_pos, y_pos, size,health, image) {
+) : Entities(context,shipX, shipY, size,health, image) {
 
     // Ship-specific properties and methods
 

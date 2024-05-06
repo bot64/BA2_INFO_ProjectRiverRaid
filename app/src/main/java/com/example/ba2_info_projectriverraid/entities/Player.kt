@@ -10,9 +10,9 @@ import com.example.ba2_info_projectriverraid.Main.DifficultyDataManager.getData
 
 class Player(
     context: Context,
-    x_pos: Float = getData().playerHome.first,
-    y_pos: Float = getData().playerHome.second,
-    size: Pair<Float,Float> = getData().defaultSize,
+    entitiesX: Float = getData().playerHome.first,
+    entitiesY: Float = getData().playerHome.second,
+    entitiesSize: Pair<Float,Float> = getData().defaultSize,
     health: Float = Main.DifficultyDataManager.getData().playerStartingHealth,
     image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.player),
     override val bitmap: Bitmap= BitmapFactory.decodeResource(context.resources, R.drawable.player)
@@ -38,9 +38,9 @@ class Player(
     fun move() {
         // Update the player's position based on the input states
         if (moveLeftPressed) {
-            x_pos -= speed
+            entitiesX -= speed
         } else if (moveRightPressed) {
-            y_pos += speed
+            entitiesX += speed
         }
     }
 
