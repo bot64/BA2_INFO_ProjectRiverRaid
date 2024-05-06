@@ -1,4 +1,4 @@
-package com.example.ba2_info_projectriverraid.entities
+tipackage com.example.ba2_info_projectriverraid.entities
 
 import android.content.Context
 import android.graphics.drawable.Icon
@@ -16,7 +16,7 @@ class Player(
     health: Float = Main.DifficultyDataManager.getData().playerStartingHealth,
     image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.player),
     override val bitmap: Bitmap= BitmapFactory.decodeResource(context.resources, R.drawable.player)
-) : Entities(x_pos, y_pos, size, health, image) {
+    ) : Entities(entitiesX, entitiesY, entitiesSize, health, image) {
 
     // Player-specific properties and methods
     var speed: Float = 5.0f
