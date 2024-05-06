@@ -1,6 +1,5 @@
 package com.example.ba2_info_projectriverraid.entities
 import android.graphics.Bitmap
-import kotlin.random.Random
 import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.Main
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
