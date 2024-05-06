@@ -3,7 +3,6 @@ package com.example.ba2_info_projectriverraid.entities
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.R
 
 // Missile.kt
@@ -14,9 +13,8 @@ class Missile(
     missileX: Float,
     missileY: Float,
     entitiesSize: Pair<Float, Float> ,
-    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.missile),
-    override val bitmap: Bitmap
-) : Entities(context,missileX, missileY, entitiesSize, health = 1f, image) {
+    bitmap: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.missile)
+) : Entities(context, missileX, missileY, entitiesSize, health = 1f,bitmap) {
     fun shoot(player: Player) {
         // Set the initial position of the missile to be just above the player
         super.entitiesX = player.entitiesX + (player.entitiesSize.first / 2) - (entitiesSize.first / 2)

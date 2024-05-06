@@ -19,15 +19,13 @@ import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) , SurfaceHolder.Callback {
 
     private val player = Player(context)
-    private val screenWidth = ()
-    private val screenHeight = ()
 
     val runnable = object : Runnable {
         override fun run() {
             while (running) {
                 val canvas = holder.lockCanvas()
                 canvas.drawColor(Color.WHITE) // Set the background color to white
-                canvas.drawBitmap(player.bitmap, player.entitiesX, player.entitiesY, null)
+                player.bitmap?.let { canvas.drawBitmap(it, player.entitiesX, player.entitiesY, null) }
                 holder.unlockCanvasAndPost(canvas)
             }
         }
@@ -62,7 +60,7 @@ class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet)
     private fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         //Creates [numEnemies] 'enemies' objects at randomized (entitiesX,entitiesY) values
         repeat(numEnemies) {
-            val enemy = Ship(context,Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f))
+            val enemy = Ship(context,Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f), 1f)
             entities.add(enemy)
         }
     }
@@ -77,8 +75,7 @@ class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet)
     private fun createFuelTanks(numFuelTanks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         // Creates [numFuelTanks] 'fuel_tank' objects at randomized (entitiesX,entitiesY) values
         repeat(numFuelTanks){
-            val fuelTank = FuelTank(context, Random.nextFloat()*screenWidth,Random.nextFloat()*screenHeight)
-            FuelTank.add(fuelTank)
+            val fuelTank = FuelTank(context, Random.nextFloat()*screenWidth,Random.nextFloat()*screenHeight,Pair(20f,20f))
         }
     }
 }

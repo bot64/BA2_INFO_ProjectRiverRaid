@@ -3,7 +3,6 @@ package com.example.ba2_info_projectriverraid.entities
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Icon
 import com.example.ba2_info_projectriverraid.R
 
 class Block(
@@ -12,9 +11,8 @@ class Block(
     blockY: Float,
     blockSize: Pair<Float, Float> = Pair(20f, 20f),
     health: Float = 999999f,
-    image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.block),
-    override val bitmap: Bitmap
-) : Entities(context,blockX, blockY, blockSize, health, image) {
+    bitmap: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.block)
+) : Entities(context, blockX, blockY, blockSize, health, bitmap) {
 
     fun delete() {
         // Remove the block from the game
