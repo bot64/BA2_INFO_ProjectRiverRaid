@@ -9,7 +9,7 @@ abstract class Entities(
     var x_pos: Float,
     var y_pos: Float,
     var size: Pair<Float, Float> = Pair(20.0f, 20.0f),
-    var health: Int = 0,
+    var health: Float,
     var image: Icon){
     val data = Main.DifficultyDataManager.getData()
     fun getPosition() : Pair<Float, Float> {

@@ -1,13 +1,15 @@
 package com.example.ba2_info_projectriverraid.entities
 
+import android.graphics.drawable.Icon
+import com.example.ba2_info_projectriverraid.Main
+
 class Player(
     x_pos: Float,
     y_pos: Float,
     size: Pair<Float,Float>,
-    health: Int,
-    glug: Int,
-    image: android.graphics.drawable.Icon
-) : Entities(x_pos, y_pos, size, health, glug,  image) {
+    health: Float = Main.DifficultyDataManager.getData().playerStartingHealth,
+    image: Icon
+) : Entities(x_pos, y_pos, size, health, image) {
 
     // Player-specific properties and methods
     var speed: Float = 5.0f

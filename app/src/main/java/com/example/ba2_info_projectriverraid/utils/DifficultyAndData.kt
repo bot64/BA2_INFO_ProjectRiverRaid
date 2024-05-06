@@ -12,7 +12,6 @@ enum class DifficultyAndData(
     val enemyGenerationRate: Long,
     val playerSpeed: Float = 1.0f,
     val playerStartingHealth: Float = 5.0f,
-    val glugOnStart: Float = 100.0f,
     val fuelDepleteRate: Float = 1.0f,
     val fuelOnstart: Float = 100.0f,
     val playerHome: Pair<Float, Float> = Pair(0.0f, 0.0f))
