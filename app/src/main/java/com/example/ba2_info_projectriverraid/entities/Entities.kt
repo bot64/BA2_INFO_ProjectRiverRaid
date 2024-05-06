@@ -36,5 +36,6 @@ abstract class Entities(
                 entitiesY + entitiesSize.second / 2 > missileY - missileSize.second / 2
     }
 }
+data class Position(val x1: Float, val x2: Float)
 // Suggested size for entities (20f, 20f) needs adjusting
 // screenWidth and screenHeight values need adjusting
