@@ -8,13 +8,13 @@ import com.example.ba2_info_projectriverraid.R
 
 class Block(
     context: Context,
-    x_pos: Float,
-    y_pos: Float,
-    size: Pair<Float, Float> = Pair(20f, 20f),
+    blockX: Float,
+    blockY: Float,
+    blockSize: Pair<Float, Float> = Pair(20f, 20f),
     health: Float = 999999f,
     image: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.block),
     override val bitmap: Bitmap
-) : Entities(x_pos, y_pos, size, health, image) {
+) : Entities(entitiesX, entitiesY, entitiesSize, health, image) {
 
     fun delete() {
         // Remove the block from the game
