@@ -47,7 +47,7 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
                         EntityType.FuelTank -> FuelTank(context, Random.nextFloat()*screenWidth, Random.nextFloat() * screenHeight, Pair(20f,20f))
                             else -> throw IllegalArgumentException("Invalid Entity Type")
                     }
-                        if (!newEntity.isOutOfBounds(screenWidth, screenHeight)) {entities.add(newEntity)}
+                        entities.add(newEntity)
         }
     }
 }
