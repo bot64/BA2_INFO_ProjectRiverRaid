@@ -1,5 +1,6 @@
 import android.view.SurfaceHolder
-import androidx.media3.common.Player
+import com.example.ba2_info.projectriverraid.GameView
+
 
 
 class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView: GameView) : Thread() {

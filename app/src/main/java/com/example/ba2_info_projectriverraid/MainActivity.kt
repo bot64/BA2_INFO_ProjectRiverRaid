@@ -1,11 +1,12 @@
 package com.example.ba2_info_projectriverraid
 
-import GameView
+
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.ba2_info.projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.customviews.BotView
 import com.example.ba2_info_projectriverraid.customviews.TopView
 import com.example.ba2_info_projectriverraid.utils.DifficultyAndData
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+
         }
     }
 }
@@ -27,10 +29,12 @@ lateinit var topView: TopView
 lateinit var botView: BotView
 
 
+
 class Main {
 
     // Properties
     var score: Double = 0.0
+
     /*val enemy_list: MutableList<Enemy> = mutableListOf()
     val missile_list: MutableList<Missile> = mutableListOf()
     val block_list: MutableList<Block> = mutableListOf()
