@@ -15,16 +15,16 @@ class FuelGauge(
         if (fuelLevel <= 0.0) {
             // Show game over screen
         }
-        uiFuelGauge.UI_update_fuel()
+        uiFuelGauge.uiUpdateFuel()
     }
     fun refuel() {
         // Refill the fuel gauge to maximum capacity
         fuelLevel = 100.0
-        uiFuelGauge.UI_update_fuel()
+        uiFuelGauge.uiUpdateFuel()
     }
     // ... Code to draw the fuel gauge on the screen ...
 }
 class UIFuelGauge{
-    fun UI_update_fuel(){
+    fun uiUpdateFuel(){
     }
 }
