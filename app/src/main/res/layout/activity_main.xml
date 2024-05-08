@@ -91,6 +91,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Score"
         app:layout_constraintTop_toTopOf="parent" />
+    
 
     <com.example.ba2_info.projectriverraid.GameView
         android:id="@+id/vMain"
