@@ -17,37 +17,41 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
 
     override fun run() {
         while (running) {
-                // Update the game state
-                //player.update()
-                //enemies.forEach { it.update() }
+            // Update the game state
+            //player.update()
+            //enemies.forEach { it.update() }
 
-                // Draw the game objects
-                val canvas = surfaceHolder.lockCanvas()
-                if (canvas != null) {
-                    gameView.draw(canvas)
-                    surfaceHolder.unlockCanvasAndPost(canvas)
-                }
+            // Draw the game objects
+            val canvas = surfaceHolder.lockCanvas()
+            if (canvas != null) {
+                gameView.draw(canvas)
+                surfaceHolder.unlockCanvasAndPost(canvas)
             }
         }
-    sealed class EntityType{
-        // Defining the three known kinds for now
-        object Enemy : EntityType()
-        object Block : EntityType()
-        object FuelTank : EntityType()
     }
+
+    sealed class EntityType {
+        // Defining the three known kinds for now
+        data object Enemy : EntityType()
+        data object Block : EntityType()
+        data object FuelTank : EntityType()
+    }
+
     private fun createEntities(
-            // Creating (numEntities) Entities after their 'type' parameter
-                numEntities: Int, entities: MutableList<Entities>,
-                 screenWidth: Int, screenHeight: Int, type: EntityType
-    ){
-                    repeat (numEntities){
-                        val newEntity = when (type){
-                        EntityType.Enemy -> Ship(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f), 1f)
-                        EntityType.Block -> Block(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight)
-                        EntityType.FuelTank -> FuelTank(context, Random.nextFloat()*screenWidth, Random.nextFloat() * screenHeight, Pair(20f,20f))
-                            else -> throw IllegalArgumentException("Invalid Entity Type")
-                    }
-                        entities.add(newEntity)
+        // Creating (numEntities) Entities after their 'type' parameter
+        numEntities: Int, entities: MutableList<Entities>,
+        screenWidth: Int, screenHeight: Int, type: EntityType
+    ) {
+        repeat(numEntities) {
+            val newEntity = when (type) {
+                EntityType.Enemy -> Ship(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f), 1f)
+
+                EntityType.Block -> Block(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight)
+
+                EntityType.FuelTank -> FuelTank(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f))
+                else -> throw IllegalArgumentException("Invalid Entity Type")
+            }
+            if (entities.none { Entities.isColliding(newEntity, it) }) {entities.add(newEntity)}
         }
     }
 }

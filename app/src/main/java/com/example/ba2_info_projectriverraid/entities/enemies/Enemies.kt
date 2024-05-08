@@ -17,6 +17,7 @@ class DefaultMovePattern : MovePattern{
     }
 }
 class CustomMovePattern(private val targetCoordinates : Position) : MovePattern{
+    // Decorator for DefaultMovePattern, adds Custom behavior
     override fun move(coordinates : Position, movePattern : Pair<Float, Float>) : Pair<Float, Float>{
         // todo : Custom MovePattern logic
         return Pair(coordinates.x1 + movePattern.first, coordinates.x2 + movePattern.second)
