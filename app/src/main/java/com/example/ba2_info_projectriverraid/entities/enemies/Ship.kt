@@ -1,4 +1,4 @@
-package com.example.ba2_info_projectriverraid.entities.enemies.ship
+package com.example.ba2_info_projectriverraid.entities.enemies
 
 import android.content.Context
 import android.graphics.Bitmap

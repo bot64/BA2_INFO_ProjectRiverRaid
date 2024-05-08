@@ -4,9 +4,9 @@ import android.content.Context
 import com.example.ba2_info_projectriverraid.entities.Block
 import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.FuelTank
-import com.example.ba2_info_projectriverraid.entities.enemies.ship.Ship
+import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 import kotlin.random.Random
-import com.example.ba2_info.projectriverraid.GameView
+import com.example.ba2_info_projectriverraid.GameView
 
 
 

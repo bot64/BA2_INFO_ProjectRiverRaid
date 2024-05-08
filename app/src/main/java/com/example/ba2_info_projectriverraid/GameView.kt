@@ -1,18 +1,10 @@
+package com.example.ba2_info_projectriverraid
 import android.content.Context
-package com.example.ba2_info.projectriverraid
-
-import kotlin.random.Random
-import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Player
-import com.example.ba2_info_projectriverraid.customviews.TopView
-import com.example.ba2_info_projectriverraid.customviews.BotView
-import android.app.Activity
-import com.example.ba2_info_projectriverraid.R
 
 class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) , SurfaceHolder.Callback {
 
