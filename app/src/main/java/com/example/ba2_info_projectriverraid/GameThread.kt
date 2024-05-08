@@ -1,12 +1,21 @@
 import android.view.SurfaceHolder
+// import androidx.media3.player.Player
+import android.content.Context
+import com.example.ba2_info_projectriverraid.entities.Block
+import com.example.ba2_info_projectriverraid.entities.Entities
+import com.example.ba2_info_projectriverraid.entities.FuelTank
+import com.example.ba2_info_projectriverraid.entities.enemies.ship.Ship
+import kotlin.random.Random
 import com.example.ba2_info.projectriverraid.GameView
 
 
 
 class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView: GameView) : Thread() {
+    // Provides a factory method for creating Enemy, Block and FuelTank types of Entities at random coordinates
 
     // Game state variables
     var running = false
+    private val context: Context = gameView.context
     //private val enemies = mutableListOf<Enemy>()
 
     override fun run() {
@@ -23,4 +32,30 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
             }
         }
     }
+
+    sealed class EntityType {
+        // Defining the three known kinds for now
+        data object Enemy : EntityType()
+        data object Block : EntityType()
+        data object FuelTank : EntityType()
+    }
+
+    private fun createEntities(
+        // Creating (numEntities) Entities after their 'type' parameter
+        numEntities: Int, entities: MutableList<Entities>,
+        screenWidth: Int, screenHeight: Int, type: EntityType
+    ) {
+        repeat(numEntities) {
+            val newEntity = when (type) {
+                EntityType.Enemy -> Ship(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f), 1f)
+
+                EntityType.Block -> Block(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight)
+
+                EntityType.FuelTank -> FuelTank(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f))
+                else -> throw IllegalArgumentException("Invalid Entity Type")
+            }
+            if (entities.none { Entities.isColliding(newEntity, it) }) {entities.add(newEntity)}
+        }
+    }
 }
+

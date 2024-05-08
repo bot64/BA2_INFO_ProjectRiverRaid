@@ -1,7 +1,7 @@
+import android.content.Context
 package com.example.ba2_info.projectriverraid
 
 import kotlin.random.Random
-import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -13,10 +13,6 @@ import com.example.ba2_info_projectriverraid.customviews.TopView
 import com.example.ba2_info_projectriverraid.customviews.BotView
 import android.app.Activity
 import com.example.ba2_info_projectriverraid.R
-import com.example.ba2_info_projectriverraid.entities.Block
-import com.example.ba2_info_projectriverraid.entities.Entities
-import com.example.ba2_info_projectriverraid.entities.FuelTank
-import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 
 class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) , SurfaceHolder.Callback {
 
@@ -58,26 +54,5 @@ class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet)
     override fun surfaceDestroyed(holder: SurfaceHolder) {
         running = false
         thread?.join()
-    }
-    private fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        //Creates [numEnemies] 'enemies' objects at randomized (entitiesX,entitiesY) values
-        repeat(numEnemies) {
-            val enemy = Ship(context,Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f), 1f)
-            entities.add(enemy)
-        }
-    }
-    private fun createBlocks(numBlocks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        // Creates [numBlocks] 'block' objects at randomized (entitiesX,entitiesY) values
-        repeat(numBlocks){
-            val block = Block(context,Random.nextFloat() * screenWidth,Random.nextFloat() * screenHeight)
-            entities.add(block)
-        }
-    }
-
-    private fun createFuelTanks(numFuelTanks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        // Creates [numFuelTanks] 'fuel_tank' objects at randomized (entitiesX,entitiesY) values
-        repeat(numFuelTanks){
-            val fuelTank = FuelTank(context, Random.nextFloat()*screenWidth,Random.nextFloat()*screenHeight,Pair(20f,20f))
-        }
     }
 }
