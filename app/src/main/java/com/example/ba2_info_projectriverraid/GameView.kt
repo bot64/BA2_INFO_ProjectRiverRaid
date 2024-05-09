@@ -10,30 +10,39 @@ import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.Missile
 
 import android.app.Activity
+import android.os.Bundle
+import android.view.MotionEvent
+import android.widget.Button
+import androidx.activity.enableEdgeToEdge
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Block
 import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
-//import com.example.ba2_info_projectriverraid.entities.enemies.Ship
-
 class GameView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0) : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
     val backgroundPaint = Paint()
     var screenWidth = 0f
     var screenHeight = 0f
     var drawing = false
+    var moveLeftPressed = false
+    var moveRightPressed = false
+    var shootPressed = false
     lateinit var thread : Thread
-    val player = Player(0f, 0f, view = this)
+    val player = Player(
+        0f,
+        0f,
+        view = this,
+        moveRightPressed = moveRightPressed,
+        moveLeftPressed = moveLeftPressed,
+        shootPressed = shootPressed)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
-
-
 
     init {
         backgroundPaint.color = Color.WHITE
     }
-
     fun pause() {
         drawing = false
         thread.join()
@@ -45,6 +54,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     }
     override fun run() {
         while (drawing) {
+            player.move()
             draw()
         }
     }
@@ -55,11 +65,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         screenHeight = h.toFloat()
         player.entitiesX = screenWidth/2f
         player.entitiesY = screenHeight*0.8f
-
-
-
     }
-
 
     fun draw() {
         if (holder.surface.isValid) {
@@ -70,13 +76,35 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             holder.unlockCanvasAndPost(canvas)
         }
     }
+    fun handleInput(event: MotionEvent) {
+        // Handle input events and update the input states
+        val leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
+        val rightButton = findViewById<FloatingActionButton>(R.id.rightbutton)
+        val shootButton = findViewById<Button>(R.id.shoot)
+
+        if (leftButton.isPressed) {
+            moveLeftPressed = true
+        } else {
+            moveLeftPressed = false
+        }
+
+        if (rightButton.isPressed) {
+            moveRightPressed = true
+        } else {
+            moveRightPressed = false
+        }
+
+        if (shootButton.isPressed) {
+            shootPressed = true
+        } else {
+            shootPressed = false
+        }
+    }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, screenWidth: Int, screenHeight: Int) {}
 
     override fun surfaceCreated(holder: SurfaceHolder) {
     }
-
-
 
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {}

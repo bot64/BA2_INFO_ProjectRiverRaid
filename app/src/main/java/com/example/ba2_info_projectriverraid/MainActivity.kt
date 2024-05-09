@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         gameView = findViewById<GameView>(R.id.gameView)
         }
-
     override fun onResume() {
         super.onResume()
         gameView.resume()
@@ -36,5 +35,6 @@ class MainActivity : AppCompatActivity() {
         public fun getData(): DifficultyAndData {
             return _difficulty
         }
+
     }
 }
