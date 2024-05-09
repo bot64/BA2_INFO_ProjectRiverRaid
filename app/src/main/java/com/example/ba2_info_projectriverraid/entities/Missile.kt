@@ -1,9 +1,11 @@
 package com.example.ba2_info_projectriverraid.entities
 
-import android.content.Context
+
 import android.graphics.Paint
 import android.graphics.PointF
+import android.graphics.Color
 import com.example.ba2_info_projectriverraid.GameView
+
 
 import com.example.ba2_info_projectriverraid.R
 

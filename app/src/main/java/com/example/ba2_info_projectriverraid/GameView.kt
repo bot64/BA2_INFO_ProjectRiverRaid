@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Player
+import com.example.ba2_info_projectriverraid.entities.Missile
 
 import android.app.Activity
 import android.util.Log
@@ -26,7 +27,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     var drawing = false
     lateinit var thread : Thread
     val player = Player(playerX = width.toFloat()/2, playerY = height.toFloat()*0.8f, view = this)
-
+    val missile = Missile(player.entitiesX,player.entitiesY, view = this)
 
     init {
         backgroundPaint.color = Color.WHITE
