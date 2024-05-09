@@ -62,52 +62,30 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         screenHeight = h.toFloat()
         player.entitiesX = screenWidth/2f
         player.entitiesY = screenHeight*0.8f
-        val leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
-        val rightButton = findViewById<FloatingActionButton>(R.id.rightbutton)
-        val shootButton = findViewById<Button>(R.id.shoot)
-        leftButton.setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    moveLeftPressed = true
-                    true
-                }
-                MotionEvent.ACTION_UP -> {
-                    moveLeftPressed = false
-                    true
-                }
-                else -> false
-            }
-        }
-        rightButton.setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    moveRightPressed = true
-                    true
-                }
-                MotionEvent.ACTION_UP -> {
-                    moveRightPressed = false
-                    true
-                }
-                else -> false
-            }
-        }
-        shootButton.setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    shootPressed = true
-                    true
-                }
-                MotionEvent.ACTION_UP -> {
-                    shootPressed = false
-                    true
-                }
-                else -> false
-            }
-        }
+
     }
+    val leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
+    val rightButton = findViewById<FloatingActionButton>(R.id.rightbutton)
+    val shootButton = findViewById<Button>(R.id.shoot)
+
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
+        if (leftButton.isPressed){
+            moveLeftPressed = true
+            moveLeftPressed = false
+
+        }
+        if (shootButton.isPressed){
+            shootPressed = true
+        }
+        else if(rightButton.isPressed){
+            moveRightPressed = true
+            moveLeftPressed = false
+        }
+
         player.move()
+
+        shootPressed = false
     }
 
     fun draw() {
