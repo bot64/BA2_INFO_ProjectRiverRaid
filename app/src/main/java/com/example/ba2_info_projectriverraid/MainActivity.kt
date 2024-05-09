@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.ba2_info.projectriverraid.GameView
-import com.example.ba2_info_projectriverraid.customviews.BotView
-import com.example.ba2_info_projectriverraid.customviews.TopView
 import com.example.ba2_info_projectriverraid.utils.DifficultyAndData
 
 class MainActivity : AppCompatActivity() {
