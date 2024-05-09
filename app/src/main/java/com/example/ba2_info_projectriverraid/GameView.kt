@@ -1,4 +1,4 @@
-package com.example.ba2_info.projectriverraid
+package com.example.ba2_info_projectriverraid
 
 import kotlin.random.Random
 import android.content.Context
