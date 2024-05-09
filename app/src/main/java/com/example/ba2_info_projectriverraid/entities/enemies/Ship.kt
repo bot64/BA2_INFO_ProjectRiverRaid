@@ -28,6 +28,7 @@ class Ship(
         // Handle collisions between the ship and other entities
     }
     fun draw (canvas : Canvas){
+        update()
         canvas.drawRect(
             entitiesX - entitiesSize.first,
             entitiesY - entitiesSize.second,
@@ -39,6 +40,9 @@ class Ship(
 
     fun delete() {
         // Remove the ship from the game
+    }
+    fun update(){
+
     }
 
     fun pop_entity() {
