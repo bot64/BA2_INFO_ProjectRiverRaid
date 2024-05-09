@@ -17,7 +17,7 @@ class Ship(
 ) : Enemies(shipX, shipY, shipSize, onScreen,health) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
-    var speed = 10
+    var speed = 30
     init {
         shipXY.set(view.screenWidth/2, 0f)
         val speed = 10f
@@ -41,7 +41,7 @@ class Ship(
     }
     fun update(interval: Double) {
         var up = (interval * speed).toFloat()
-        shipXY.offset(0f, up)
+        entitiesY += up
 
         }
     }
