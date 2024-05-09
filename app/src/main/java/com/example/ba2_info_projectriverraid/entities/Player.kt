@@ -24,7 +24,6 @@ class Player(
         var fuel = data.fuelOnstart
         super.entitiesSize = data.defaultSize
         super.health = data.playerStartingHealth
-        playerXY.set(view.screenWidth,view.screenHeight*0.8f)
         playerPaint.color = Color.RED
     }
 
