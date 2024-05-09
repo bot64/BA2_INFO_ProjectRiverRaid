@@ -1,9 +1,4 @@
 package com.example.ba2_info_projectriverraid.entities
-
-import android.content.Context
-
-
-
 import android.graphics.Paint
 import android.graphics.Canvas
 import android.graphics.PointF
@@ -13,14 +8,14 @@ import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.
 import com.example.ba2_info_projectriverraid.R
 
 class Player(
-    entitiesX: Float = getData().playerHome.first,
-    entitiesY: Float = getData().playerHome.second,
+    playerX: Float = getData().playerHome.first,
+    playerY: Float = getData().playerHome.second,
     entitiesSize: Pair<Float,Float> = getData().defaultSize,
     health: Float = getData().playerStartingHealth,
     val view: GameView,
     val speed : Float = 0f,
     var fuel : Float = 0f
-) : Entities(entitiesX, entitiesY, entitiesSize, health) {
+) : Entities(playerX, playerY, entitiesSize, health) {
     val playerPaint = Paint()
     init {
         val data = super.data
@@ -28,12 +23,18 @@ class Player(
         var fuel = data.fuelOnstart
     }
 
-    /*fun draw(canvas: Canvas) {
+    fun draw(canvas: Canvas) {
         playerPaint.strokeWidth = entitiesSize.first * 1.5f
         canvas.drawRect(
-
+            entitiesX-entitiesSize.first,
+            entitiesY-entitiesSize.second,
+            entitiesX+entitiesSize.first,
+            entitiesY+entitiesSize.second,
+            playerPaint
         )
-    }*/
+    }
+
+
 
 
     var moveLeftPressed = false
@@ -46,10 +47,6 @@ class Player(
         } else if (moveRightPressed) {
             entitiesX += speed
         }
-    }
-
-    fun draw(canvas: android.graphics.Canvas) {
-        // Draw the player on the canvas
     }
 
     fun get_fuel(): Float {
