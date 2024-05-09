@@ -8,7 +8,7 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
 
     // Game state variables
     var running = false
-    //private val enemies = mutableListOf<Enemy>()
+    //private val enemies = mutableListOf<Enemy>(
 
     override fun run() {
         while (running) {
