@@ -26,13 +26,12 @@ class Player(
         super.health = data.playerStartingHealth
         playerPaint.color = Color.RED
     }
-
     fun draw(canvas: Canvas) {
         playerPaint.strokeWidth = entitiesSize.first * 1.5f
         canvas.drawRect(
-            entitiesX - entitiesSize.first,
+            this.entitiesX - entitiesSize.first,
             canvas.height.toFloat()*0.8f - entitiesSize.second,
-            entitiesX + entitiesSize.first,
+            this.entitiesX + entitiesSize.first,
             canvas.height.toFloat()*0.8f + entitiesSize.second,
             playerPaint
         )

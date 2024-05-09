@@ -12,8 +12,8 @@ import com.example.ba2_info_projectriverraid.entities.Entities
 class Ship(
     shipX: Float,
     shipY: Float,
-    shipSize: Pair<Float, Float>,
-    health: Float = 1f,
+    shipSize: Pair<Float, Float> = Pair(70f,50f),
+    health: Float = 3f,
     onScreen: Boolean = true,
     val view: GameView
 ) : Entities(shipX, shipY, shipSize, onScreen,health) {
