@@ -51,7 +51,7 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
         data object FuelTank : EntityType()
     }
 
-    private suspend fun createEntities(
+    private fun createEntities(
         // Creating (numEntities) Entities after their 'type' parameter
         numEntities: Int, entities: MutableList<Entities>,
         screenWidth: Int, screenHeight: Int, type: EntityType
