@@ -13,24 +13,27 @@ class Ship(
     shipX: Float,
     shipY: Float,
     shipSize: Pair<Float, Float>,
-    health: Float = 1f ,
-    val view: GameView,
-
-) : Entities(shipX, shipY, shipSize,health) {
+    health: Float = 1f,
+    onScreen: Boolean = true,
+    val view: GameView
+) : Entities(shipX, shipY, shipSize, onScreen,health) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     init {
-
+        shipXY.set(view.screenWidth/2, 0f)
+        val speed = 10
+        shipPaint.color = Color.GRAY
     }
     fun handle_collision(entity: Entities) {
         // Handle collisions between the ship and other entities
     }
     fun draw (canvas : Canvas){
         canvas.drawRect(
-            ,
-            ,
-            ,
-
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second,
+            shipPaint
         )
     }
 
