@@ -67,7 +67,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, screenWidth: Int, screenHeight: Int) {}
 
-    override fun surfaceCreated(holder: SurfaceHolder) {}
+    override fun surfaceCreated(holder: SurfaceHolder) {
+    }
 
 
 

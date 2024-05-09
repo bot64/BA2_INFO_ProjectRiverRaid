@@ -1,15 +1,16 @@
 package com.example.ba2_info_projectriverraid.entities
 import android.graphics.Paint
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.PointF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 
 class Player(
-    playerX: Float = getData().playerHome.first,
-    playerY: Float = getData().playerHome.second,
-    entitiesSize: Pair<Float,Float> = getData().defaultSize,
-    health: Float = getData().playerStartingHealth,
+    playerX: Float = 0f,
+    playerY: Float = 0f,
+    entitiesSize: Pair<Float,Float> = Pair(0f,0f),
+    health: Float = 0f,
     val view: GameView,
     val speed : Float = 0f,
     var fuel : Float = 0f
@@ -21,6 +22,12 @@ class Player(
         val data = super.data
         val speed = data.playerSpeed
         var fuel = data.fuelOnstart
+        super.entitiesX = getData().playerHome.first
+        super.entitiesY = getData().playerHome.second
+        super.entitiesSize = getData().defaultSize
+        super.health = getData().playerStartingHealth
+
+        playerPaint.color = Color.RED
     }
 
     fun draw(canvas: Canvas) {
