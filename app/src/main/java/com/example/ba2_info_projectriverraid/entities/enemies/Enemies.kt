@@ -16,12 +16,15 @@ class DefaultMovePattern : MovePattern{
         return Pair(coordinates.x1 + movePattern.first, coordinates.x2 + movePattern.second)
     }
 }
-class CustomMovePattern(private val targetCoordinates : Position) : MovePattern{
-    // Decorator for DefaultMovePattern, adds Custom behavior
-    override fun move(coordinates : Position, movePattern : Pair<Float, Float>) : Pair<Float, Float>{
-        // todo : Custom MovePattern logic
-        return Pair(coordinates.x1 + movePattern.first, coordinates.x2 + movePattern.second)
-    }
+class CustomMovePattern(private val targetCoordinates : Position, private val movement: MovePattern)
+    : MovePattern{
+    // Decorator for DefaultMovePattern, adds Custom behavior with a delegating mechanism
+        override fun move(coordinates: Position, movePattern: Pair<Float, Float>): Pair<Float, Float>{
+            val deltaX = coordinates.x1 - targetCoordinates.x1
+            val deltaY = coordinates.x2 - targetCoordinates.x2
+            val customMovePattern = Pair(deltaX, deltaY)
+        return movement.move(coordinates, customMovePattern)
+        }
 }
 interface PerimeterObserver {
     fun checkDistance(targetCoordinates : Position): Boolean
@@ -46,7 +49,7 @@ open class Enemies(
     }
     override fun moveOnDetection(targetCoordinates: Position) {
         if (checkDistance(targetCoordinates)) {
-            movePattern = CustomMovePattern(targetCoordinates)
+            movePattern = CustomMovePattern(targetCoordinates, DefaultMovePattern())
         }
     }
 }
