@@ -51,8 +51,6 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
 
-        System.out.println(h.toString() + w.toString())
-
     }
 
     fun draw() {

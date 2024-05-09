@@ -22,8 +22,6 @@ class Player(
         val data = super.data
         val speed = data.playerSpeed
         var fuel = data.fuelOnstart
-        super.entitiesX = getData().playerHome.first
-        super.entitiesY = getData().playerHome.second
         super.entitiesSize = getData().defaultSize
         super.health = getData().playerStartingHealth
 
@@ -33,10 +31,10 @@ class Player(
     fun draw(canvas: Canvas) {
         playerPaint.strokeWidth = entitiesSize.first * 1.5f
         canvas.drawRect(
-            entitiesX - entitiesSize.first,
-            entitiesY - entitiesSize.second,
-            entitiesX + entitiesSize.first,
-            entitiesY + entitiesSize.second,
+            canvas.width.toFloat() - entitiesSize.first,
+            canvas.height.toFloat() - entitiesSize.second,
+            canvas.width.toFloat() + entitiesSize.first,
+            canvas.height.toFloat() + entitiesSize.second,
             playerPaint
         )
     }

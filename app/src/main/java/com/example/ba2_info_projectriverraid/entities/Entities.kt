@@ -3,8 +3,8 @@ import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.
 
 
 abstract class Entities(
-    var entitiesX: Float,
-    var entitiesY: Float,
+    var entitiesX: Float = 0f,
+    var entitiesY: Float = 0f,
     var entitiesSize: Pair<Float, Float> = Pair(20.0f, 20.0f),
     var health: Float
 ){
