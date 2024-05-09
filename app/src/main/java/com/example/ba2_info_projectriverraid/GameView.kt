@@ -8,7 +8,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import android.widget.Button
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
@@ -105,27 +104,6 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     }
     fun handleInput(event: MotionEvent) {
         // Handle input events and update the input states
-        val leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
-        val rightButton = findViewById<FloatingActionButton>(R.id.rightbutton)
-        val shootButton = findViewById<Button>(R.id.shoot)
-
-        if (leftButton.isPressed) {
-            moveLeftPressed = true
-        } else {
-            moveLeftPressed = false
-        }
-
-        if (rightButton.isPressed) {
-            moveRightPressed = true
-        } else {
-            moveRightPressed = false
-        }
-
-        if (shootButton.isPressed) {
-            shootPressed = true
-        } else {
-            shootPressed = false
-        }
     }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, screenWidth: Int, screenHeight: Int) {}
