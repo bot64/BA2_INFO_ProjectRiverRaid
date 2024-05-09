@@ -52,7 +52,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         super.onSizeChanged(w, h, oldw, oldh)
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
-        player.setPlayerXY(width.toFloat()/2, height.toFloat()*0.8f )
+        player.setPlayerXY(screenWidth.toFloat()/2, screenHeight.toFloat()*0.8f )
     }
 
 
