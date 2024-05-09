@@ -11,6 +11,7 @@ import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Player
 
 import android.app.Activity
+import android.util.Log
 import com.example.ba2_info_projectriverraid.R
 //import com.example.ba2_info_projectriverraid.entities.Block
 //import com.example.ba2_info_projectriverraid.entities.Entities
@@ -25,7 +26,6 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     var drawing = false
     lateinit var thread : Thread
     val player = Player(0f, 0f, Pair(0f,0f), 0f, this)
-
 
     init {
          backgroundPaint.color = Color.WHITE
@@ -50,6 +50,8 @@ override fun run() {
         super.onSizeChanged(w, h, oldw, oldh)
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
+
+        System.out.println(h.toString() + w.toString())
 
     }
 
