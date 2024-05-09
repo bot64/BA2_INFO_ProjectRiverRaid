@@ -1,5 +1,5 @@
 import android.view.SurfaceHolder
-import com.example.ba2_info.projectriverraid.GameView
+import com.example.ba2_info_projectriverraid.GameView
 
 
 

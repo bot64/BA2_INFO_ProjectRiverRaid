@@ -17,45 +17,64 @@ import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 
-class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) , SurfaceHolder.Callback, Runnable {
-
-    private val player = Player(context)
-
+class GameView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0) : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
     val backgroundPaint = Paint()
     var screenWidth = 0f
     var screenHeight = 0f
     var drawing = false
-    lateinit var thread: Thread
-    val canon = Canon(0f, 0f, 0f, 0f, this)
-            }
-        }
-    }
+    lateinit var thread : Thread
+    val player = Player(0f, 0f, 0f, 0f, this)
 
-    private var thread: Thread? = null
-    private var running = false
+
+
+
 
 
     init {
-        backgroundPaint.color = Color.WHITE
+         backgroundPaint.color = Color.WHITE
     }
 
-    override fun surfaceCreated(holder: SurfaceHolder) {
-        running = true
-        thread = Thread(runnable)
-        thread?.start()
+fun pause() {
+    drawing = false
+    thread.join()
+}
+fun resume() {
+    drawing = true
+    thread = Thread(this)
+    thread.start()
+}
+override fun run() {
+    while (drawing) {
+        draw()
+    }
+}
+
+    override fun onSizeChanged(w:Int, h:Int, oldw:Int, oldh:Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        screenWidth = w.toFloat()
+        screenHeight = h.toFloat()
+
     }
 
-    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-        var screenWidth = width
-        var screenHeight = height
-
+    fun draw() {
+        if (holder.surface.isValid) {
+            canvas = holder.lockCanvas()
+            canvas.drawRect(0f, 0f, canvas.width.toFloat(),
+                canvas.height.toFloat(), backgroundPaint)
+            player.draw(canvas)
+            holder.unlockCanvasAndPost(canvas)
+        }
     }
 
-    override fun surfaceDestroyed(holder: SurfaceHolder) {
-        running = false
-        thread?.join()
-    }
+    override fun surfaceChanged(holder: SurfaceHolder, format: Int, screenWidth: Int, screenHeight: Int) {}
+
+    override fun surfaceCreated(holder: SurfaceHolder) {}
+
+
+
+
+    override fun surfaceDestroyed(holder: SurfaceHolder) {}
     private fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         //Creates [numEnemies] 'enemies' objects at randomized (entitiesX,entitiesY) values
         repeat(numEnemies) {
@@ -78,3 +97,4 @@ class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet)
         }
     }
 }
+
