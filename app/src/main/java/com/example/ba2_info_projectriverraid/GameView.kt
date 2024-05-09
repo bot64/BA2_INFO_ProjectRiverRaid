@@ -64,9 +64,9 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         player.entitiesY = screenHeight*0.8f
 
     }
-    val leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
-    val rightButton = findViewById<FloatingActionButton>(R.id.rightbutton)
-    val shootButton = findViewById<Button>(R.id.shoot)
+    val leftButton : FloatingActionButton = findViewById<FloatingActionButton>(R.id.leftbutton)
+    val rightButton : FloatingActionButton= findViewById<FloatingActionButton>(R.id.rightbutton)
+    val shootButton : Button = findViewById<Button>(R.id.shoot)
 
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
