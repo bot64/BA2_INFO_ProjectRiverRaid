@@ -17,15 +17,25 @@ class Player(
     entitiesY: Float = getData().playerHome.second,
     entitiesSize: Pair<Float,Float> = getData().defaultSize,
     health: Float = getData().playerStartingHealth,
+    val view: GameView,
     val speed : Float = 0f,
     var fuel : Float = 0f
-    ) : Entities(entitiesX, entitiesY, entitiesSize, health) {
-
+) : Entities(entitiesX, entitiesY, entitiesSize, health) {
+    val playerPaint = Paint()
     init {
         val data = super.data
         val speed = data.playerSpeed
         var fuel = data.fuelOnstart
     }
+
+    /*fun draw(canvas: Canvas) {
+        playerPaint.strokeWidth = entitiesSize.first * 1.5f
+        canvas.drawRect(
+
+        )
+    }*/
+
+
     var moveLeftPressed = false
     var moveRightPressed = false
     var shootPressed = false
