@@ -1,16 +1,11 @@
 package com.example.ba2_info_projectriverraid.entities
 
-import android.graphics.Paint
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.PointF
-import android.view.MotionEvent
-import android.widget.Button
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.enemies.PerimeterObserver
-import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.example.ba2_info_projectriverraid.R
 
 
 interface PerimeterObservable{
@@ -56,11 +51,11 @@ class Player(
     fun setPlayerXY(X: Float = entitiesX, Y: Float = entitiesY) {
         playerXY.set(X, Y)
     }
-    fun move() {
+    fun move(left :Boolean, right : Boolean) {
         // Update the player's position based on the input states
-        if (moveLeftPressed) {
+        if (left) {
             entitiesX -= speed
-        } else if (moveRightPressed) {
+        } else if (right) {
             entitiesX += speed
         }
     }

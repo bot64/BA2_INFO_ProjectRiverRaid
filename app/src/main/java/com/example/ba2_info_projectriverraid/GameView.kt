@@ -91,23 +91,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
         ship.update(interval)
-
-        /*if (leftButton.isPressed){
-            moveLeftPressed = true
-            moveLeftPressed = false
-
-        }
-        if (shootButton.isPressed){
-            shootPressed = true
-        }
-        else if(rightButton.isPressed){
-            moveRightPressed = true
-            moveLeftPressed = false
-        }*/
-
-        player.move()
-
-        shootPressed = false
+        player.move(moveLeftPressed, moveRightPressed)
     }
 
     fun draw() {
