@@ -11,7 +11,6 @@ import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
 class GameView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0) : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
@@ -33,11 +32,33 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         shootPressed = shootPressed)
     val ship = Ship(0f,0f, view = this)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
-    val leftButton : FloatingActionButton
     init {
         backgroundPaint.color = Color.WHITE
-        leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
     }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                // Check if the touch occurred on the left side of the screen
+                if (event.x < screenWidth / 2) {
+                    moveLeftPressed = true
+                    shootPressed = true
+                } else {
+                    moveRightPressed = true
+                    shootPressed = true
+                }
+            }
+            MotionEvent.ACTION_UP -> {
+                // Reset all the ...pressed values to false
+                moveLeftPressed = false
+                moveRightPressed = false
+                shootPressed = false
+            }
+        }
+
+        return true
+    }
+
     fun pause() {
         drawing = false
         thread.join()
@@ -54,9 +75,6 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         while (drawing) {
             val currentTime = System.currentTimeMillis()
             val elapsedTimeMS = (currentTime-previousFrameTime).toDouble()
-            if (leftButton.isPressed){
-                moveLeftPressed = true
-            }
             updatePositions(elapsedTimeMS)
             draw()
             previousFrameTime = currentTime
