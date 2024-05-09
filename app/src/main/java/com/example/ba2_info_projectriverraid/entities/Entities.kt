@@ -1,6 +1,5 @@
 package com.example.ba2_info_projectriverraid.entities
-import com.example.ba2_info_projectriverraid.MainActivity
-import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager
+import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 
 
 abstract class Entities(
@@ -9,7 +8,7 @@ abstract class Entities(
     var entitiesSize: Pair<Float, Float> = Pair(20.0f, 20.0f),
     var health: Float
 ){
-    val data = MainActivity.DifficultyDataManager.getData()
+    val data = getData()
     fun getPosition() : Pair<Float, Float> {
         return Pair(entitiesX, entitiesY)
     }
