@@ -9,8 +9,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.ba2_info.projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.utils.DifficultyAndData
 
-//teub
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
