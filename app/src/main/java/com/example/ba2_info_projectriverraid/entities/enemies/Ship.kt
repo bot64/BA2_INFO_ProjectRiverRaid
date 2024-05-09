@@ -22,7 +22,7 @@ class Ship(
     init {
         shipXY.set(view.screenWidth/2, 0f)
         val speed = 10
-        shipPaint.color = Color.GRAY
+        shipPaint.color = Color.BLUE
     }
     fun handle_collision(entity: Entities) {
         // Handle collisions between the ship and other entities

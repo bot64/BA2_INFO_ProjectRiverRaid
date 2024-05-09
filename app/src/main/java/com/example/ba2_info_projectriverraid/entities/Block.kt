@@ -2,6 +2,9 @@ package com.example.ba2_info_projectriverraid.entities
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.R
 
@@ -11,13 +14,22 @@ class Block(
     blockSize: Pair<Float, Float> = Pair(80f, 80f),
     health: Float = 999999f,
     onScreen: Boolean = true,
-    val view: GameView
+    val view: GameView,
+    val blockPaint: Paint = Paint()
 ) : Entities(blockX, blockY, blockSize, onScreen, health) {
 
     init {
-
+        blockPaint.color = Color.YELLOW
     }
-
+    fun draw (canvas : Canvas){
+        canvas.drawRect(
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second,
+            blockPaint
+        )
+    }
     fun delete() {
         // Remove the block from the game
     }

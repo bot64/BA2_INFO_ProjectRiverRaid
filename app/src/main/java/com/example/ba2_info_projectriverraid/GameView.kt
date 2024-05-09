@@ -14,8 +14,10 @@ import com.example.ba2_info_projectriverraid.entities.Missile
 import android.app.Activity
 import android.util.Log
 import com.example.ba2_info_projectriverraid.R
-//import com.example.ba2_info_projectriverraid.entities.Block
-//import com.example.ba2_info_projectriverraid.entities.Entities
+import com.example.ba2_info_projectriverraid.entities.Block
+import com.example.ba2_info_projectriverraid.entities.Entities
+import com.example.ba2_info_projectriverraid.entities.enemies.Ship
+
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
 //import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 
@@ -28,6 +30,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     lateinit var thread : Thread
     val player = Player(0f, 0f, view = this)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
+
+
 
     init {
         backgroundPaint.color = Color.WHITE
@@ -54,6 +58,9 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         screenHeight = h.toFloat()
         player.entitiesX = screenWidth/2f
         player.entitiesY = screenHeight*0.8f
+
+
+
     }
 
 
