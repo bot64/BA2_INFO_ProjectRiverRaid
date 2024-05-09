@@ -1,30 +1,48 @@
-package com.example.ba2_info_projectriverraid.entities.enemies.ship
-
+package com.example.ba2_info_projectriverraid.entities.enemies
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.PointF
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
-import com.example.ba2_info_projectriverraid.entities.enemies.Enemies
 
-// Ship.kt
+//Ship.kt teub
 class Ship(
-    context: Context,
     shipX: Float,
     shipY: Float,
-    shipSize: Pair<Float, Float>,
-    health: Float = 1f ,
-    Bitmap: Bitmap? = BitmapFactory.decodeResource(context.resources, R.drawable.ship)
-) : Enemies(context,shipX, shipY, shipSize,health, Bitmap) {
-
-    // Ship-specific properties and methods
-    fun create(){}
+    shipSize: Pair<Float, Float> = Pair(70f,50f),
+    health: Float = 3f,
+    onScreen: Boolean = true,
+    val view: GameView
+) : Enemies(shipX, shipY, shipSize, onScreen,health) {
+    val shipPaint: Paint = Paint()
+    val shipXY = PointF(entitiesX,entitiesY)
+    init {
+        shipXY.set(view.screenWidth/2, 0f)
+        val speed = 10
+        shipPaint.color = Color.BLUE
+    }
     fun handle_collision(entity: Entities) {
         // Handle collisions between the ship and other entities
+    }
+    fun draw (canvas : Canvas){
+        update()
+        canvas.drawRect(
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second,
+            shipPaint
+        )
     }
 
     fun delete() {
         // Remove the ship from the game
+    }
+    fun update(){
+
     }
 
     fun pop_entity() {
@@ -32,7 +50,9 @@ class Ship(
     }
     fun shot(damage : Float) {
         health -= damage
-        if (health <= 0){ delete()
+        if (health <= 0){
+            delete()
+            //add score implementation
         }
     }
 }

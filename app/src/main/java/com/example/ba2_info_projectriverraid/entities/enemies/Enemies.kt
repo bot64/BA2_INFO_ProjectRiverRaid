@@ -16,12 +16,15 @@ class DefaultMovePattern : MovePattern{
         return Pair(coordinates.x1 + movePattern.first, coordinates.x2 + movePattern.second)
     }
 }
-class CustomMovePattern(private val targetCoordinates : Position) : MovePattern{
-    // Decorator for DefaultMovePattern, adds Custom behavior
-    override fun move(coordinates : Position, movePattern : Pair<Float, Float>) : Pair<Float, Float>{
-        // todo : Custom MovePattern logic
-        return Pair(coordinates.x1 + movePattern.first, coordinates.x2 + movePattern.second)
-    }
+class CustomMovePattern(private val targetCoordinates : Position, private val movement: MovePattern)
+    : MovePattern{
+    // Decorator for DefaultMovePattern, adds Custom behavior with a delegating mechanism
+        override fun move(coordinates: Position, movePattern: Pair<Float, Float>): Pair<Float, Float>{
+            val deltaX = coordinates.x1 - targetCoordinates.x1
+            val deltaY = coordinates.x2 - targetCoordinates.x2
+            val customMovePattern = Pair(deltaX, deltaY)
+        return movement.move(coordinates, customMovePattern)
+        }
 }
 interface PerimeterObserver {
     fun checkDistance(targetCoordinates : Position): Boolean
@@ -30,13 +33,12 @@ interface PerimeterObserver {
     // Changes the behavior to Custom on detection
 }
 open class Enemies(
-    context : Context,
     var enemiesX : Float,
     var enemiesY : Float,
-    var enemiesSize : Pair<Float, Float>,
-    var enemiesHealth : Float,
-    val enemiesBitmap : Bitmap?)
-    : Entities(context,enemiesX, enemiesY, enemiesSize,enemiesHealth, enemiesBitmap),
+    var size : Pair<Float, Float>,
+    onScreen : Boolean = true,
+    health : Float)
+    : Entities(enemiesX, enemiesY, size, onScreen, health),
     PerimeterObserver{
     var movePattern: MovePattern = DefaultMovePattern()
     override fun checkDistance(targetCoordinates: Position): Boolean {
@@ -46,7 +48,7 @@ open class Enemies(
     }
     override fun moveOnDetection(targetCoordinates: Position) {
         if (checkDistance(targetCoordinates)) {
-            movePattern = CustomMovePattern(targetCoordinates)
+            movePattern = CustomMovePattern(targetCoordinates, DefaultMovePattern())
         }
     }
 }
