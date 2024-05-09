@@ -53,9 +53,13 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         thread.start()
     }
     override fun run() {
+        var previousFrameTime = System.currentTimeMillis()
         while (drawing) {
-            player.move()
+            val currentTime = System.currentTimeMillis()
+            val elapsedTimeMS = (currentTime-previousFrameTime).toDouble()
+            updatePositions(elapsedTimeMS)
             draw()
+            previousFrameTime = currentTime
         }
     }
 
@@ -65,6 +69,10 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         screenHeight = h.toFloat()
         player.entitiesX = screenWidth/2f
         player.entitiesY = screenHeight*0.8f
+    }
+    fun updatePositions(elapsedTimeMS: Double) {
+        val interval = elapsedTimeMS / 1000.0
+        player.move()
     }
 
     fun draw() {
