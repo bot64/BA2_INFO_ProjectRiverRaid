@@ -23,12 +23,12 @@ class MainActivity : AppCompatActivity() {
     }
 }
 lateinit var gameView: GameView
-    object DifficultyDataManager {
-        private var _difficulty: DifficultyAndData = DifficultyAndData.EASY
-        fun setDifficulty(difficultyAndData: DifficultyAndData) {
-            _difficulty = difficultyAndData
-        }
-        public fun getData(): DifficultyAndData {
-            return _difficulty
-        }
+companion object DifficultyDataManager {
+    private var _difficulty: DifficultyAndData = DifficultyAndData.EASY
+    fun setDifficulty(difficultyAndData: DifficultyAndData) {
+        _difficulty = difficultyAndData
     }
+    public fun getData(): DifficultyAndData {
+        return _difficulty
+    }
+}

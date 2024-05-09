@@ -1,17 +1,13 @@
 package com.example.ba2_info_projectriverraid.entities
-import android.content.Context
-import android.graphics.Bitmap
 import com.example.ba2_info_projectriverraid.MainActivity
 import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager
 
 
 abstract class Entities(
-    context: Context?,
     var entitiesX: Float,
     var entitiesY: Float,
     var entitiesSize: Pair<Float, Float> = Pair(20.0f, 20.0f),
-    var health: Float,
-    val bitmap: Bitmap?
+    var health: Float
 ){
     val data = MainActivity.DifficultyDataManager.getData()
     fun getPosition() : Pair<Float, Float> {
