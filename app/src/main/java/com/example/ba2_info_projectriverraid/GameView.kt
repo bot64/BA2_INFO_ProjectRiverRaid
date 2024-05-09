@@ -33,10 +33,10 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         shootPressed = shootPressed)
     val ship = Ship(0f,0f, view = this)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
-    val leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
-
+    val leftButton : FloatingActionButton
     init {
         backgroundPaint.color = Color.WHITE
+        leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
     }
     fun pause() {
         drawing = false
