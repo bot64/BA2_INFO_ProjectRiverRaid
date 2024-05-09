@@ -8,7 +8,7 @@ import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
 
-//Ship.kt
+//Ship.kt teub
 class Ship(
     shipX: Float,
     shipY: Float,
