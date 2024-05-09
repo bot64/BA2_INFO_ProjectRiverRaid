@@ -25,7 +25,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     var screenHeight = 0f
     var drawing = false
     lateinit var thread : Thread
-    val player = Player(0f, 0f, Pair(0f,0f), 0f, this)
+    val player = Player(playerX = width.toFloat()/2, playerY = height.toFloat()*0.8f, view = this)
+
 
     init {
         backgroundPaint.color = Color.WHITE
@@ -58,7 +59,6 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             canvas = holder.lockCanvas()
             canvas.drawRect(0f, 0f, canvas.width.toFloat(),
                 canvas.height.toFloat(), backgroundPaint)
-            player.setPlayerXY(width.toFloat()/2, height.toFloat()/2)
             player.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
         }

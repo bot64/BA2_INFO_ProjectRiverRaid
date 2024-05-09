@@ -1,21 +1,30 @@
-/*package com.example.ba2_info_projectriverraid.entities
+package com.example.ba2_info_projectriverraid.entities
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.Paint
+import android.graphics.PointF
+import com.example.ba2_info_projectriverraid.GameView
+
 import com.example.ba2_info_projectriverraid.R
 
 // Missile.kt
 
 class Missile(
-    context: Context,
-    var speed: Float,
+
     missileX: Float,
     missileY: Float,
-    entitiesSize: Pair<Float, Float> ,
-    bitmap: Bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.missile)
-) : Entities(context, missileX, missileY, entitiesSize, health = 1f,bitmap) {
-    fun shoot(player: Player) {
+    entitiesSize: Pair<Float, Float> = Pair(10f, 30f),
+    onScreen : Boolean = true,
+    health : Float = 0f,
+    val view: GameView,
+    val speed : Float = 0f,
+    var fuel : Float = 0f
+   ) : Entities(missileX, missileY, entitiesSize, onScreen, health) {
+
+    val missilePaint = Paint()
+    var missileXY = PointF(entitiesX, entitiesY)
+
+       fun shoot(player: Player) {
         // Set the initial position of the missile to be just above the player
         super.entitiesX = player.entitiesX + (player.entitiesSize.first / 2) - (entitiesSize.first / 2)
         super.entitiesY = player.entitiesY - entitiesSize.second
@@ -38,4 +47,3 @@ class Missile(
     }
 
 }
-*/
