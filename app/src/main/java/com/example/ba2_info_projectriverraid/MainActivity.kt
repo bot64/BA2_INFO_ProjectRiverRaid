@@ -1,12 +1,7 @@
 package com.example.ba2_info_projectriverraid
-
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.utils.DifficultyAndData
 
 class MainActivity : AppCompatActivity() {

@@ -1,23 +1,16 @@
 package com.example.ba2_info_projectriverraid
+
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import com.example.ba2_info_projectriverraid.entities.Player
-import com.example.ba2_info_projectriverraid.entities.Missile
-
-import android.app.Activity
-import android.os.Bundle
-import android.view.MotionEvent
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
-import com.example.ba2_info_projectriverraid.R
-import com.example.ba2_info_projectriverraid.entities.Block
-import com.example.ba2_info_projectriverraid.entities.Entities
-import com.example.ba2_info_projectriverraid.entities.enemies.Ship
+import com.example.ba2_info_projectriverraid.entities.Missile
+import com.example.ba2_info_projectriverraid.entities.Player
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
@@ -69,6 +62,48 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         screenHeight = h.toFloat()
         player.entitiesX = screenWidth/2f
         player.entitiesY = screenHeight*0.8f
+        val leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
+        val rightButton = findViewById<FloatingActionButton>(R.id.rightbutton)
+        val shootButton = findViewById<Button>(R.id.shoot)
+        leftButton.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    moveLeftPressed = true
+                    true
+                }
+                MotionEvent.ACTION_UP -> {
+                    moveLeftPressed = false
+                    true
+                }
+                else -> false
+            }
+        }
+        rightButton.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    moveRightPressed = true
+                    true
+                }
+                MotionEvent.ACTION_UP -> {
+                    moveRightPressed = false
+                    true
+                }
+                else -> false
+            }
+        }
+        shootButton.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    shootPressed = true
+                    true
+                }
+                MotionEvent.ACTION_UP -> {
+                    shootPressed = false
+                    true
+                }
+                else -> false
+            }
+        }
     }
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
