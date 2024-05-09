@@ -58,7 +58,6 @@ class Player(
     fun getFuel(): Float {
         return fuel
     }
-
     /*fun handleInput(event: android.view.MotionEvent) {
     // Handle input events and update the input states
     when (event.action) {

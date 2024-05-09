@@ -7,14 +7,12 @@ import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
 
 // Ship.kt
-class Ship(
-    context: Context,
+/*class Ship(
     shipX: Float,
     shipY: Float,
     shipSize: Pair<Float, Float>,
     health: Float = 1f ,
-    Bitmap: Bitmap? = BitmapFactory.decodeResource(context.resources, R.drawable.ship)
-) : Entities(context,shipX, shipY, shipSize,health, Bitmap) {
+) : Entities(shipX, shipY, shipSize,health) {
 
     // Ship-specific properties and methods
     fun create(){}
@@ -34,4 +32,4 @@ class Ship(
         if (health <= 0){ delete()
         }
     }
-}
+}*/
