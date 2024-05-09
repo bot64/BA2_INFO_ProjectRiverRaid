@@ -23,38 +23,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 lateinit var gameView: GameView
-
-class Main {
-
-    // Properties
-    var score: Double = 0.0
-
-    /*val enemy_list: MutableList<Enemy> = mutableListOf()
-    val missile_list: MutableList<Missile> = mutableListOf()
-    val block_list: MutableList<Block> = mutableListOf()
-    val fuel_tank_list: MutableList<FuelTank> = mutableListOf()
-    */
-
-    // Methods
-    fun update_y() {
-        // Update the y-coordinates of all entities
-    }
-
-    /*fun create_map() {
-        // Create a new map instance and initialize it with some map data
-        val map = Map()
-        map.build_map() // Empty method body for now
-    }
-    */
-
-
-    fun end_condition() {
-        // Check if the game should end
-    }
-
-    fun create_entity() {
-        // Create a new entity and add it to the appropriate list
-    }
     object DifficultyDataManager {
         private var _difficulty: DifficultyAndData = DifficultyAndData.EASY
         fun setDifficulty(difficultyAndData: DifficultyAndData) {
@@ -64,4 +32,3 @@ class Main {
             return _difficulty
         }
     }
-}
