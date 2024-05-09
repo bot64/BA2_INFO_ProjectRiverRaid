@@ -9,8 +9,7 @@ import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Player
-import com.example.ba2_info_projectriverraid.customviews.TopView
-import com.example.ba2_info_projectriverraid.customviews.BotView
+
 import android.app.Activity
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Block
@@ -18,17 +17,17 @@ import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 
-class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) , SurfaceHolder.Callback {
+class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet) : SurfaceView(context, attrs) , SurfaceHolder.Callback, Runnable {
 
     private val player = Player(context)
 
-    val runnable = object : Runnable {
-        override fun run() {
-            while (running) {
-                val canvas = holder.lockCanvas()
-                canvas.drawColor(Color.WHITE) // Set the background color to white
-                player.bitmap?.let { canvas.drawBitmap(it, player.entitiesX, player.entitiesY, null) }
-                holder.unlockCanvasAndPost(canvas)
+    lateinit var canvas: Canvas
+    val backgroundPaint = Paint()
+    var screenWidth = 0f
+    var screenHeight = 0f
+    var drawing = false
+    lateinit var thread: Thread
+    val canon = Canon(0f, 0f, 0f, 0f, this)
             }
         }
     }
@@ -38,9 +37,7 @@ class GameView @JvmOverloads constructor (context: Context, attrs: AttributeSet)
 
 
     init {
-        holder.addCallback(this)
-        player.entitiesX = width / 2f // Set the player's initial x position
-        player.entitiesY = height / 2f // Set the player's initial y position
+        backgroundPaint.color = Color.WHITE
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
