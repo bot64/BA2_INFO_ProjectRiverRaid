@@ -20,7 +20,7 @@ class Missile(
     health : Float = 0f,
     val view: GameView,
     val speed : Float = 0f,
-    var fuel : Float = 0f
+    var fuel : Float = 0f,
    ) : Entities(missileX, missileY, entitiesSize, onScreen, health) {
 
     val missilePaint = Paint()
