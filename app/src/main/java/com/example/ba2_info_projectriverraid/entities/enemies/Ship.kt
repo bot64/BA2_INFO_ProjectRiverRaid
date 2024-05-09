@@ -3,9 +3,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PointF
-import android.content.Context
 import com.example.ba2_info_projectriverraid.GameView
-import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
 
 //Ship.kt teub
@@ -28,8 +26,7 @@ class Ship(
     fun handle_collision(entity: Entities) {
         // Handle collisions between the ship and other entities
     }
-    /*fun draw (canvas : Canvas){
-        update()
+    fun draw (canvas : Canvas){
         canvas.drawRect(
             entitiesX - entitiesSize.first,
             entitiesY - entitiesSize.second,
@@ -49,18 +46,13 @@ class Ship(
         }
     }
 
-
-
-    }
-
     fun pop_entity() {
         // Create a new ship and add it to the game
     }
-    fun shot(damage : Float) {
+    /*fun shot(damage : Float, health : Float = 0f) {
         health -= damage
         if (health <= 0){
             delete()
             //add score implementation
         }
     }*/
-}

@@ -11,6 +11,7 @@ import android.view.SurfaceView
 import android.widget.Button
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
+import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
@@ -31,6 +32,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         moveRightPressed = moveRightPressed,
         moveLeftPressed = moveLeftPressed,
         shootPressed = shootPressed)
+    val ship = Ship(0f,0f, view = this)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
     val leftButton: FloatingActionButton
     val rightButton: FloatingActionButton
@@ -70,9 +72,10 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         player.entitiesY = screenHeight*0.8f
 
     }
-
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
+        ship.update(interval)
+
         /*if (leftButton.isPressed){
             moveLeftPressed = true
             moveLeftPressed = false
