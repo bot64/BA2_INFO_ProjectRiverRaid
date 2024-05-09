@@ -32,9 +32,9 @@ class Player(
         playerPaint.strokeWidth = entitiesSize.first * 1.5f
         canvas.drawRect(
             canvas.width.toFloat()/2 - entitiesSize.first,
-            canvas.height.toFloat()/2 - entitiesSize.second,
+            canvas.height.toFloat()*0.8f - entitiesSize.second,
             canvas.width.toFloat()/2 + entitiesSize.first,
-            canvas.height.toFloat()/2 + entitiesSize.second,
+            canvas.height.toFloat()*0.8f + entitiesSize.second,
             playerPaint
         )
     }
