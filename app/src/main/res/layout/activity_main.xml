@@ -11,13 +11,15 @@
 
     <Button
         android:id="@+id/shootbutton"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Shoot"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
+        app:layout_constraintVertical_bias="0.94" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/leftbutton"
@@ -45,33 +47,16 @@
         app:layout_constraintVertical_bias="0.94"
         app:srcCompat="@android:drawable/ic_media_next" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
-        android:layout_marginBottom="61dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rightbutton"
-        app:layout_constraintVertical_bias="1.0" />
-
     <TextView
         android:id="@+id/Score"
         android:layout_width="46dp"
         android:layout_height="22dp"
         android:layout_marginTop="26dp"
-        android:layout_marginBottom="606dp"
         android:text="Score :"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Level"

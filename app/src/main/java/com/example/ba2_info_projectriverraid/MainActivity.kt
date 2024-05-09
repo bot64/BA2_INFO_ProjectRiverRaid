@@ -25,10 +25,6 @@ class MainActivity : AppCompatActivity() {
     }
 }
 lateinit var gameView: GameView
-lateinit var topView: TopView
-lateinit var botView: BotView
-
-
 
 class Main {
 
