@@ -7,23 +7,23 @@ import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 
 class Player(
-    playerX: Float,
-    playerY: Float,
+    entitiesX: Float,
+    entitiesY: Float,
     entitiesSize: Pair<Float,Float> = Pair(40f,40f),
     onScreen: Boolean = true,
     health: Float = 0f,
     val view: GameView,
     val speed : Float = 10f,
     var fuel : Float = 100f
-) : Entities(playerX, playerY, entitiesSize, onScreen, health) {
+) : Entities(entitiesX, entitiesY, entitiesSize, onScreen, health) {
     val playerPaint = Paint()
     var playerXY = PointF(entitiesX, entitiesY)
 
     init {
         val speed = data.playerSpeed
         var fuel = data.fuelOnstart
-        super.entitiesSize = data.defaultSize
-        super.health = data.playerStartingHealth
+        this.entitiesSize = data.defaultSize
+        this.health = data.playerStartingHealth
         playerPaint.color = Color.RED
     }
     fun draw(canvas: Canvas) {

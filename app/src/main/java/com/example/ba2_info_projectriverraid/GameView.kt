@@ -26,7 +26,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     var screenHeight = 0f
     var drawing = false
     lateinit var thread : Thread
-    val player = Player(playerX = width.toFloat()/2, playerY = height.toFloat()*0.8f, view = this)
+    val player = Player(entitiesX = width.toFloat()/2, entitiesY = height.toFloat()*0.8f, view = this)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
 
     init {
