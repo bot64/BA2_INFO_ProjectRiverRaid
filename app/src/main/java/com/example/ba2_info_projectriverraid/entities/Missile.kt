@@ -1,9 +1,11 @@
 package com.example.ba2_info_projectriverraid.entities
 
-import android.content.Context
+
 import android.graphics.Paint
 import android.graphics.PointF
+import android.graphics.Color
 import com.example.ba2_info_projectriverraid.GameView
+
 
 import com.example.ba2_info_projectriverraid.R
 
@@ -18,7 +20,7 @@ class Missile(
     health : Float = 0f,
     val view: GameView,
     val speed : Float = 0f,
-    var fuel : Float = 0f
+    var fuel : Float = 0f,
    ) : Entities(missileX, missileY, entitiesSize, onScreen, health) {
 
     val missilePaint = Paint()
