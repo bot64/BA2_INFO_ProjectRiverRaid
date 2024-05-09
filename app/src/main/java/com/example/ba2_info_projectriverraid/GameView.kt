@@ -34,14 +34,10 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         shootPressed = shootPressed)
     val ship = Ship(0f,0f, view = this)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
-    /*val leftButton: FloatingActionButton
-    val rightButton: FloatingActionButton
-    val shootButton: Button*/
+    val leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
+
     init {
         backgroundPaint.color = Color.WHITE
-        /*leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
-        rightButton = findViewById<FloatingActionButton>(R.id.rightbutton)
-        shootButton = findViewById<Button>(R.id.shoot)*/
     }
     fun pause() {
         drawing = false
@@ -59,6 +55,9 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         while (drawing) {
             val currentTime = System.currentTimeMillis()
             val elapsedTimeMS = (currentTime-previousFrameTime).toDouble()
+            if (leftButton.isPressed){
+                moveLeftPressed = true
+            }
             updatePositions(elapsedTimeMS)
             draw()
             previousFrameTime = currentTime
