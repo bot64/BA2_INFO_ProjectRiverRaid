@@ -32,19 +32,26 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         moveLeftPressed = moveLeftPressed,
         shootPressed = shootPressed)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
-
+    val leftButton: FloatingActionButton
+    val rightButton: FloatingActionButton
+    val shootButton: Button
     init {
         backgroundPaint.color = Color.WHITE
+        leftButton = findViewById<FloatingActionButton>(R.id.leftbutton)
+        rightButton = findViewById<FloatingActionButton>(R.id.rightbutton)
+        shootButton = findViewById<Button>(R.id.shoot)
     }
     fun pause() {
         drawing = false
         thread.join()
     }
+
     fun resume() {
         drawing = true
         thread = Thread(this)
         thread.start()
     }
+
     override fun run() {
         var previousFrameTime = System.currentTimeMillis()
         while (drawing) {
@@ -55,7 +62,6 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             previousFrameTime = currentTime
         }
     }
-
     override fun onSizeChanged(w:Int, h:Int, oldw:Int, oldh:Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         screenWidth = w.toFloat()
@@ -64,13 +70,10 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         player.entitiesY = screenHeight*0.8f
 
     }
-    val leftButton : FloatingActionButton = findViewById<FloatingActionButton>(R.id.leftbutton)
-    val rightButton : FloatingActionButton= findViewById<FloatingActionButton>(R.id.rightbutton)
-    val shootButton : Button = findViewById<Button>(R.id.shoot)
 
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
-        if (leftButton.isPressed){
+        /*if (leftButton.isPressed){
             moveLeftPressed = true
             moveLeftPressed = false
 
@@ -81,7 +84,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         else if(rightButton.isPressed){
             moveRightPressed = true
             moveLeftPressed = false
-        }
+        }*/
 
         player.move()
 

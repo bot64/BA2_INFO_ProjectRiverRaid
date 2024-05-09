@@ -19,15 +19,16 @@ class Ship(
 ) : Enemies(shipX, shipY, shipSize, onScreen,health) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
+    var speed = 10
     init {
         shipXY.set(view.screenWidth/2, 0f)
-        val speed = 10
+        val speed = 10f
         shipPaint.color = Color.BLUE
     }
     fun handle_collision(entity: Entities) {
         // Handle collisions between the ship and other entities
     }
-    fun draw (canvas : Canvas){
+    /*fun draw (canvas : Canvas){
         update()
         canvas.drawRect(
             entitiesX - entitiesSize.first,
@@ -41,7 +42,14 @@ class Ship(
     fun delete() {
         // Remove the ship from the game
     }
-    fun update(){
+    fun update(interval: Double) {
+        var up = (interval * speed).toFloat()
+        shipXY.offset(0f, up)
+
+        }
+    }
+
+
 
     }
 
@@ -54,5 +62,5 @@ class Ship(
             delete()
             //add score implementation
         }
-    }
+    }*/
 }
