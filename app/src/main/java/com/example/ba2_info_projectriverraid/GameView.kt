@@ -12,10 +12,10 @@ import com.example.ba2_info_projectriverraid.entities.Player
 
 import android.app.Activity
 import com.example.ba2_info_projectriverraid.R
-import com.example.ba2_info_projectriverraid.entities.Block
-import com.example.ba2_info_projectriverraid.entities.Entities
-import com.example.ba2_info_projectriverraid.entities.FuelTank
-import com.example.ba2_info_projectriverraid.entities.enemies.Ship
+//import com.example.ba2_info_projectriverraid.entities.Block
+//import com.example.ba2_info_projectriverraid.entities.Entities
+//import com.example.ba2_info_projectriverraid.entities.FuelTank
+//import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 
 class GameView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0) : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
@@ -24,7 +24,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     var screenHeight = 0f
     var drawing = false
     lateinit var thread : Thread
-    val player = Player(0f, 0f, 0f, 0f, this)
+    val player = Player(0f, 0f, Pair(0f,0f), 0f, this)
 
 
     init {
@@ -71,7 +71,7 @@ override fun run() {
 
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {}
-    private fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
+    /*private fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
         //Creates [numEnemies] 'enemies' objects at randomized (entitiesX,entitiesY) values
         repeat(numEnemies) {
             val enemy = Ship(context,Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f), 1f)
@@ -91,6 +91,6 @@ override fun run() {
         repeat(numFuelTanks){
             val fuelTank = FuelTank(context, Random.nextFloat()*screenWidth,Random.nextFloat()*screenHeight,Pair(20f,20f))
         }
-    }
+    }*/
 }
 
