@@ -27,10 +27,6 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     val player = Player(0f, 0f, 0f, 0f, this)
 
 
-
-
-
-
     init {
          backgroundPaint.color = Color.WHITE
     }
