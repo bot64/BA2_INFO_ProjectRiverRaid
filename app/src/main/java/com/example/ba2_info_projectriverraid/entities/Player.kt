@@ -4,8 +4,15 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.PointF
 import com.example.ba2_info_projectriverraid.GameView
+import com.example.ba2_info_projectriverraid.entities.enemies.PerimeterObserver
 import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 
+interface PerimeterObservable{
+    // Dynamic adding and removal of observers to the list by the target
+    val observers : MutableList<PerimeterObserver>
+    fun addObserver(observer: PerimeterObserver){observers.add(observer)}
+    fun removeObserver(observer: PerimeterObserver){observers.remove(observer)}
+}
 class Player(
     entitiesX: Float,
     entitiesY: Float,
@@ -53,14 +60,23 @@ class Player(
             entitiesX += speed
         }
     }
-
-    fun tp(X: Float, Y: Float) {
-
+    override val observers : MutableList<PerimeterObserver> = ArrayList()
+    override fun addObserver(observer : PerimeterObserver){observers.add(observer)}
+    override fun removeObserver(observer : PerimeterObserver){observers.remove(observer)}
+    fun notifyObserver(){
+        // Allows for observer notifications based on the target's coordinates
+        if (observers.isNotEmpty()){
+            observers.forEach{observer -> observer.moveOnDetection(Position(entitiesX, entitiesY))}
+        }
+    }
+    fun sendNewPosition(newX : Float, newY : Float){
+        // 'update' function with notification functionalities
+        entitiesX = newX; entitiesY = newY; notifyObserver()
     }
 
-    /*fun getFuel(): Float {
+    fun get_Fuel(): Float {
         return fuel
-    }*/
+    }
     /*fun handleInput(event: android.view.MotionEvent) {
     // Handle input events and update the input states
     when (event.action) {

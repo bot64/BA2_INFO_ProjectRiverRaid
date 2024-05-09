@@ -1,6 +1,6 @@
 package com.example.ba2_info_projectriverraid.entities
 import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
-
+import android.graphics.RectF
 
 abstract class Entities(
     var entitiesX: Float = 0f,
@@ -31,6 +31,22 @@ abstract class Entities(
                 entitiesX + entitiesSize.first / 2 > missileX - missileSize.first / 2 &&
                 entitiesY - entitiesSize.second / 2 < missileY + missileSize.second / 2 &&
                 entitiesY + entitiesSize.second / 2 > missileY - missileSize.second / 2
+    }
+    companion object { // Static method for detecting collisions
+        fun isColliding(entities1: Entities, entities2: Entities): Boolean {
+
+            val boundingBox1 = RectF(
+                entities1.entitiesX, entities1.entitiesY,
+                entities1.entitiesX + entities1.entitiesSize.first,
+                entities1.entitiesY + entities1.entitiesSize.second
+            )
+            val boundingBox2 = RectF(
+                entities2.entitiesX, entities2.entitiesY,
+                entities2.entitiesX + entities2.entitiesSize.first,
+                entities2.entitiesY + entities2.entitiesSize.second
+            )
+            return boundingBox1.intersect(boundingBox2)
+        }
     }
 }
 // Suggested size for entities (20f, 20f) needs adjusting

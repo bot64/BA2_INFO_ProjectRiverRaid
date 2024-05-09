@@ -12,7 +12,6 @@ import com.example.ba2_info_projectriverraid.R
 // Missile.kt
 
 class Missile(
-
     missileX: Float,
     missileY: Float,
     entitiesSize: Pair<Float, Float> = Pair(10f, 30f),

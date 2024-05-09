@@ -1,9 +1,7 @@
 package com.example.ba2_info_projectriverraid
-
-import kotlin.random.Random
 import android.content.Context
-import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.SurfaceHolder
@@ -12,7 +10,6 @@ import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.Missile
 
 import android.app.Activity
-import android.util.Log
 import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Block
 import com.example.ba2_info_projectriverraid.entities.Entities
