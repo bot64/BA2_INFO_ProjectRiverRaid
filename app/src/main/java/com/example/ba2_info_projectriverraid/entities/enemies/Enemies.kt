@@ -33,13 +33,12 @@ interface PerimeterObserver {
     // Changes the behavior to Custom on detection
 }
 open class Enemies(
-    context : Context,
     var enemiesX : Float,
     var enemiesY : Float,
-    var enemiesSize : Pair<Float, Float>,
-    var enemiesHealth : Float,
-    val enemiesBitmap : Bitmap?)
-    : Entities(context,enemiesX, enemiesY, enemiesSize,enemiesHealth, enemiesBitmap),
+    var size : Pair<Float, Float>,
+    onScreen : Boolean = true,
+    health : Float)
+    : Entities(enemiesX, enemiesY, size, onScreen, health),
     PerimeterObserver{
     var movePattern: MovePattern = DefaultMovePattern()
     override fun checkDistance(targetCoordinates: Position): Boolean {

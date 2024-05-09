@@ -16,7 +16,7 @@ class Ship(
     health: Float = 3f,
     onScreen: Boolean = true,
     val view: GameView
-) : Entities(shipX, shipY, shipSize, onScreen,health) {
+) : Enemies(shipX, shipY, shipSize, onScreen,health) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     init {
