@@ -26,7 +26,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     var screenHeight = 0f
     var drawing = false
     lateinit var thread : Thread
-    val player = Player(0f,0f, view = this)
+    val player = Player(0f, 0f, view = this)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
 
     init {
@@ -52,7 +52,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         super.onSizeChanged(w, h, oldw, oldh)
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
-        player.setPlayerXY(screenWidth.toFloat()/2, screenHeight.toFloat()*0.8f )
+        player.entitiesX = screenWidth/2f
+        player.entitiesY = screenHeight*0.8f
     }
 
 
