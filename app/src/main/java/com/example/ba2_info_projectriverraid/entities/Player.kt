@@ -19,21 +19,20 @@ class Player(
     var playerXY = PointF(entitiesX, entitiesY)
 
     init {
-        val data = super.data
         val speed = data.playerSpeed
         var fuel = data.fuelOnstart
-        super.entitiesSize = getData().defaultSize
-        super.health = getData().playerStartingHealth
-
+        super.entitiesSize = data.defaultSize
+        super.health = data.playerStartingHealth
+        playerXY.set(view.screenWidth,view.screenHeight*0.8f)
         playerPaint.color = Color.RED
     }
 
     fun draw(canvas: Canvas) {
         playerPaint.strokeWidth = entitiesSize.first * 1.5f
         canvas.drawRect(
-            canvas.width.toFloat()/2 - entitiesSize.first,
+            entitiesX - entitiesSize.first,
             canvas.height.toFloat()*0.8f - entitiesSize.second,
-            canvas.width.toFloat()/2 + entitiesSize.first,
+            entitiesX + entitiesSize.first,
             canvas.height.toFloat()*0.8f + entitiesSize.second,
             playerPaint
         )

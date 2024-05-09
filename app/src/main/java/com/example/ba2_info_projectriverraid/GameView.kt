@@ -28,7 +28,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     val player = Player(0f, 0f, Pair(0f,0f), 0f, this)
 
     init {
-         backgroundPaint.color = Color.WHITE
+        backgroundPaint.color = Color.WHITE
     }
 
     fun pause() {
@@ -50,14 +50,15 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         super.onSizeChanged(w, h, oldw, oldh)
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
-
     }
+
 
     fun draw() {
         if (holder.surface.isValid) {
             canvas = holder.lockCanvas()
             canvas.drawRect(0f, 0f, canvas.width.toFloat(),
                 canvas.height.toFloat(), backgroundPaint)
+            player.setPlayerXY(width.toFloat()/2, height.toFloat()/2)
             player.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
         }

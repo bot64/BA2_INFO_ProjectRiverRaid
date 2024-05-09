@@ -6,6 +6,7 @@ abstract class Entities(
     var entitiesX: Float = 0f,
     var entitiesY: Float = 0f,
     var entitiesSize: Pair<Float, Float> = Pair(20.0f, 20.0f),
+    var onScreen : Boolean = true,
     var health: Float
 ){
     val data = getData()
