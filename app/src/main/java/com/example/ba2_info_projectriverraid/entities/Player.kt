@@ -60,9 +60,9 @@ class Player(
             entitiesX += speed
         }
     }
-    override val observers : MutableList<PerimeterObserver> = ArrayList()
-    override fun addObserver(observer : PerimeterObserver){observers.add(observer)}
-    override fun removeObserver(observer : PerimeterObserver){observers.remove(observer)}
+    val observers : MutableList<PerimeterObserver> = ArrayList()
+    fun addObserver(observer : PerimeterObserver){observers.add(observer)}
+    fun removeObserver(observer : PerimeterObserver){observers.remove(observer)}
     fun notifyObserver(){
         // Allows for observer notifications based on the target's coordinates
         if (observers.isNotEmpty()){

@@ -1,6 +1,6 @@
 
 import android.view.SurfaceHolder
-// import androidx.media3.player.Player
+
 import kotlinx.coroutines.*
 import android.content.Context
 import com.example.ba2_info_projectriverraid.entities.Block
@@ -58,11 +58,11 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
     ) {
         repeat(numEntities) {
             val newEntity = when (type) {
-                EntityType.Enemy -> Ship(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f), 1f)
+                EntityType.Enemy -> Ship( Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, view = gameView)
 
-                EntityType.Block -> Block(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight)
+                EntityType.Block -> Block( Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, view = gameView)
 
-                EntityType.FuelTank -> FuelTank(context, Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f))
+                EntityType.FuelTank -> FuelTank( Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, view = gameView)
                 else -> throw IllegalArgumentException("Invalid Entity Type")
             }
             if (entities.none { Entities.isColliding(newEntity, it) }) {entities.add(newEntity)}
