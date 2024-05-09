@@ -7,14 +7,14 @@ import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 
 class Player(
-    playerX: Float = 0f,
-    playerY: Float = 0f,
-    entitiesSize: Pair<Float,Float> = Pair(0f,0f),
+    playerX: Float,
+    playerY: Float,
+    entitiesSize: Pair<Float,Float> = Pair(40f,40f),
     onScreen: Boolean = true,
     health: Float = 0f,
     val view: GameView,
-    val speed : Float = 0f,
-    var fuel : Float = 0f
+    val speed : Float = 10f,
+    var fuel : Float = 100f
 ) : Entities(playerX, playerY, entitiesSize, onScreen, health) {
     val playerPaint = Paint()
     var playerXY = PointF(entitiesX, entitiesY)
