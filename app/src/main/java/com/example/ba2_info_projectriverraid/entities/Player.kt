@@ -10,11 +10,12 @@ class Player(
     playerX: Float = 0f,
     playerY: Float = 0f,
     entitiesSize: Pair<Float,Float> = Pair(0f,0f),
+    onScreen: Boolean = true,
     health: Float = 0f,
     val view: GameView,
     val speed : Float = 0f,
     var fuel : Float = 0f
-) : Entities(playerX, playerY, entitiesSize, health) {
+) : Entities(playerX, playerY, entitiesSize, onScreen, health) {
     val playerPaint = Paint()
     var playerXY = PointF(entitiesX, entitiesY)
 
