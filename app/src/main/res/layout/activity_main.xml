@@ -8,16 +8,18 @@
     android:background="#DEDEDE"
     tools:context=".MainActivity">
 
-
-    <Button
-        android:id="@+id/shootbutton"
-        android:layout_width="0dp"
+    <com.example.ba2_info_projectriverraid.GameView
+        android:id="@+id/gameView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:text="Shoot"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/leftbutton"
@@ -26,6 +28,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_media_previous" />
@@ -35,46 +38,49 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:clickable="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/leftbutton"
         app:layout_constraintStart_toEndOf="@+id/leftbutton"
         app:layout_constraintTop_toTopOf="@+id/leftbutton"
         app:srcCompat="@android:drawable/ic_media_next" />
 
     <TextView
-        android:id="@+id/Score"
-        android:layout_width="46dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="26dp"
-        android:text="Score :"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/Level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="222dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="67dp"
-        android:layout_marginBottom="594dp"
         android:text="Level :"
-        app:layout_constraintBottom_toTopOf="@+id/shootbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Score"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <com.example.ba2_info_projectriverraid.GameView
-        android:id="@+id/gameView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100000024" />
+        app:layout_constraintVertical_bias="0.050000012" />
+
+
+    <Button
+        android:id="@+id/shoot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SHOOT"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/leftbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/leftbutton" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.050000012" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
