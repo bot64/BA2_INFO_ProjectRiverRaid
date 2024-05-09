@@ -8,8 +8,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.ba2_info.projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.utils.DifficultyAndData
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.util.AttributeSet
+import android.view.SurfaceHolder
+import android.view.SurfaceView
 
-//teub
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +31,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     lateinit var gameView: GameView
+
+    override fun onResume() {
+        super.onResume()
+        gameView.resume()
+    }
+    override fun onPause() {
+        super.onPause()
+        gameView.pause()
+    }
 
     companion object DifficultyDataManager {
         private var _difficulty: DifficultyAndData = DifficultyAndData.EASY
