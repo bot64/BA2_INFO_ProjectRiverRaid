@@ -31,20 +31,20 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
          backgroundPaint.color = Color.WHITE
     }
 
-fun pause() {
-    drawing = false
-    thread.join()
-}
-fun resume() {
-    drawing = true
-    thread = Thread(this)
-    thread.start()
-}
-override fun run() {
-    while (drawing) {
-        draw()
+    fun pause() {
+        drawing = false
+        thread.join()
     }
-}
+    fun resume() {
+        drawing = true
+        thread = Thread(this)
+        thread.start()
+    }
+    override fun run() {
+        while (drawing) {
+            draw()
+        }
+    }
 
     override fun onSizeChanged(w:Int, h:Int, oldw:Int, oldh:Int) {
         super.onSizeChanged(w, h, oldw, oldh)
