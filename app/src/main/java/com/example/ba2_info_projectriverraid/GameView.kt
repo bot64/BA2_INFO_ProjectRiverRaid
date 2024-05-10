@@ -118,7 +118,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     }
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
-        if (System.currentTimeMillis() - lastMissileShotTime >= 200 && shootPressed) {
+        if (System.currentTimeMillis() - lastMissileShotTime >= 800 && shootPressed) {
             missiles.add(Missile(player.entitiesX, player.entitiesY, view = this))
             lastMissileShotTime = System.currentTimeMillis()
         }
@@ -140,14 +140,14 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         }
         for (block in blocks) {
             block.update(interval)
-            if (map.isOutOfBounds(block.entitiesX,block.entitiesY )|| block.health <= 0 || block.fuel <= 0){
-                //block.delete()
+            if (map.isOutOfBounds(block.entitiesX,block.entitiesY )|| block.fuel <= 0){
+                block.delete()
             }
         }
         for (fuel in fuelTanks){
             fuel.update(interval)
             if (map.isOutOfBounds(fuel.entitiesX,fuel.entitiesY )|| fuel.health <= 0 || fuel.fuel <= 0){
-                //fuel.delete()
+                fuel.delete()
             }
         }
         allEntities.addAll(missiles)
@@ -157,32 +157,28 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         allEntities.add(player)
         for (j in 0 until matrixDim){
             for (i in 0 until j+1){
-                println('t')
-                println(i)
-                println(j)
                 when (collisionMatrix[i][j]){
                     //damage
                     1 -> {for (entityA in allEntities.filter{it.collisionOrdinal == j+1}){
-                        //println('1')
                         for (entityB in allEntities.filter{it.collisionOrdinal == i+1}){
                             if (entityA.rect.intersect(entityB.rect)) {
-
-                            println(entityA.collisionOrdinal)
-                            entityB.health = 0f
-                                if (entityB.health <= 1){
-                                    entityB.delete()
+                                entityB.damage(entityB,entityA)
+                                entityA.damage(entityB,entityA)
+                                if (entityA.health<= 0){
+                                    entityA.delete()
                                 }
-                            entityB.damage(entityB,entityA)
+                                }
+
                         }
 
                         }
 
                     }
-                    }
+
                     //bounce
                     2 -> { //println('2')
-                        for (entityA in allEntities.toList().filter{it.collisionOrdinal == i}){
-                        for (entityB in allEntities.toList().filter{it.collisionOrdinal == j}){
+                        for (entityA in allEntities.toList().filter{it.collisionOrdinal == i+1}){
+                        for (entityB in allEntities.toList().filter{it.collisionOrdinal == j+1}){
                             if (entityA.intersect(rect1 = entityA.rect, rect2 = entityB.rect)) {
                                 entityA.bounce(entityA, entityB)
                                 entityB.bounce(entityB, entityA)
@@ -191,8 +187,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
                     }}
                     //refuel
                     3 -> {  //println('3')
-                        for (entityA in allEntities.toList().filter{it.collisionOrdinal == i}){
-                        for (entityB in allEntities.toList().filter{it.collisionOrdinal == j}){
+                        for (entityA in allEntities.toList().filter{it.collisionOrdinal == i+1}){
+                        for (entityB in allEntities.toList().filter{it.collisionOrdinal == j+1}){
                             if (entityA.intersect(rect1 = entityA.rect, rect2 = entityB.rect)) {
                                 val A_fuel = entityA.fuel
                                 val B_fuel = entityB.fuel
@@ -203,8 +199,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
                     }}
                     //Destroy
                     4 -> {  //println('4')
-                        for (entityA in allEntities.toList().filter{it.collisionOrdinal == i}){
-                        for (entityB in allEntities.toList().filter{it.collisionOrdinal == j}){
+                        for (entityA in allEntities.toList().filter{it.collisionOrdinal == i+1}){
+                        for (entityB in allEntities.toList().filter{it.collisionOrdinal == j+1}){
                             if (entityA.intersect(rect1 = entityA.rect, rect2 = entityB.rect)){
                                 entityB.delete()
                             }

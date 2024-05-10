@@ -37,9 +37,6 @@ class Block(
         entitiesY += scroll
     }
     override fun damage(entities1: Entities, entities2: Entities){
-        health -= entities2.health
-    }
-    override fun bounce(entities1: Entities, entities2: Entities){
 
     }
 }

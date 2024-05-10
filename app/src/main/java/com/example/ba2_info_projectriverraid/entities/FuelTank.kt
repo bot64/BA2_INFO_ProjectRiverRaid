@@ -40,9 +40,6 @@ class FuelTank(
     override fun damage(entities1: Entities, entities2: Entities){
         health -= entities2.health
     }
-    override fun bounce(entities1: Entities, entities2: Entities){
-
-    }
     override fun refuel(fuel : Float){
         super.fuel -= 100f-fuel
     }
