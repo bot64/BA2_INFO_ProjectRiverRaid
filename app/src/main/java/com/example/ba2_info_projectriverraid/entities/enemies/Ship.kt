@@ -7,7 +7,7 @@ import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.Entities
 
-//Ship.kt
+//Ship.kt lol
 class Ship(
     shipX: Float,
     shipY: Float,
