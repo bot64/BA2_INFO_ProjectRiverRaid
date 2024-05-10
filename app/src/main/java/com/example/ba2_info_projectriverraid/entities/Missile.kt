@@ -45,7 +45,7 @@ class Missile(
     }
 
     fun delete() {
-        // Remove the missile from the game
+        view.missiles.remove(this)
     }
 
 }
