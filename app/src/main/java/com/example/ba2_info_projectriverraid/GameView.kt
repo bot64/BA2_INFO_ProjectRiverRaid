@@ -8,15 +8,19 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.Block
 import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 import kotlin.random.Random
-
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
-class GameView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0) : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
+class GameView @JvmOverloads constructor (context: Context,
+                                          attributes: AttributeSet? = null,
+                                          defStyleAttr: Int = 0,
+                                          entities : MutableList<Entities>)
+    : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
     lateinit var canvas: Canvas
     val backgroundPaint = Paint()
     var screenWidth = 0f
@@ -35,12 +39,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         moveLeftPressed = moveLeftPressed,
         shootPressed = shootPressed)
     val missiles = mutableListOf<Missile>()
-    val blocks = mutableListOf<Block>()
-    val enemies = mutableListOf<Ship>()
-    val fuelTanks = mutableListOf<FuelTank>()
-    init {
-        backgroundPaint.color = Color.WHITE
-    }
+    val entities = mutableListOf<Entities>()
+    init {backgroundPaint.color = Color.WHITE}
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
@@ -61,7 +61,6 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
                 shootPressed = false
             }
         }
-
         return true
     }
 
@@ -86,8 +85,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             previousFrameTime = currentTime
         }
     }
-
-    override fun onSizeChanged(w:Int, h:Int, oldw:Int, oldh:Int) {
+    /* override fun onSizeChanged(w:Int, h:Int, oldw:Int, oldh:Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
@@ -98,7 +96,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             blocks.add(Block(Random.nextFloat() * screenWidth, 200f, view = this))
             fuelTanks.add(FuelTank(Random.nextFloat() * screenWidth, 300f, view = this))
         }
-    }
+    } */ //todo : Eliminating redundancies with createEntities()
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
         if (System.currentTimeMillis() - lastMissileShotTime >= 200 && shootPressed) {
@@ -108,14 +106,12 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         for (missile in missiles) {
             missile.update()
         }
-        for (enemy in enemies) {
-            enemy.update(interval)
-        }
-        for (block in blocks) {
-            block.update(interval)
-        }
-        for (fuel in fuelTanks){
-            fuel.update(interval)
+        for (entity in entities){
+            when(entity){
+                is Ship -> entity.update(interval)
+                is Block -> entity.update(interval)
+                is FuelTank -> entity.update(interval)
+            }
         }
         player.move(moveLeftPressed, moveRightPressed)
     }
@@ -128,14 +124,12 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             for (missile in missiles) {
                 missile.draw(canvas)
             }
-            for (enemy in enemies) {
-                enemy.draw(canvas)
-            }
-            for (block in blocks) {
-                block.draw(canvas)
-            }
-            for (fuel in fuelTanks){
-                fuel.draw(canvas)
+            for (entity in entities){
+                when(entity){
+                    is Ship -> entity.draw(canvas)
+                    is Block -> entity.draw(canvas)
+                    is FuelTank -> entity.draw(canvas)
+                }
             }
             player.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
