@@ -34,6 +34,15 @@ abstract class Entities(
                 entitiesY - entitiesSize.second / 2 < missileY + missileSize.second / 2 &&
                 entitiesY + entitiesSize.second / 2 > missileY - missileSize.second / 2
     }
+    fun damage(entities1: Entities, entities2: Entities){
+
+    }
+    fun bounce(entities1: Entities,entities2: Entities){
+
+    }
+    fun refuel(entities1: Entities, entities2: Entities){
+
+    }
     companion object { // Static method for detecting collisions
         fun isColliding(entities1: Entities, entities2: Entities): Boolean {
 
