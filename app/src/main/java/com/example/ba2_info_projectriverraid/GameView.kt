@@ -94,7 +94,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         player.entitiesX = screenWidth/2f
         player.entitiesY = screenHeight*0.8f
         for (i in 0 until 5) {
-            enemies.add(Ship(Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f), 1f, view = this))
+            enemies.add(Ship(Random.nextFloat() * screenWidth, 0f, Pair(20f, 20f), 1f, view = this))
 
     }
     fun updatePositions(elapsedTimeMS: Double) {
@@ -106,8 +106,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         for (missile in missiles) {
             missile.update()
         }
-        for (enemy in enemies) {
-            enemy.update(interval)
+        for (Ship in enemies) {
+            Ship.update(interval)
             }
         }
         player.move(moveLeftPressed, moveRightPressed)
@@ -122,8 +122,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             for (missile in missiles) {
                 missile.draw(canvas)
             }
-            for (enemy in enemies) {
-                enemy.draw(canvas)
+            for (Ship in enemies) {
+                Ship.draw(canvas)
             }
             player.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
