@@ -29,15 +29,13 @@ class Missile(
         entitiesY -= speed
     }
     fun draw (canvas : Canvas){
-        fun draw (canvas : Canvas){
             super.rect = RectF(
-                entitiesX - entitiesSize.first,
-                entitiesY - entitiesSize.second,
-                entitiesX + entitiesSize.first,
-                entitiesY + entitiesSize.second
-            )
-            canvas.drawRect(rect, missilePaint)
-        }
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second
+        )
+        canvas.drawRect(rect, missilePaint)
     }
 
     override fun damage(entities1: Entities, entities2: Entities){
