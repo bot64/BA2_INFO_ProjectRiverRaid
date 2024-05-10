@@ -57,7 +57,7 @@ class Ship(
     fun hurt(entity : Entities) {
 
         if (entity is Missile){
-            super.health
+
 
         }
     }

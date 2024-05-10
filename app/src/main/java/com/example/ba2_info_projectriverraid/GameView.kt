@@ -31,6 +31,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         moveRightPressed = moveRightPressed,
         moveLeftPressed = moveLeftPressed,
         shootPressed = shootPressed)
+
     val ship = Ship(0f,0f, view = this)
     val missile = Missile(player.entitiesX,player.entitiesY, view = this)
     init {
