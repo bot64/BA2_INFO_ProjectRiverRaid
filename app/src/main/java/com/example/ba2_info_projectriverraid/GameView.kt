@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import com.example.ba2_info_projectriverraid.entities.Block
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
@@ -33,6 +34,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         moveLeftPressed = moveLeftPressed,
         shootPressed = shootPressed)
     val missiles = mutableListOf<Missile>()
+    val blocks = mutableListOf<Block>()
     val enemies = mutableListOf<Ship>()
     init {
         backgroundPaint.color = Color.WHITE
@@ -105,6 +107,9 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         }
         for (enemy in enemies) {
             enemy.update(interval)
+        }
+        for (block in blocks) {
+            block.update(interval)
         }
         player.move(moveLeftPressed, moveRightPressed)
     }
