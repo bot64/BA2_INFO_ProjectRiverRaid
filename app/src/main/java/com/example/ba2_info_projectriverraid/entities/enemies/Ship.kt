@@ -3,6 +3,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PointF
+import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.Entities
 
@@ -13,8 +14,9 @@ class Ship(
     shipSize: Pair<Float, Float> = Pair(70f,50f),
     health: Float = 3f,
     onScreen: Boolean = true,
+    rect : RectF = RectF(0f,0f,0f,0f),
     val view: GameView
-) : Enemies(shipX, shipY, shipSize, onScreen,health, collisionOrdinal = 2) {
+) : Enemies(shipX, shipY, shipSize, onScreen,health, collisionOrdinal = 2, rect = rect) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     var scrollSpeed : Float = 200f
@@ -30,13 +32,13 @@ class Ship(
         // Handle collisions between the ship and other entities
     }
     fun draw (canvas : Canvas){
-        canvas.drawRect(
+        super.rect = RectF(
             entitiesX - entitiesSize.first,
             entitiesY - entitiesSize.second,
             entitiesX + entitiesSize.first,
-            entitiesY + entitiesSize.second,
-            shipPaint
+            entitiesY + entitiesSize.second
         )
+        canvas.drawRect(rect, shipPaint)
     }
 
    /* fun delete(ship: Ship ) {
@@ -56,9 +58,6 @@ class Ship(
     }
     override fun bounce(entities1: Entities, entities2: Entities){
         speed = -speed
-    }
-    override fun refuel(entities1: Entities, entities2: Entities){
-
     }
 }
 
