@@ -1,6 +1,7 @@
 package com.example.ba2_info_projectriverraid.entities.enemies
 
 // Needed for checkDistance
+import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.Position
 import kotlin.math.pow
@@ -36,8 +37,10 @@ open class Enemies(
     var size : Pair<Float, Float>,
     onScreen : Boolean = true,
     health : Float,
-    collisionOrdinal : Int)
-    : Entities(enemiesX, enemiesY, size, onScreen, health, collisionOrdinal),
+    collisionOrdinal : Int,
+    rect : RectF
+    )
+    : Entities(enemiesX, enemiesY, size, onScreen, health, collisionOrdinal, rect = rect),
     PerimeterObserver{
     var movePattern: MovePattern = DefaultMovePattern()
     override fun checkDistance(targetCoordinates: Position): Boolean {
@@ -57,9 +60,6 @@ open class Enemies(
 
     }
     override fun bounce(entities1: Entities, entities2: Entities){
-
-    }
-    override fun refuel(entities1: Entities, entities2: Entities){
 
     }
 }

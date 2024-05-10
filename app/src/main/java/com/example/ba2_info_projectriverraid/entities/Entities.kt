@@ -9,7 +9,9 @@ abstract class Entities(
     var entitiesSize: Pair<Float, Float> = Pair(20.0f, 20.0f),
     var onScreen : Boolean = true,
     var health: Float,
-    val collisionOrdinal: Int
+    val collisionOrdinal: Int,
+    var fuel : Float = 1f,
+    var rect: RectF = RectF(0f,0f,0f,0f)
 ){
     val data = getData()
     fun getPosition() : Pair<Float, Float> {
@@ -40,29 +42,18 @@ abstract class Entities(
     open fun bounce(entities1: Entities, entities2: Entities){
 
     }
-    open fun refuel(entities1: Entities, entities2: Entities){
+    open fun refuel(fuel: Float){
 
     }
-    fun intersect(entities1: Entities, entities2: Entities) : Boolean{
-        return false
+    fun intersect(rect1: RectF, rect2: RectF) : Boolean{
+        return rect1.intersect(rect2)
     }
     open fun delete(){
 
     }
     companion object { // Static method for detecting collisions
         fun isColliding(entities1: Entities, entities2: Entities): Boolean {
-
-            val boundingBox1 = RectF(
-                entities1.entitiesX, entities1.entitiesY,
-                entities1.entitiesX + entities1.entitiesSize.first,
-                entities1.entitiesY + entities1.entitiesSize.second
-            )
-            val boundingBox2 = RectF(
-                entities2.entitiesX, entities2.entitiesY,
-                entities2.entitiesX + entities2.entitiesSize.first,
-                entities2.entitiesY + entities2.entitiesSize.second
-            )
-            return boundingBox1.intersect(boundingBox2)
+            return entities1.rect.intersect(entities2.rect)
         }
     }
 }

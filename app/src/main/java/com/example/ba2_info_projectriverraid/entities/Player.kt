@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PointF
+import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.enemies.PerimeterObserver
 
@@ -20,16 +21,15 @@ class Player(
     entitiesSize: Pair<Float,Float> = Pair(40f,40f),
     onScreen: Boolean = true,
     health: Float = 0f,
+    rect : RectF = RectF(0f,0f,0f,0f),
     val view: GameView,
     val speed : Float = 10f,
-    var fuel : Float = 100f,
     val moveLeftPressed : Boolean,
     val moveRightPressed : Boolean,
     val shootPressed : Boolean,
-) : Entities(entitiesX, entitiesY, entitiesSize, onScreen, health, collisionOrdinal = 1) {
+) : Entities(entitiesX, entitiesY, entitiesSize, onScreen, health, fuel = 100f, collisionOrdinal = 1, rect = rect) {
     val playerPaint = Paint()
     var playerXY = PointF(entitiesX, entitiesY)
-
     init {
         val speed = data.playerSpeed
         var fuel = data.fuelOnstart
@@ -38,14 +38,15 @@ class Player(
         playerPaint.color = Color.RED
     }
     fun draw(canvas: Canvas) {
-        playerPaint.strokeWidth = entitiesSize.first * 1.5f
-        canvas.drawRect(
-            this.entitiesX - entitiesSize.first,
-            canvas.height.toFloat()*0.8f - entitiesSize.second,
-            this.entitiesX + entitiesSize.first,
-            canvas.height.toFloat()*0.8f + entitiesSize.second,
-            playerPaint
-        )
+        fun draw (canvas : Canvas){
+            super.rect = RectF(
+                entitiesX - entitiesSize.first,
+                entitiesY - entitiesSize.second,
+                entitiesX + entitiesSize.first,
+                entitiesY + entitiesSize.second
+            )
+            canvas.drawRect(rect, playerPaint)
+        }
     }
 
     fun setPlayerXY(X: Float = entitiesX, Y: Float = entitiesY) {
@@ -77,10 +78,11 @@ class Player(
         return fuel
     }
     override fun damage(entities1: Entities, entities2: Entities){
-
+        health -= entities2.health
     }
-    override fun refuel(entities1: Entities, entities2: Entities){
-
+    override fun refuel(fuel: Float) {
+        super.fuel += fuel
+        if (super.fuel>=100){super.fuel = 100f}
     }
 
 }

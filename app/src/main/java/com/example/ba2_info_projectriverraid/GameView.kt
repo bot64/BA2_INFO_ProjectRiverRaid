@@ -133,7 +133,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
                     //damage
                     1 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
-                            if (entityA.intersect(entityA,entityB)) {
+                            if (entityA.intersect(entities1 = entityA.rect, entities2 = entityB.rect)) {
                             entityA.damage(entityA,entityB)
                             entityB.damage(entityB,entityA)
                         }
@@ -153,8 +153,10 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
                     3 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
                             if (entityA.intersect(entityA,entityB)) {
-                                entityA.refuel(entityA, entityB)
-                                entityB.refuel(entityB, entityA)
+                                val A_fuel = entityA.fuel
+                                val B_fuel = entityB.fuel
+                                entityA.refuel(B_fuel)
+                                entityB.refuel(A_fuel)
                             }
                         }
                     }}
