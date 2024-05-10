@@ -129,15 +129,15 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         }
         for (enemy in enemies) {
             enemy.update(interval)
-            //map.isOutOfBounds(enemy.entitiesX,enemy.entitiesY )
+            map.isOutOfBounds(enemy.entitiesX,enemy.entitiesY )
         }
         for (block in blocks) {
             block.update(interval)
-            //map.isOutOfBounds(block.entitiesX,block.entitiesY )
+            map.isOutOfBounds(block.entitiesX,block.entitiesY )
         }
         for (fuel in fuelTanks){
             fuel.update(interval)
-            //map.isOutOfBounds(fuel.entitiesX,fuel.entitiesY)
+            map.isOutOfBounds(fuel.entitiesX,fuel.entitiesY)
         }
         allEntities.addAll(missiles)
         allEntities.addAll(blocks)
