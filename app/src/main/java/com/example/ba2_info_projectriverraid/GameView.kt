@@ -102,7 +102,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             enemies.add(Ship(Random.nextFloat() * screenWidth, 100f, view = this))
             blocks.add(Block(Random.nextFloat() * screenWidth, 200f, view = this))
             fuelTanks.add(FuelTank(Random.nextFloat() * screenWidth, 300f, view = this))
-        }
+        }//teub
     }
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
