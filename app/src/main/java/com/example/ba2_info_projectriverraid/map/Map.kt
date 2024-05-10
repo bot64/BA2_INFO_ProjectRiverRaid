@@ -16,7 +16,7 @@ import com.example.ba2_info_projectriverraid.entities.Entities
     }
 
     fun isOutOfBounds(X : Float,Y : Float): Boolean {
-        return X <= xmin || Y <= xmin || X >= xmax  || Y >= ymax
+        return X <= xmin || Y <= ymin || X >= xmax  || Y >= ymax
     }
 
 

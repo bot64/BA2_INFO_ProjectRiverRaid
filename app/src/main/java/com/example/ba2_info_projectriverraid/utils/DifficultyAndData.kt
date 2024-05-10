@@ -3,7 +3,7 @@ package com.example.ba2_info_projectriverraid.utils
 
 // Difficulty enum class teub
 enum class DifficultyAndData(
-    val mapBoundaries: Array<Float> = arrayOf<Float>(0.1f, 0.9f,0.1f,0.9f),
+    val mapBoundaries: Array<Float> = arrayOf<Float>(0f, 1f,0f,1f),
     val enemySpeed: Float = 1.0f,
     val enemyGenerationRate: Long,
     val playerSpeed: Float = 1.0f,

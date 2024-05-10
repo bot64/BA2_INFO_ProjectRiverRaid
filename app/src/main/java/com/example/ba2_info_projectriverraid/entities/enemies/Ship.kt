@@ -20,7 +20,7 @@ class Ship(
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     var scrollSpeed : Float = 200f
-    var speed : Float = 150f
+    var speed : Float = 1f
     var isAlive : Boolean = true
 
     init {
