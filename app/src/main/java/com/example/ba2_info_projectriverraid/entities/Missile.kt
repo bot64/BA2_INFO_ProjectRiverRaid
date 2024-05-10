@@ -20,7 +20,7 @@ class Missile(
     val view: GameView,
     val speed : Float = 10f,
 
-   ) : Entities(missileX, missileY, entitiesSize, onScreen, health) {
+   ) : Entities(missileX, missileY, entitiesSize, onScreen, health, collisionOrdinal = 5) {
 
     val missilePaint = Paint()
     var missileXY = PointF(entitiesX, entitiesY)

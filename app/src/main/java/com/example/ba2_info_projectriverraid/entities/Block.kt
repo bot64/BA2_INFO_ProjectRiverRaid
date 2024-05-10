@@ -13,7 +13,7 @@ class Block(
     val view: GameView,
     val scrollSpeed : Float = 200f,
     val blockPaint: Paint = Paint()
-) : Entities(blockX, blockY, blockSize, onScreen, health) {
+) : Entities(blockX, blockY, blockSize, onScreen, health, collisionOrdinal = 3) {
 
     init {
         blockPaint.color = Color.YELLOW

@@ -1,6 +1,6 @@
 package com.example.ba2_info_projectriverraid.entities
-import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 import android.graphics.RectF
+import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 
 data class Position(val x1: Float, val x2: Float)
 abstract class Entities(
@@ -8,7 +8,8 @@ abstract class Entities(
     var entitiesY: Float = 0f,
     var entitiesSize: Pair<Float, Float> = Pair(20.0f, 20.0f),
     var onScreen : Boolean = true,
-    var health: Float
+    var health: Float,
+    val collisionOrdinal: Int
 ){
     val data = getData()
     fun getPosition() : Pair<Float, Float> {

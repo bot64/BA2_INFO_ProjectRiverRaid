@@ -26,7 +26,7 @@ class Player(
     val moveLeftPressed : Boolean,
     val moveRightPressed : Boolean,
     val shootPressed : Boolean,
-) : Entities(entitiesX, entitiesY, entitiesSize, onScreen, health) {
+) : Entities(entitiesX, entitiesY, entitiesSize, onScreen, health, collisionOrdinal = 1) {
     val playerPaint = Paint()
     var playerXY = PointF(entitiesX, entitiesY)
 

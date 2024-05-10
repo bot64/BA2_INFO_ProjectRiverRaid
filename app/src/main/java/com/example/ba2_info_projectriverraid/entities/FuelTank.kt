@@ -14,7 +14,7 @@ class FuelTank(
     val view: GameView,
     val fuelTankPaint: Paint = Paint(),
     val scrollSpeed : Float = 200f
-) : Entities(blockX, blockY, blockSize, onScreen, health) {
+) : Entities(blockX, blockY, blockSize, onScreen, health, collisionOrdinal = 4) {
 
     init {
         fuelTankPaint.color = Color.GREEN
