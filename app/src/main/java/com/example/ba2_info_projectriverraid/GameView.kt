@@ -9,6 +9,7 @@ import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Block
+import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
@@ -36,6 +37,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     val missiles = mutableListOf<Missile>()
     val blocks = mutableListOf<Block>()
     val enemies = mutableListOf<Ship>()
+    val fuelTanks = mutableListOf<FuelTank>()
     init {
         backgroundPaint.color = Color.WHITE
     }
@@ -91,9 +93,10 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         screenHeight = h.toFloat()
         player.entitiesX = screenWidth / 2f
         player.entitiesY = screenHeight * 0.8f
-        for (i in 0 until 5) {
-            enemies.add(Ship(Random.nextFloat() * screenWidth, 0f, view = this))
-            blocks.add(Block(Random.nextFloat() * screenWidth, 0f, view = this))
+        for (i in 0 until 3) {
+            enemies.add(Ship(Random.nextFloat() * screenWidth, 100f, view = this))
+            blocks.add(Block(Random.nextFloat() * screenWidth, 200f, view = this))
+            fuelTanks.add(FuelTank(Random.nextFloat() * screenWidth, 300f, view = this))
         }
     }
     fun updatePositions(elapsedTimeMS: Double) {
@@ -111,6 +114,9 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         for (block in blocks) {
             block.update(interval)
         }
+        for (fuel in fuelTanks){
+            fuel.update(interval)
+        }
         player.move(moveLeftPressed, moveRightPressed)
     }
 
@@ -127,6 +133,9 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             }
             for (block in blocks) {
                 block.draw(canvas)
+            }
+            for (fuel in fuelTanks){
+                fuel.draw(canvas)
             }
             player.draw(canvas)
             holder.unlockCanvasAndPost(canvas)

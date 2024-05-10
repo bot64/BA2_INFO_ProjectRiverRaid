@@ -4,20 +4,20 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import com.example.ba2_info_projectriverraid.GameView
-import com.example.ba2_info_projectriverraid.R
 
 class FuelTank(
     blockX: Float,
     blockY: Float,
-    blockSize: Pair<Float, Float> = Pair(80f, 80f),
-    health: Float = 999999f,
+    blockSize: Pair<Float, Float> = Pair(50f, 80f),
+    health: Float = 1f,
     onScreen: Boolean = true,
     val view: GameView,
-    val fuelTankPaint: Paint = Paint()
+    val fuelTankPaint: Paint = Paint(),
+    val scrollSpeed : Float = 200f
 ) : Entities(blockX, blockY, blockSize, onScreen, health) {
 
     init {
-        fuelTankPaint.color = Color.YELLOW
+        fuelTankPaint.color = Color.GREEN
     }
     fun draw (canvas : Canvas){
         canvas.drawRect(
@@ -29,7 +29,11 @@ class FuelTank(
         )
     }
     fun delete() {
-        // Remove the block from the game
+        view.fuelTanks.remove(this)
+    }
+    fun update(interval : Double){
+        var scroll = (interval * scrollSpeed).toFloat()
+        entitiesY += scroll
     }
 
     fun pop_block() {
