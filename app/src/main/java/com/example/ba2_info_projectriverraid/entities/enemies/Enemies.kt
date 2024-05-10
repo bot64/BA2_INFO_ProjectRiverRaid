@@ -1,12 +1,10 @@
 package com.example.ba2_info_projectriverraid.entities.enemies
 
-import kotlin.math.sqrt
-import kotlin.math.pow
 // Needed for checkDistance
-import android.content.Context
-import android.graphics.Bitmap
 import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.Position
+import kotlin.math.pow
+import kotlin.math.sqrt
 
 interface MovePattern{
     fun move(coordinates : Position, movePattern : Pair<Float, Float>) : Pair<Float, Float>
@@ -37,8 +35,9 @@ open class Enemies(
     var enemiesY : Float,
     var size : Pair<Float, Float>,
     onScreen : Boolean = true,
-    health : Float)
-    : Entities(enemiesX, enemiesY, size, onScreen, health),
+    health : Float,
+    collisionOrdinal : Int)
+    : Entities(enemiesX, enemiesY, size, onScreen, health, collisionOrdinal),
     PerimeterObserver{
     var movePattern: MovePattern = DefaultMovePattern()
     override fun checkDistance(targetCoordinates: Position): Boolean {
