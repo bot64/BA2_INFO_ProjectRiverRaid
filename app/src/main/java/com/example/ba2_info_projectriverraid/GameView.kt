@@ -124,16 +124,24 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         }
         for (missile in missiles) {
             missile.update()
+            if (map.isOutOfBounds(missile.entitiesX,missile.entitiesY)) {
+                missile.delete()
+            }
 
 
         }
         for (enemy in enemies) {
             enemy.update(interval)
-            map.isOutOfBounds(enemy.entitiesX,enemy.entitiesY )
+            if (map.isOutOfBounds(enemy.entitiesX,enemy.entitiesY)) {
+                enemy.delete()
+            }
+
         }
         for (block in blocks) {
             block.update(interval)
-            map.isOutOfBounds(block.entitiesX,block.entitiesY )
+            if (map.isOutOfBounds(block.entitiesX,block.entitiesY )|| block.health <= 0 || block.fuel <= 0){
+                block.delete()
+            }
         }
         for (fuel in fuelTanks){
             fuel.update(interval)
@@ -154,6 +162,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
                             entityA.damage(entityA,entityB)
                             entityB.damage(entityB,entityA)
                         }
+
                         }
                     }
                     }
