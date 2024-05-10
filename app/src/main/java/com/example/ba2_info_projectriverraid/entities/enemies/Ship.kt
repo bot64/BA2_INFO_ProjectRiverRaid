@@ -6,7 +6,7 @@ import android.graphics.PointF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.Entities
 
-//Ship.kt teub
+//Ship.kt
 class Ship(
     shipX: Float,
     shipY: Float,
@@ -18,6 +18,8 @@ class Ship(
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     var speed = 30
+    var isAlive : Boolean = true
+
     init {
         shipXY.set(view.screenWidth/2, 0f)
         val speed = 10f
@@ -36,12 +38,14 @@ class Ship(
         )
     }
 
-    fun delete() {
-        // Remove the ship from the game
-    }
+   /* fun delete(ship: Ship ) {
+        Ship = null
+    }*/
     fun update(interval: Double) {
         var up = (interval * speed).toFloat()
         entitiesY += up
+       if(entitiesY > view.screenHeight || health <= 0)
+           isAlive = false
 
         }
     }
@@ -52,7 +56,7 @@ class Ship(
     /*fun shot(damage : Float, health : Float = 0f) {
         health -= damage
         if (health <= 0){
-            delete()
+            delete(ship)
             //add score implementation
         }
     }*/
