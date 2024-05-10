@@ -16,6 +16,7 @@ import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 import kotlin.random.Random
+import com.example.ba2_info_projectriverraid.map.Map
 
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
 class GameView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0) : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
@@ -31,6 +32,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     val collisionMatrix = getData().collisionMatrix
     val matrixDim : Int = getData().collisionMatrix.size
     lateinit var thread : Thread
+    val map = Map()
     val player = Player(
         0f,
         0f,
@@ -43,6 +45,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     val enemies = mutableListOf<Ship>()
     val fuelTanks = mutableListOf<FuelTank>()
     val allEntities = mutableListOf<Entities>()
+
     init {
         backgroundPaint.color = Color.WHITE
     }
@@ -94,10 +97,19 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
 
     override fun onSizeChanged(w:Int, h:Int, oldw:Int, oldh:Int) {
         super.onSizeChanged(w, h, oldw, oldh)
+        val map = Map(
+            xmin = screenWidth * getData().mapBoundaries[0],
+            xmax = screenWidth * getData().mapBoundaries[0],
+            ymin = screenHeight * getData().mapBoundaries[0],
+            ymax = screenHeight * getData().mapBoundaries[0]
+        )
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
         player.entitiesX = screenWidth / 2f
         player.entitiesY = screenHeight * 0.8f
+
+
+
         for (i in 0 until 3) {
             enemies.add(Ship(Random.nextFloat() * screenWidth, 100f, view = this))
             blocks.add(Block(Random.nextFloat() * screenWidth, 200f, view = this))
@@ -112,15 +124,19 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         }
         for (missile in missiles) {
             missile.update()
+
         }
         for (enemy in enemies) {
             enemy.update(interval)
+            map.isOutOfBounds(enemy.entitiesX,enemy.entitiesY )
         }
         for (block in blocks) {
             block.update(interval)
+            map.isOutOfBounds(block.entitiesX,block.entitiesY )
         }
         for (fuel in fuelTanks){
             fuel.update(interval)
+            map.isOutOfBounds(fuel.entitiesX,fuel.entitiesY)
         }
         allEntities.addAll(missiles)
         allEntities.addAll(blocks)
