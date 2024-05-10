@@ -39,7 +39,7 @@ class Missile(
     }
 
     override fun damage(entities1: Entities, entities2: Entities){
-        health -= entities2.health
+        entities1.health -= entities2.health
     }
 
     override fun delete() {
