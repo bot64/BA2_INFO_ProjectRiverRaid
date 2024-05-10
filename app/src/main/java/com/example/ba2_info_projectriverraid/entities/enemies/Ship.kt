@@ -48,10 +48,19 @@ class Ship(
            isAlive = false
 
         }
-    fun delete(){
+    override fun delete(){
         view.enemies.remove(this)
     }
+    override fun damage(entities1: Entities, entities2: Entities){
+
     }
+    override fun bounce(entities1: Entities, entities2: Entities){
+
+    }
+    override fun refuel(entities1: Entities, entities2: Entities){
+
+    }
+}
 
     fun pop_entity() {
         // Create a new ship and add it to the game

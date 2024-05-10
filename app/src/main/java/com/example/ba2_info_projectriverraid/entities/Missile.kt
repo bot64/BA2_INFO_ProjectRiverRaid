@@ -35,16 +35,17 @@ class Missile(
         canvas.drawLine(entitiesX, entitiesY, entitiesX, entitiesY + missileLength, missilePaint)
     }
 
-    fun outofbound(): Boolean {
-        // Check if the missile is outside the game boundaries
-        return false
+    override fun damage(entities1: Entities, entities2: Entities){
+
+    }
+    override fun bounce(entities1: Entities, entities2: Entities){
+
+    }
+    override fun refuel(entities1: Entities, entities2: Entities){
+
     }
 
-    fun collide(entity: Entities) {
-        // Handle collisions between the missile and other entities
-    }
-
-    fun delete() {
+    override fun delete() {
         view.missiles.remove(this)
     }
 

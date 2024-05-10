@@ -76,6 +76,12 @@ class Player(
     fun get_Fuel(): Float {
         return fuel
     }
+    override fun damage(entities1: Entities, entities2: Entities){
+
+    }
+    override fun refuel(entities1: Entities, entities2: Entities){
+
+    }
 
 }
 

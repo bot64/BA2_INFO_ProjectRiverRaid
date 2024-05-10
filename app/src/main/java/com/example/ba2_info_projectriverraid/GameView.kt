@@ -132,17 +132,20 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
                 when (collisionMatrix[i][j]){
                     1 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
-                            Entities.damage(entityA,entityB)
+                            entityA.damage(entityA,entityB)
+                            entityB.damage(entityB,entityA)
                         }
                     }}
                     2 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
-                            Entities.bounce(entityA,entityB)
+                            entityA.bounce(entityA,entityB)
+                            entityB.bounce(entityB,entityA)
                         }
                     }}
                     3 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
-                            Entities.refuel
+                            entityA.refuel(entityA,entityB)
+                            entityB.refuel(entityB, entityA)
                         }
                     }}
                     4 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){

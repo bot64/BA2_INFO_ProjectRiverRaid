@@ -50,4 +50,16 @@ open class Enemies(
             movePattern = CustomMovePattern(targetCoordinates, DefaultMovePattern())
         }
     }
+    override fun delete(){
+
+    }
+    override fun damage(entities1: Entities, entities2: Entities){
+
+    }
+    override fun bounce(entities1: Entities, entities2: Entities){
+
+    }
+    override fun refuel(entities1: Entities, entities2: Entities){
+
+    }
 }

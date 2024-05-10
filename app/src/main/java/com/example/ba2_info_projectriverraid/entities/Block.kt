@@ -27,20 +27,20 @@ class Block(
             blockPaint
         )
     }
-    fun delete() {
+    override fun delete() {
         view.blocks.remove(this)
     }
     fun update(interval : Double){
         var scroll = (interval * scrollSpeed).toFloat()
         entitiesY += scroll
     }
+    override fun damage(entities1: Entities, entities2: Entities){
 
-    fun pop_block() {
-        // Create a new block and add it to the game
     }
+    override fun bounce(entities1: Entities, entities2: Entities){
 
-    fun handle_collision() {
-        // Handle the collision between the block and the player
     }
+    override fun refuel(entities1: Entities, entities2: Entities){
 
+    }
 }
