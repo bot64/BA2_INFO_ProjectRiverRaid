@@ -1,5 +1,5 @@
 package com.example.ba2_info_projectriverraid.entities
-
+//fueltank, allows the player to gain back some fuel to continue playing, but can be destroyed if shot
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint

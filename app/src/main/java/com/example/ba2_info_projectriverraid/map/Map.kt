@@ -1,6 +1,6 @@
 package com.example.ba2_info_projectriverraid.map
 
-
+//this class initiates the map, it's boundaries
     class Map(
     var xmin :Float = 0f,
     var xmax :Float = 0f,

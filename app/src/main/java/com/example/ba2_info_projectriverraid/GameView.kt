@@ -1,5 +1,5 @@
 package com.example.ba2_info_projectriverraid
-
+//this class manages the core loops and their appearance on the surfaceview
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color

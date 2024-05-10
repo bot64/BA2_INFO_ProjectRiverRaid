@@ -1,5 +1,5 @@
 package com.example.ba2_info_projectriverraid.entities.enemies
-
+//this class is a version of entities specialized to manage the different types of enemies
 // Needed for checkDistance
 import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.entities.Entities

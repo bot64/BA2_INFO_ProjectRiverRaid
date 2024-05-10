@@ -3,7 +3,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ba2_info_projectriverraid.utils.DifficultyAndData
-
+// initiates gameview and defines the methods exterior to gameview : pause, plau and todo : fragments
 class MainActivity : AppCompatActivity() {
     lateinit var gameView: GameView
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,5 @@
 package com.example.ba2_info_projectriverraid.entities
-
+// main player, able to move by updating it's own position
 import kotlinx.coroutines.*
 import android.graphics.Canvas
 import android.graphics.Color

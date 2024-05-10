@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
-
+//block is an entity that is meant as an obstacle for the player, undestructible, player is supposed to avoid them and contct with it means death
 class Block(
     blockX: Float,
     blockY: Float,

@@ -1,6 +1,6 @@
 package com.example.ba2_info_projectriverraid.utils
 //import android.graphics.RectF
-// FuelGauge.kt
+// FuelGauge is supposed to be a class managing the appearence end the core functions of the fuel mechanics (getting depleted as time goes on replenished by contact with fuelTanks on the map
 class FuelGauge(
     val fuelGaugeX: Double,
     val fuelGaugeY: Double,

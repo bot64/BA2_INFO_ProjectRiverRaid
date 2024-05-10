@@ -6,7 +6,7 @@ import android.graphics.PointF
 import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.Entities
-
+//1st type of enemy
 //Ship.kt
 class Ship(
     shipX: Float,

@@ -1,7 +1,7 @@
 package com.example.ba2_info_projectriverraid.utils
 
 
-// Difficulty enum class teub
+// Difficulty is an enum class meant to serve as a difficuly dependant set of variables allowing for different game modes to be implemented
 enum class DifficultyAndData(
     val mapBoundaries: Array<Float> = arrayOf<Float>(0f, 1f,0f,1f),
     val enemySpeed: Float = 1.0f,

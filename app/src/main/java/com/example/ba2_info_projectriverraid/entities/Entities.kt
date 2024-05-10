@@ -1,7 +1,7 @@
 package com.example.ba2_info_projectriverraid.entities
 import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
-
+//abstract
 data class Position(val x1: Float, val x2: Float)
 abstract class Entities(
     var entitiesX: Float = 0f,

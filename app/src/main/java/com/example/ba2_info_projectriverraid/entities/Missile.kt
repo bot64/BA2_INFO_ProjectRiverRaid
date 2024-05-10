@@ -1,5 +1,5 @@
 package com.example.ba2_info_projectriverraid.entities
-
+//entity lauched by player able to do damage to other entities
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -21,7 +21,7 @@ class Missile(
 
     ) : Entities(missileX, missileY, entitiesSize, onScreen, health, collisionOrdinal = 5, rect = rect) {
 
-    val missilePaint = Paint()
+    private val missilePaint = Paint()
     init {
         missilePaint.color = Color.LTGRAY
     }
