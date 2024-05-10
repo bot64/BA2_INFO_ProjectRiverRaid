@@ -1,12 +1,9 @@
 package com.example.ba2_info_projectriverraid.entities
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
-import com.example.ba2_info_projectriverraid.R
 
 class Block(
     blockX: Float,
@@ -14,32 +11,35 @@ class Block(
     blockSize: Pair<Float, Float> = Pair(80f, 80f),
     health: Float = 999999f,
     onScreen: Boolean = true,
+    rect : RectF = RectF(0f,0f,0f,0f),
     val view: GameView,
+    val scrollSpeed : Float = 200f,
     val blockPaint: Paint = Paint()
-) : Entities(blockX, blockY, blockSize, onScreen, health) {
+) : Entities(blockX, blockY, blockSize, onScreen, health, collisionOrdinal = 3, rect = rect) {
 
     init {
         blockPaint.color = Color.YELLOW
     }
     fun draw (canvas : Canvas){
-        canvas.drawRect(
+            super.rect = RectF(
             entitiesX - entitiesSize.first,
             entitiesY - entitiesSize.second,
             entitiesX + entitiesSize.first,
-            entitiesY + entitiesSize.second,
-            blockPaint
+            entitiesY + entitiesSize.second
         )
+        canvas.drawRect(rect, blockPaint)
     }
-    fun delete() {
-        // Remove the block from the game
+    override fun delete() {
+        view.blocks.remove(this)
     }
+    fun update(interval : Double){
+        var scroll = (interval * scrollSpeed).toFloat()
+        entitiesY += scroll
+    }
+    override fun damage(entities1: Entities, entities2: Entities){
+        health -= entities2.health
+    }
+    override fun bounce(entities1: Entities, entities2: Entities){
 
-    fun pop_block() {
-        // Create a new block and add it to the game
     }
-
-    fun handle_collision() {
-        // Handle the collision between the block and the player
-    }
-
 }

@@ -1,6 +1,6 @@
 package com.example.ba2_info_projectriverraid.entities
-import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 import android.graphics.RectF
+import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 
 data class Position(val x1: Float, val x2: Float)
 abstract class Entities(
@@ -8,7 +8,10 @@ abstract class Entities(
     var entitiesY: Float = 0f,
     var entitiesSize: Pair<Float, Float> = Pair(20.0f, 20.0f),
     var onScreen : Boolean = true,
-    var health: Float
+    var health: Float,
+    val collisionOrdinal: Int,
+    var fuel : Float = 1f,
+    var rect: RectF = RectF(0f,0f,0f,0f)
 ){
     val data = getData()
     fun getPosition() : Pair<Float, Float> {
@@ -33,20 +36,24 @@ abstract class Entities(
                 entitiesY - entitiesSize.second / 2 < missileY + missileSize.second / 2 &&
                 entitiesY + entitiesSize.second / 2 > missileY - missileSize.second / 2
     }
+    open fun damage(entities1: Entities, entities2: Entities){
+
+    }
+    open fun bounce(entities1: Entities, entities2: Entities){
+
+    }
+    open fun refuel(fuel: Float){
+
+    }
+    fun intersect(rect1: RectF, rect2: RectF) : Boolean{
+        return rect1.intersect(rect2)
+    }
+    open fun delete(){
+
+    }
     companion object { // Static method for detecting collisions
         fun isColliding(entities1: Entities, entities2: Entities): Boolean {
-
-            val boundingBox1 = RectF(
-                entities1.entitiesX, entities1.entitiesY,
-                entities1.entitiesX + entities1.entitiesSize.first,
-                entities1.entitiesY + entities1.entitiesSize.second
-            )
-            val boundingBox2 = RectF(
-                entities2.entitiesX, entities2.entitiesY,
-                entities2.entitiesX + entities2.entitiesSize.first,
-                entities2.entitiesY + entities2.entitiesSize.second
-            )
-            return boundingBox1.intersect(boundingBox2)
+            return entities1.rect.intersect(entities2.rect)
         }
     }
 }

@@ -1,20 +1,31 @@
 package com.example.ba2_info_projectriverraid.map
 
-class Map(
-    val map_id: Long = 1,
-    val set_boundaries: List<Boundary>
-) {
 
-    fun build_map() {
-        // Logic to build the map based on the map ID and boundaries
-
+    class Map(
+    var xmin :Float = 0f,
+    var xmax :Float = 0f,
+    var ymin :Float = 0f,
+    var ymax :Float = 0f
+)
+    {
+    fun isOutOfBounds(X : Float,Y : Float): Boolean {
+        return X <= xmin || Y <= ymin || X >= xmax  || Y >= ymax
+    }
     }
 
-}
 
-data class Boundary(
-    val x1: Double = 0.0,
-    val y1: Double = 0.0,
-    val x2: Double = 100.0,
-    val y2: Double = 100.0
-)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,13 @@
 package com.example.ba2_info_projectriverraid.entities
-import android.graphics.Paint
+
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.PointF
+import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.enemies.PerimeterObserver
-import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
+
 
 interface PerimeterObservable{
     // Dynamic adding and removal of observers to the list by the target
@@ -19,13 +21,15 @@ class Player(
     entitiesSize: Pair<Float,Float> = Pair(40f,40f),
     onScreen: Boolean = true,
     health: Float = 0f,
+    rect : RectF = RectF(0f,0f,0f,0f),
     val view: GameView,
     val speed : Float = 10f,
-    var fuel : Float = 100f
-) : Entities(entitiesX, entitiesY, entitiesSize, onScreen, health) {
+    val moveLeftPressed : Boolean,
+    val moveRightPressed : Boolean,
+    val shootPressed : Boolean,
+) : Entities(entitiesX, entitiesY, entitiesSize, onScreen, health, fuel = 100f, collisionOrdinal = 1, rect = rect) {
     val playerPaint = Paint()
     var playerXY = PointF(entitiesX, entitiesY)
-
     init {
         val speed = data.playerSpeed
         var fuel = data.fuelOnstart
@@ -34,29 +38,23 @@ class Player(
         playerPaint.color = Color.RED
     }
     fun draw(canvas: Canvas) {
-        playerPaint.strokeWidth = entitiesSize.first * 1.5f
-        canvas.drawRect(
-            this.entitiesX - entitiesSize.first,
-            canvas.height.toFloat()*0.8f - entitiesSize.second,
-            this.entitiesX + entitiesSize.first,
-            canvas.height.toFloat()*0.8f + entitiesSize.second,
-            playerPaint
+        super.rect = RectF(
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second
         )
+        canvas.drawRect(rect, playerPaint)
     }
 
     fun setPlayerXY(X: Float = entitiesX, Y: Float = entitiesY) {
         playerXY.set(X, Y)
     }
-
-
-    var moveLeftPressed = false
-    var moveRightPressed = false
-    var shootPressed = false
-    fun move() {
+    fun move(left :Boolean, right : Boolean) {
         // Update the player's position based on the input states
-        if (moveLeftPressed) {
+        if (left) {
             entitiesX -= speed
-        } else if (moveRightPressed) {
+        } else if (right) {
             entitiesX += speed
         }
     }
@@ -77,26 +75,14 @@ class Player(
     fun get_Fuel(): Float {
         return fuel
     }
-    /*fun handleInput(event: android.view.MotionEvent) {
-    // Handle input events and update the input states
-    when (event.action) {
-        android.view.MotionEvent.ACTION_DOWN -> {
-            if (event.x_Pos < screenWidth / 2) {
-                moveLeftPressed = true
-            } else {
-                moveRightPressed = true
-            }
-            shootButtonPressed = true
-        }
-
-        android.view.MotionEvent.ACTION_UP -> {
-            moveLeftPressed = false
-            moveRightPressed = false
-            shootButtonPressed = false
-        }
+    override fun damage(entities1: Entities, entities2: Entities){
+        health -= entities2.health
     }
-}*/
-
-    // ... Other methods inherited from Entities ...
+    override fun refuel(fuel: Float) {
+        super.fuel += fuel
+        if (super.fuel>=100){super.fuel = 100f}
+    }
 
 }
+
+    // ... Other methods inherited from Entities ...

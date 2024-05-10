@@ -1,13 +1,11 @@
 package com.example.ba2_info_projectriverraid.entities
 
 
-import android.graphics.Paint
-import android.graphics.PointF
+import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
-
-
-import com.example.ba2_info_projectriverraid.R
 
 // Missile.kt
 
@@ -17,34 +15,35 @@ class Missile(
     entitiesSize: Pair<Float, Float> = Pair(10f, 30f),
     onScreen : Boolean = true,
     health : Float = 0f,
+    rect : RectF = RectF(0f,0f,0f,0f),
     val view: GameView,
-    val speed : Float = 0f,
-    var fuel : Float = 0f,
-   ) : Entities(missileX, missileY, entitiesSize, onScreen, health) {
+    val speed : Float = 10f,
+
+    ) : Entities(missileX, missileY, entitiesSize, onScreen, health, collisionOrdinal = 5, rect = rect) {
 
     val missilePaint = Paint()
-    var missileXY = PointF(entitiesX, entitiesY)
-
-       fun shoot(player: Player) {
-        // Set the initial position of the missile to be just above the player
-        super.entitiesX = player.entitiesX + (player.entitiesSize.first / 2) - (entitiesSize.first / 2)
-        super.entitiesY = player.entitiesY - entitiesSize.second
+    init {
+        missilePaint.color = Color.LTGRAY
     }
     fun update() {
-        // Update the missile's position based on its speed
+        entitiesY -= speed
+    }
+    fun draw (canvas : Canvas){
+            super.rect = RectF(
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second
+        )
+        canvas.drawRect(rect, missilePaint)
     }
 
-    fun outofbound(): Boolean {
-        // Check if the missile is outside the game boundaries
-        return false
+    override fun damage(entities1: Entities, entities2: Entities){
+        health -= entities2.health
     }
 
-    fun collide(entity: Entities) {
-        // Handle collisions between the missile and other entities
-    }
-
-    fun delete() {
-        // Remove the missile from the game
+    override fun delete() {
+        view.missiles.remove(this)
     }
 
 }

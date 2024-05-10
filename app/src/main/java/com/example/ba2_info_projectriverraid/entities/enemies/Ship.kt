@@ -3,56 +3,54 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PointF
-import android.content.Context
+import android.graphics.RectF
 import com.example.ba2_info_projectriverraid.GameView
-import com.example.ba2_info_projectriverraid.R
 import com.example.ba2_info_projectriverraid.entities.Entities
 
-//Ship.kt teub
+//Ship.kt
 class Ship(
     shipX: Float,
     shipY: Float,
     shipSize: Pair<Float, Float> = Pair(70f,50f),
     health: Float = 3f,
     onScreen: Boolean = true,
+    rect : RectF = RectF(0f,0f,0f,0f),
     val view: GameView
-) : Enemies(shipX, shipY, shipSize, onScreen,health) {
+) : Enemies(shipX, shipY, shipSize, onScreen,health, collisionOrdinal = 2, rect = rect) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
+    var scrollSpeed : Float = 200f
+    var speed : Float = 1f
+    var isAlive : Boolean = true
+
     init {
         shipXY.set(view.screenWidth/2, 0f)
-        val speed = 10
+        val speed = 10f
         shipPaint.color = Color.BLUE
     }
-    fun handle_collision(entity: Entities) {
-        // Handle collisions between the ship and other entities
-    }
     fun draw (canvas : Canvas){
-        update()
-        canvas.drawRect(
+        super.rect = RectF(
             entitiesX - entitiesSize.first,
             entitiesY - entitiesSize.second,
             entitiesX + entitiesSize.first,
-            entitiesY + entitiesSize.second,
-            shipPaint
+            entitiesY + entitiesSize.second
         )
+        canvas.drawRect(rect, shipPaint)
     }
+    fun update(interval: Double) {
+        var scroll = (interval * scrollSpeed).toFloat()
+        entitiesY += scroll
+        entitiesX += speed
 
-    fun delete() {
-        // Remove the ship from the game
-    }
-    fun update(){
-
-    }
-
-    fun pop_entity() {
-        // Create a new ship and add it to the game
-    }
-    fun shot(damage : Float) {
-        health -= damage
-        if (health <= 0){
-            delete()
-            //add score implementation
         }
+    override fun delete(){
+        view.enemies.remove(this)
+    }
+    override fun damage(entities1: Entities, entities2: Entities){
+        health -= entities2.health
+    }
+    override fun bounce(entities1: Entities, entities2: Entities){
+        speed = -speed
     }
 }
+
