@@ -11,6 +11,7 @@ import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
+import kotlin.random.Random
 
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
 class GameView @JvmOverloads constructor (context: Context, attributes: AttributeSet? = null, defStyleAttr: Int = 0) : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
@@ -31,8 +32,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         moveRightPressed = moveRightPressed,
         moveLeftPressed = moveLeftPressed,
         shootPressed = shootPressed)
-    val ship = Ship(0f,0f, view = this)
-    val missile = Missile(player.entitiesX,player.entitiesY, view = this)
+    val missiles = mutableListOf<Missile>()
+    val enemies = mutableListOf<Ship>()
     init {
         backgroundPaint.color = Color.WHITE
     }
@@ -81,25 +82,36 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             previousFrameTime = currentTime
         }
     }
+
+    private fun updatePositions(elapsedTimeMS: Double) {
+
+    }
+
     override fun onSizeChanged(w:Int, h:Int, oldw:Int, oldh:Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
         player.entitiesX = screenWidth/2f
         player.entitiesY = screenHeight*0.8f
+        for (i in 0 until 5) {
+            enemies.add(Ship(Random.nextFloat() * screenWidth, Random.nextFloat() * screenHeight, Pair(20f, 20f), 1f, view = this))
 
     }
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
         if (System.currentTimeMillis() - lastMissileShotTime >= 200 && shootPressed) {
-            missile.shoot(player)
+            missiles.add(Missile(player.entitiesX, player.entitiesY, view = this))
             lastMissileShotTime = System.currentTimeMillis()
         }
-        ship.update(interval)
-        player.move(moveLeftPressed, moveRightPressed)
-        if (!ship.isAlive){
-            //ship = null
+        for (missile in missiles) {
+            missile.update()
         }
+        for (enemy in enemies) {
+            enemy.update(interval)
+            }
+        }
+        player.move(moveLeftPressed, moveRightPressed)
+
     }
 
     fun draw() {
@@ -107,8 +119,13 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             canvas = holder.lockCanvas()
             canvas.drawRect(0f, 0f, canvas.width.toFloat(),
                 canvas.height.toFloat(), backgroundPaint)
+            for (missile in missiles) {
+                missile.draw(canvas)
+            }
+            for (enemy in enemies) {
+                enemy.draw(canvas)
+            }
             player.draw(canvas)
-            ship.draw(canvas)
             holder.unlockCanvasAndPost(canvas)
         }
     }
