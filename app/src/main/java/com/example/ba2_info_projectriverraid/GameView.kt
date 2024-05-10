@@ -10,6 +10,7 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 import com.example.ba2_info_projectriverraid.entities.Block
+import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
@@ -27,6 +28,8 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     var moveRightPressed = false
     var shootPressed = false
     var lastMissileShotTime : Long = 0.toLong()
+    val collisionMatrix = getData().collisionMatrix
+    val matrixDim : Int = getData().collisionMatrix.size
     lateinit var thread : Thread
     val player = Player(
         0f,
@@ -39,6 +42,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     val blocks = mutableListOf<Block>()
     val enemies = mutableListOf<Ship>()
     val fuelTanks = mutableListOf<FuelTank>()
+    val allEntities = mutableListOf<Entities>()
     init {
         backgroundPaint.color = Color.WHITE
     }
@@ -118,11 +122,38 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         for (fuel in fuelTanks){
             fuel.update(interval)
         }
-        for (i in ){
-            for (j <= i){
-
+        allEntities.addAll(missiles)
+        allEntities.addAll(blocks)
+        allEntities.addAll(enemies)
+        allEntities.addAll(fuelTanks)
+        allEntities.add(player)
+        for (i in 0 until matrixDim){
+            for (j in 0 until i+1){
+                when (collisionMatrix[i][j]){
+                    1 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
+                        for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
+                            Entities.damage(entityA,entityB)
+                        }
+                    }}
+                    2 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
+                        for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
+                            Entities.bounce(entityA,entityB)
+                        }
+                    }}
+                    3 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
+                        for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
+                            Entities.refuel
+                        }
+                    }}
+                    4 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
+                        for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
+                            entityA.delete()
+                        }
+                    }}
+                }
             }
         }
+        allEntities.clear()
         player.move(moveLeftPressed, moveRightPressed)
     }
 

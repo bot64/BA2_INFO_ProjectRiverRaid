@@ -1,7 +1,7 @@
 package com.example.ba2_info_projectriverraid.utils
 
-import android.opengl.Matrix
 import com.example.ba2_info_projectriverraid.map.Boundary
+
 data class Map(
     val mapId: Long,
     val boundaries: List<Boundary>
