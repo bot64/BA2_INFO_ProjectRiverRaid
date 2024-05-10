@@ -5,6 +5,7 @@ import android.graphics.Paint
 import android.graphics.PointF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.Entities
+import com.example.ba2_info_projectriverraid.entities.Missile
 
 //Ship.kt
 class Ship(
@@ -53,10 +54,10 @@ class Ship(
     fun pop_entity() {
         // Create a new ship and add it to the game
     }
-    /*fun shot(damage : Float, health : Float = 0f) {
-        health -= damage
-        if (health <= 0){
-            delete(ship)
-            //add score implementation
+    fun hurt(entity : Entities) {
+
+        if (entity is Missile){
+            super.health
+
         }
-    }*/
+    }
