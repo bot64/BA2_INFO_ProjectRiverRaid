@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
 import com.example.ba2_info_projectriverraid.entities.Block
 import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.Missile
@@ -116,6 +117,11 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         }
         for (fuel in fuelTanks){
             fuel.update(interval)
+        }
+        for (i in ){
+            for (j <= i){
+
+            }
         }
         player.move(moveLeftPressed, moveRightPressed)
     }

@@ -5,7 +5,6 @@ import android.graphics.Paint
 import android.graphics.PointF
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.Entities
-import com.example.ba2_info_projectriverraid.entities.Missile
 
 //Ship.kt
 class Ship(
@@ -15,7 +14,7 @@ class Ship(
     health: Float = 3f,
     onScreen: Boolean = true,
     val view: GameView
-) : Enemies(shipX, shipY, shipSize, onScreen,health) {
+) : Enemies(shipX, shipY, shipSize, onScreen,health, collisionOrdinal = 2) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     var scrollSpeed : Float = 200f
