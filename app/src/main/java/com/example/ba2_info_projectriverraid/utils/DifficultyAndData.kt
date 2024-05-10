@@ -6,7 +6,7 @@ data class Map(
     val mapId: Long,
     val boundaries: List<Boundary>
 )
-// Difficulty enum class
+// Difficulty enum class teub
 enum class DifficultyAndData(
     val mapBoundaries: List<Boundary>,
     val enemySpeed: Float = 1.0f,
