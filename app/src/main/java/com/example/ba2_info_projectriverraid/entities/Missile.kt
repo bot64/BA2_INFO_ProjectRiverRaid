@@ -14,7 +14,7 @@ class Missile(
     missileY: Float,
     entitiesSize: Pair<Float, Float> = Pair(10f, 30f),
     onScreen : Boolean = true,
-    health : Float = 0f,
+    health : Float = 1f,
     rect : RectF = RectF(0f,0f,0f,0f),
     val view: GameView,
     val speed : Float = 10f,
