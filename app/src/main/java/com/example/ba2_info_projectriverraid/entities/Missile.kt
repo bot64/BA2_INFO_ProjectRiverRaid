@@ -31,12 +31,18 @@ class Missile(
     fun update() {
         entitiesY -= speed
     }
-    fun draw(canvas: Canvas){
-        canvas.drawLine(entitiesX, entitiesY, entitiesX, entitiesY + missileLength, missilePaint)
+    fun draw (canvas : Canvas){
+        canvas.drawRect(
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second,
+            missilePaint
+        )
     }
 
     override fun damage(entities1: Entities, entities2: Entities){
-
+        health -= entities2.health
     }
     override fun bounce(entities1: Entities, entities2: Entities){
 

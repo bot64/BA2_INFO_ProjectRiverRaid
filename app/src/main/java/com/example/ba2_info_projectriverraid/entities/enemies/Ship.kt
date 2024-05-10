@@ -18,6 +18,7 @@ class Ship(
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     var scrollSpeed : Float = 200f
+    var speed : Float = 150f
     var isAlive : Boolean = true
 
     init {
@@ -44,18 +45,17 @@ class Ship(
     fun update(interval: Double) {
         var scroll = (interval * scrollSpeed).toFloat()
         entitiesY += scroll
-        if(entitiesY > view.screenHeight || health <= 0)
-           isAlive = false
+        entitiesX += speed
 
         }
     override fun delete(){
         view.enemies.remove(this)
     }
     override fun damage(entities1: Entities, entities2: Entities){
-
+        health -= entities2.health
     }
     override fun bounce(entities1: Entities, entities2: Entities){
-
+        speed = -speed
     }
     override fun refuel(entities1: Entities, entities2: Entities){
 

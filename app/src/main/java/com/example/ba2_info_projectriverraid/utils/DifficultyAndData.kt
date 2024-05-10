@@ -18,13 +18,11 @@ enum class DifficultyAndData(
     val playerHome: Pair<Float, Float> = Pair(0f, 0f),
     val defaultSize: Pair<Float, Float> = Pair(20f, 20f),
     val collisionMatrix : Array<IntArray> = arrayOf(
-        intArrayOf(0, 1, 1, 3, 0, 0, 0),
-        intArrayOf(0, 2, 2, 0, 1, 2, 4),
-        intArrayOf(0, 0, 0, 4, 1, 0, 4),
-        intArrayOf(0, 0, 0, 0, 1, 0, 4),
-        intArrayOf(0, 0, 0, 0, 0, 0, 4),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0),
-        intArrayOf(0, 0, 0, 0, 0, 0, 0)
+        intArrayOf(0, 1, 1, 3, 0),
+        intArrayOf(0, 2, 2, 0, 1),
+        intArrayOf(0, 0, 0, 4, 1),
+        intArrayOf(0, 0, 0, 0, 1),
+        intArrayOf(0, 0, 0, 0, 0)
     )
 )
 

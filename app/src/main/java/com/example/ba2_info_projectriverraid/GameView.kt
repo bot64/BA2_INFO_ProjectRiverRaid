@@ -130,27 +130,40 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
         for (i in 0 until matrixDim){
             for (j in 0 until i+1){
                 when (collisionMatrix[i][j]){
+                    //damage
                     1 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
+                            if (entityA.intersect(entityA,entityB)) {
                             entityA.damage(entityA,entityB)
                             entityB.damage(entityB,entityA)
                         }
-                    }}
+                        }
+                    }
+                    }
+                    //bounce
                     2 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
-                            entityA.bounce(entityA,entityB)
-                            entityB.bounce(entityB,entityA)
+                            if (entityA.intersect(entityA,entityB)) {
+                                entityA.bounce(entityA, entityB)
+                                entityB.bounce(entityB, entityA)
+                            }
                         }
                     }}
+                    //refuel
                     3 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
-                            entityA.refuel(entityA,entityB)
-                            entityB.refuel(entityB, entityA)
+                            if (entityA.intersect(entityA,entityB)) {
+                                entityA.refuel(entityA, entityB)
+                                entityB.refuel(entityB, entityA)
+                            }
                         }
                     }}
+                    //Destroy
                     4 -> {for (entityA in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == i}){
                         for (entityB in allEntities.filterIsInstance<Entities>().filter{it.collisionOrdinal == j}){
-                            entityA.delete()
+                            if (entityA.intersect(entityA, entityB)){
+                                entityB.delete()
+                            }
                         }
                     }}
                 }

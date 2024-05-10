@@ -43,8 +43,8 @@ abstract class Entities(
     open fun refuel(entities1: Entities, entities2: Entities){
 
     }
-    fun intersect(entities1: Entities, entities2: Entities){
-
+    fun intersect(entities1: Entities, entities2: Entities) : Boolean{
+        return false
     }
     open fun delete(){
 
