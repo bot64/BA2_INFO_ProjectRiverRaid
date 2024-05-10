@@ -9,7 +9,9 @@ import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 import kotlin.random.Random
 import com.example.ba2_info_projectriverraid.GameView
-
+import com.example.ba2_info_projectriverraid.entities.Missile
+import com.example.ba2_info_projectriverraid.entities.Player
+import com.example.ba2_info_projectriverraid.entities.enemies.PerimeterObserver
 
 
 class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView: GameView) : Thread() {
@@ -22,24 +24,20 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
 
     fun startGame(){
         running = true
-        coroutineScope.launch{
-            while (running){
-                //Update the game state
-                //player.update()
-                //enemies.forEach{it.update()}
-                // Draw the game objects
-                withContext(Dispatchers.Main){
-                    val canvas = surfaceHolder.lockCanvas()
-                    if (canvas != null){
-                        gameView.draw(canvas)
-                        surfaceHolder.unlockCanvasAndPost(canvas)
-                    }
+        try {
+            coroutineScope.launch {
+                var previousFrameTime = System.currentTimeMillis()
+                while (running) {
+                    //Update the game state and draw the game objects
+                    val currentTime = System.currentTimeMillis()
+                    val elapsedTimeMS = (currentTime - previousFrameTime).toDouble()
+                    updateGame(elapsedTimeMS); drawGame(); previousFrameTime = currentTime
                 }
                 // Introduce delay() to control the game loop speed
             }
-        }
+        } catch(e : Exception) {e.printStackTrace()} //Basic error handling logic
     }
-    fun stopGame(){
+    fun stopGame() {
         running = false
         coroutineScope.cancel()
     }

@@ -1,5 +1,6 @@
 package com.example.ba2_info_projectriverraid.entities
 
+import kotlinx.coroutines.*
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
@@ -58,13 +59,15 @@ class Player(
             entitiesX += speed
         }
     }
-    val observers : MutableList<PerimeterObserver> = ArrayList()
-    fun addObserver(observer : PerimeterObserver){observers.add(observer)}
-    fun removeObserver(observer : PerimeterObserver){observers.remove(observer)}
-    fun notifyObserver(){
+    override val observers : MutableList<PerimeterObserver> = ArrayList()
+    override fun addObserver(observer: PerimeterObserver){observers.add(observer)}
+    override fun removeObserver(observer: PerimeterObserver){observers.remove(observer)}
+    fun notifyObserver() {
         // Allows for observer notifications based on the target's coordinates
-        if (observers.isNotEmpty()){
-            observers.forEach{observer -> observer.moveOnDetection(Position(entitiesX, entitiesY))}
+        CoroutineScope(Dispatchers.Default).launch{
+            if (observers.isNotEmpty()) {
+                observers.forEach {observer -> observer.moveOnDetection(Position(entitiesX, entitiesY))}
+            }
         }
     }
     fun sendNewPosition(newX : Float, newY : Float){

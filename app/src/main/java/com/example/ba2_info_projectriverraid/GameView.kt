@@ -8,7 +8,8 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import com.example.ba2_info_projectriverraid.MainActivity.DifficultyDataManager.getData
+import com.example.ba2_info_projectriverraid.CreationUtils.EntityType
+import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.Block
 import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.FuelTank
@@ -115,6 +116,9 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
             blocks.add(Block(Random.nextFloat() * screenWidth, 200f, view = this))
             fuelTanks.add(FuelTank(Random.nextFloat() * screenWidth, 300f, view = this))
         }
+        CreationUtils.createEntities(3, entities, screenWidth, screenHeight, EntityType.Enemy, this)
+        CreationUtils.createEntities(3, entities, screenWidth, screenHeight, EntityType.Block, this)
+        CreationUtils.createEntities(3, entities, screenWidth, screenHeight, EntityType.FuelTank, this)
     }
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
