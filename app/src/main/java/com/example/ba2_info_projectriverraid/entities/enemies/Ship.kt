@@ -54,10 +54,10 @@ class Ship(
     fun pop_entity() {
         // Create a new ship and add it to the game
     }
-    fun hurt(entity : Entities) {
+    /*fun hurt(entity : Entities) {
 
         if (entity is Missile){
             super.health
 
         }
-    }
+    }*/
