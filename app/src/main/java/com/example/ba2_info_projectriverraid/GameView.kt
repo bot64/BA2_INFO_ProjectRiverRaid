@@ -22,6 +22,7 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     var moveLeftPressed = false
     var moveRightPressed = false
     var shootPressed = false
+    var lastMissileShotTime : Long = 0.toLong()
     lateinit var thread : Thread
     val player = Player(
         0f,
@@ -90,8 +91,15 @@ class GameView @JvmOverloads constructor (context: Context, attributes: Attribut
     }
     fun updatePositions(elapsedTimeMS: Double) {
         val interval = elapsedTimeMS / 1000.0
+        if (System.currentTimeMillis() - lastMissileShotTime >= 200 && shootPressed) {
+            missile.shoot(player)
+            lastMissileShotTime = System.currentTimeMillis()
+        }
         ship.update(interval)
         player.move(moveLeftPressed, moveRightPressed)
+        if (!ship.isAlive){
+            //ship = null
+        }
     }
 
     fun draw() {

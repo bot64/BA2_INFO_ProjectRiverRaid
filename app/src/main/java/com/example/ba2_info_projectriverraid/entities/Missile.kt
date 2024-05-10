@@ -3,11 +3,7 @@ package com.example.ba2_info_projectriverraid.entities
 
 import android.graphics.Paint
 import android.graphics.PointF
-import android.graphics.Color
 import com.example.ba2_info_projectriverraid.GameView
-
-
-import com.example.ba2_info_projectriverraid.R
 
 // Missile.kt
 
@@ -26,13 +22,12 @@ class Missile(
     val missilePaint = Paint()
     var missileXY = PointF(entitiesX, entitiesY)
 
-       fun shoot(player: Player) {
-        // Set the initial position of the missile to be just above the player
-        super.entitiesX = player.entitiesX + (player.entitiesSize.first / 2) - (entitiesSize.first / 2)
-        super.entitiesY = player.entitiesY - entitiesSize.second
+    fun shoot(player: Player) {
+        entitiesX = player.entitiesX
+        entitiesY = player.entitiesY - entitiesSize.second
     }
     fun update() {
-        // Update the missile's position based on its speed
+        entitiesY += speed
     }
 
     fun outofbound(): Boolean {
