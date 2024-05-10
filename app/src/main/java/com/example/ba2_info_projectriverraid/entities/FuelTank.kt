@@ -22,15 +22,13 @@ class FuelTank(
         fuelTankPaint.color = Color.GREEN
     }
     fun draw (canvas : Canvas){
-        fun draw (canvas : Canvas){
             super.rect = RectF(
-                entitiesX - entitiesSize.first,
-                entitiesY - entitiesSize.second,
-                entitiesX + entitiesSize.first,
-                entitiesY + entitiesSize.second
-            )
-            canvas.drawRect(rect, fuelTankPaint)
-        }
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second
+        )
+        canvas.drawRect(rect, fuelTankPaint)
     }
     override fun delete() {
         view.fuelTanks.remove(this)
