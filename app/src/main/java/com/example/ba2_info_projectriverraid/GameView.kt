@@ -15,7 +15,7 @@ import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
-//import com.example.ba2_info_projectriverraid.entities.FuelTank
+
 class GameView @JvmOverloads constructor (context: Context,
                                           attributes: AttributeSet? = null,
                                           defStyleAttr: Int = 0)
@@ -33,6 +33,9 @@ class GameView @JvmOverloads constructor (context: Context,
         moveLeftPressed = moveLeftPressed,
         shootPressed = shootPressed
     )
+    val fuelTanks = mutableListOf<FuelTank>()
+    val blocks = mutableListOf<Block>()
+    val enemies = mutableListOf<Ship>()
     val missiles = mutableListOf<Missile>()
     val entities = mutableListOf<Entities>()
     init {

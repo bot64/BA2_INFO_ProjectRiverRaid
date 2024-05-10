@@ -14,11 +14,11 @@ class MainActivity : AppCompatActivity() {
         }
     override fun onResume() {
         super.onResume()
-        gameView.resume()
+        //gameView.resume()
     }
     override fun onPause() {
         super.onPause()
-        gameView.pause()
+        //gameView.pause()
     }
 
     companion object DifficultyDataManager {

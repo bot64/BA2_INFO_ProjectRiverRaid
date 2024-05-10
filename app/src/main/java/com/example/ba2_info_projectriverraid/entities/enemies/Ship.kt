@@ -14,7 +14,7 @@ class Ship(
     health: Float = 3f,
     onScreen: Boolean = true,
     val view: GameView
-) : Enemies(shipX, shipY, shipSize, onScreen,health) {
+) : Enemies(shipX, shipY, shipSize, onScreen,health, collisionOrdinal = 0) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     var scrollSpeed : Float = 200f
