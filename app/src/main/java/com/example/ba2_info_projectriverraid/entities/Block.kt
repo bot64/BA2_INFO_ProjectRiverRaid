@@ -1,8 +1,12 @@
 package com.example.ba2_info_projectriverraid.entities
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import com.example.ba2_info_projectriverraid.GameView
+import com.example.ba2_info_projectriverraid.R
 
 class Block(
     blockX: Float,
@@ -11,7 +15,6 @@ class Block(
     health: Float = 999999f,
     onScreen: Boolean = true,
     val view: GameView,
-    val scrollSpeed : Float = 200f,
     val blockPaint: Paint = Paint()
 ) : Entities(blockX, blockY, blockSize, onScreen, health) {
 
@@ -28,11 +31,7 @@ class Block(
         )
     }
     fun delete() {
-        view.blocks.remove(this)
-    }
-    fun update(interval : Double){
-        var scroll = (interval * scrollSpeed).toFloat()
-        entitiesY += scroll
+        // Remove the block from the game
     }
 
     fun pop_block() {

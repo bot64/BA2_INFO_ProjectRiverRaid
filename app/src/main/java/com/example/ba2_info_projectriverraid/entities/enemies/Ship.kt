@@ -17,7 +17,7 @@ class Ship(
 ) : Enemies(shipX, shipY, shipSize, onScreen,health) {
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
-    var scrollSpeed : Float = 200f
+    var speed = 30
     var isAlive : Boolean = true
 
     init {
@@ -42,15 +42,12 @@ class Ship(
         Ship = null
     }*/
     fun update(interval: Double) {
-        var scroll = (interval * scrollSpeed).toFloat()
-        entitiesY += scroll
-        if(entitiesY > view.screenHeight || health <= 0)
+        var up = (interval * speed).toFloat()
+        entitiesY += up
+       if(entitiesY > view.screenHeight || health <= 0)
            isAlive = false
 
         }
-    fun delete(){
-        view.enemies.remove(this)
-    }
     }
 
     fun pop_entity() {
@@ -63,4 +60,3 @@ class Ship(
             //add score implementation
         }
     }*/
-
