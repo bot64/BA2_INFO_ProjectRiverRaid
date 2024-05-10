@@ -8,40 +8,36 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import com.example.ba2_info_projectriverraid.CreationUtils.EntityType
 import com.example.ba2_info_projectriverraid.entities.Entities
 import com.example.ba2_info_projectriverraid.entities.Block
 import com.example.ba2_info_projectriverraid.entities.FuelTank
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
 import com.example.ba2_info_projectriverraid.entities.enemies.Ship
-import kotlin.random.Random
 //import com.example.ba2_info_projectriverraid.entities.FuelTank
 class GameView @JvmOverloads constructor (context: Context,
                                           attributes: AttributeSet? = null,
-                                          defStyleAttr: Int = 0,
-                                          entities : MutableList<Entities>)
-    : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback, Runnable {
+                                          defStyleAttr: Int = 0)
+    : SurfaceView(context, attributes, defStyleAttr), SurfaceHolder.Callback{
     lateinit var canvas: Canvas
     val backgroundPaint = Paint()
-    var screenWidth = 0f
-    var screenHeight = 0f
-    var drawing = false
-    var moveLeftPressed = false
-    var moveRightPressed = false
+    var screenWidth = 0f; var screenHeight = 0f
+    var moveLeftPressed = false; var moveRightPressed = false
     var shootPressed = false
-    var lastMissileShotTime : Long = 0.toLong()
-    lateinit var thread : Thread
+    lateinit var thread: Thread
     val player = Player(
-        0f,
-        0f,
+        0f, 0f,
         view = this,
         moveRightPressed = moveRightPressed,
         moveLeftPressed = moveLeftPressed,
-        shootPressed = shootPressed)
+        shootPressed = shootPressed
+    )
     val missiles = mutableListOf<Missile>()
     val entities = mutableListOf<Entities>()
-    init {backgroundPaint.color = Color.WHITE}
-
+    init {
+        backgroundPaint.color = Color.WHITE
+    }
     override fun onTouchEvent(event: MotionEvent): Boolean {
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
@@ -63,59 +59,6 @@ class GameView @JvmOverloads constructor (context: Context,
         }
         return true
     }
-
-    fun pause() {
-        drawing = false
-        thread.join()
-    }
-
-    fun resume() {
-        drawing = true
-        thread = Thread(this)
-        thread.start()
-    }
-
-    override fun run() {
-        var previousFrameTime = System.currentTimeMillis()
-        while (drawing) {
-            val currentTime = System.currentTimeMillis()
-            val elapsedTimeMS = (currentTime-previousFrameTime).toDouble()
-            updatePositions(elapsedTimeMS)
-            draw()
-            previousFrameTime = currentTime
-        }
-    }
-    /* override fun onSizeChanged(w:Int, h:Int, oldw:Int, oldh:Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        screenWidth = w.toFloat()
-        screenHeight = h.toFloat()
-        player.entitiesX = screenWidth / 2f
-        player.entitiesY = screenHeight * 0.8f
-        for (i in 0 until 3) {
-            enemies.add(Ship(Random.nextFloat() * screenWidth, 100f, view = this))
-            blocks.add(Block(Random.nextFloat() * screenWidth, 200f, view = this))
-            fuelTanks.add(FuelTank(Random.nextFloat() * screenWidth, 300f, view = this))
-        }
-    } */ //todo : Eliminating redundancies with createEntities()
-    fun updatePositions(elapsedTimeMS: Double) {
-        val interval = elapsedTimeMS / 1000.0
-        if (System.currentTimeMillis() - lastMissileShotTime >= 200 && shootPressed) {
-            missiles.add(Missile(player.entitiesX, player.entitiesY, view = this))
-            lastMissileShotTime = System.currentTimeMillis()
-        }
-        for (missile in missiles) {
-            missile.update()
-        }
-        for (entity in entities){
-            when(entity){
-                is Ship -> entity.update(interval)
-                is Block -> entity.update(interval)
-                is FuelTank -> entity.update(interval)
-            }
-        }
-        player.move(moveLeftPressed, moveRightPressed)
-    }
-
     fun draw() {
         if (holder.surface.isValid) {
             canvas = holder.lockCanvas()
@@ -138,34 +81,17 @@ class GameView @JvmOverloads constructor (context: Context,
     fun handleInput(event: MotionEvent) {
         // Handle input events and update the input states
     }
-
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, screenWidth: Int, screenHeight: Int) {}
-
-    override fun surfaceCreated(holder: SurfaceHolder) {
-    }
-
-
+    override fun surfaceCreated(holder: SurfaceHolder) {}
     override fun surfaceDestroyed(holder: SurfaceHolder) {}
-    /*private fun createEnemies(numEnemies : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        //Creates [numEnemies] 'enemies' objects at randomized (entitiesX,entitiesY) values
-        repeat(numEnemies) {
-            val enemy = Ship(context,Random.nextFloat()*screenWidth, Random.nextFloat()*screenHeight, Pair(20f,20f), 1f)
-            entities.add(enemy)
-        }
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int){
+        super.onSizeChanged(w, h, oldw, oldh)
+        screenWidth = w.toFloat()
+        screenHeight = h.toFloat()
+        player.entitiesX = screenWidth/ 2f
+        player.entitiesY = screenHeight * 0.8f
+        CreationUtils.createEntities(3, entities, screenWidth, screenHeight, EntityType.Enemy, this)
+        CreationUtils.createEntities(3, entities, screenWidth, screenHeight, EntityType.Block, this)
+        CreationUtils.createEntities(3, entities, screenWidth, screenHeight, EntityType.FuelTank, this)
     }
-    private fun createBlocks(numBlocks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        // Creates [numBlocks] 'block' objects at randomized (entitiesX,entitiesY) values
-        repeat(numBlocks){
-            val block = Block(context,Random.nextFloat() * screenWidth,Random.nextFloat() * screenHeight)
-            entities.add(block)
-        }
-    }
-
-    private fun createFuelTanks(numFuelTanks : Int, entities : MutableList<Entities>, screenWidth : Int, screenHeight : Int) {
-        // Creates [numFuelTanks] 'fuel_tank' objects at randomized (entitiesX,entitiesY) values
-        repeat(numFuelTanks){
-            val fuelTank = FuelTank(context, Random.nextFloat()*screenWidth,Random.nextFloat()*screenHeight,Pair(20f,20f))
-        }
-    }*/
 }
-
