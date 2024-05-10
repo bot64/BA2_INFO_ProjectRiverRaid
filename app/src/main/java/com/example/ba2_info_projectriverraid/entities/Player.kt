@@ -64,9 +64,9 @@ class Player(
     override fun removeObserver(observer: PerimeterObserver){observers.remove(observer)}
     fun notifyObserver() {
         // Allows for observer notifications based on the target's coordinates
-        CoroutineScope(Dispatchers.Default).launch {
+        CoroutineScope(Dispatchers.Default).launch{
             if (observers.isNotEmpty()) {
-                observers.forEach { observer -> observer.moveOnDetection(Position(entitiesX, entitiesY))}
+                observers.forEach {observer -> observer.moveOnDetection(Position(entitiesX, entitiesY))}
             }
         }
     }

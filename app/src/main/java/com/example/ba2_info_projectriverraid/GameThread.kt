@@ -7,8 +7,9 @@ import com.example.ba2_info_projectriverraid.entities.enemies.Ship
 import com.example.ba2_info_projectriverraid.GameView
 import com.example.ba2_info_projectriverraid.entities.Missile
 import com.example.ba2_info_projectriverraid.entities.Player
+import com.example.ba2_info_projectriverraid.entities.enemies.PerimeterObserver
 
-class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView: GameView) : Runnable {
+class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView: GameView) : Runnable{
 
     // Game state variables
     var running = false
@@ -26,7 +27,9 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
         shootPressed = shootPressed
     )
     private val coroutineScope = CoroutineScope(Dispatchers.Default)
+    private var playerPosition = Pair(player.entitiesX, player.entitiesY)
     //private val enemies = mutableListOf<Enemy>()
+    init {player.addObserver(entities.filterIsInstance<PerimeterObserver>() as PerimeterObserver)}
     override fun run() {startGame()}
     fun updatePositions(elapsedTimeMS: Double) {
         //Managing the user's actions and clock time for the user, missiles and other entities
@@ -45,7 +48,11 @@ class GameThread(private val surfaceHolder: SurfaceHolder, private val gameView:
                 }
             }
         }
-        synchronized(player) {player.move(moveLeftPressed, moveRightPressed)}
+        synchronized(player) {
+            playerPosition = Pair(player.entitiesX, player.entitiesY)
+            player.move(moveLeftPressed, moveRightPressed)
+            player.sendNewPosition(playerPosition.first, playerPosition.second)
+        }
     }
     fun updateGame(elapsedTimeMS: Double){
         val interval = elapsedTimeMS/1000f
