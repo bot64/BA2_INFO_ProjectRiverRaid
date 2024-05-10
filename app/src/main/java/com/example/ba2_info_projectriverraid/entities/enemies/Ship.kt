@@ -20,16 +20,13 @@ class Ship(
     val shipPaint: Paint = Paint()
     val shipXY = PointF(entitiesX,entitiesY)
     var scrollSpeed : Float = 200f
-    var speed : Float = 150f
+    var speed : Float = 1f
     var isAlive : Boolean = true
 
     init {
         shipXY.set(view.screenWidth/2, 0f)
         val speed = 10f
         shipPaint.color = Color.BLUE
-    }
-    fun handle_collision(entity: Entities) {
-        // Handle collisions between the ship and other entities
     }
     fun draw (canvas : Canvas){
         super.rect = RectF(
@@ -40,10 +37,6 @@ class Ship(
         )
         canvas.drawRect(rect, shipPaint)
     }
-
-   /* fun delete(ship: Ship ) {
-        Ship = null
-    }*/
     fun update(interval: Double) {
         var scroll = (interval * scrollSpeed).toFloat()
         entitiesY += scroll
@@ -60,15 +53,4 @@ class Ship(
         speed = -speed
     }
 }
-
-    fun pop_entity() {
-        // Create a new ship and add it to the game
-    }
-    /*fun hurt(entity : Entities) {
-
-        if (entity is Missile){
-            super.health
-
-        }
-    }*/
 

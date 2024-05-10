@@ -38,15 +38,13 @@ class Player(
         playerPaint.color = Color.RED
     }
     fun draw(canvas: Canvas) {
-        fun draw (canvas : Canvas){
-            super.rect = RectF(
-                entitiesX - entitiesSize.first,
-                entitiesY - entitiesSize.second,
-                entitiesX + entitiesSize.first,
-                entitiesY + entitiesSize.second
-            )
-            canvas.drawRect(rect, playerPaint)
-        }
+        super.rect = RectF(
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second
+        )
+        canvas.drawRect(rect, playerPaint)
     }
 
     fun setPlayerXY(X: Float = entitiesX, Y: Float = entitiesY) {

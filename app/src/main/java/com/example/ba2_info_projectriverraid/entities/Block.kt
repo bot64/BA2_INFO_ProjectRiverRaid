@@ -21,15 +21,13 @@ class Block(
         blockPaint.color = Color.YELLOW
     }
     fun draw (canvas : Canvas){
-        fun draw (canvas : Canvas){
             super.rect = RectF(
-                entitiesX - entitiesSize.first,
-                entitiesY - entitiesSize.second,
-                entitiesX + entitiesSize.first,
-                entitiesY + entitiesSize.second
-            )
-            canvas.drawRect(rect, blockPaint)
-        }
+            entitiesX - entitiesSize.first,
+            entitiesY - entitiesSize.second,
+            entitiesX + entitiesSize.first,
+            entitiesY + entitiesSize.second
+        )
+        canvas.drawRect(rect, blockPaint)
     }
     override fun delete() {
         view.blocks.remove(this)
